@@ -92,6 +92,95 @@
   .fix .pain { margin: 0 0 0.6rem; color: var(--muted); }
   .fix .cure { margin: 0; padding-left: 0.9rem; border-left: 3px solid var(--green); }
 
+  /* ---------- one inquiry, step by step ----------
+     The motion IS the explanation (the research Jason approved): the five steps light
+     up one after another, slowly, using only fades and a highlight that moves along.
+     No sliding, bouncing, glow or 3D. One 14 s loop: the steps arrive over ~9.5 s,
+     everything holds for ~3 s (the pause), then it all dims and starts again.
+     The base styles below ARE the finished picture, so with no animation (reduced
+     motion, or a browser that skips it) the reader sees all five steps, still.
+     The script at the bottom pauses it while it is off-screen. */
+  .flow-lead { color: var(--muted); max-width: var(--measure); margin: 3rem 0 1.25rem; }
+  .flow { display: grid; gap: 1.5rem; max-width: 60rem; }
+  .flow-step {
+    position: relative; background: #fff; border: 1px solid var(--line); border-radius: 0.6rem;
+    padding: 0.85rem 1rem 1rem;
+    animation: 14s ease-in-out infinite both;
+  }
+  .flow-step:last-child { border-color: var(--green); background: var(--wash); }
+  /* the thin line joining each step to the one before it (vertical on phones) */
+  .flow-step + .flow-step::before {
+    content: ""; position: absolute; background: var(--line);
+    left: 1.6rem; top: calc(-1.5rem - 1px); width: 2px; height: 1.5rem;
+  }
+  .flow-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 1.3rem; height: 1.3rem; border-radius: 50%; border: 1.5px solid var(--green);
+    color: var(--green); font-size: 0.72rem; font-weight: 700; line-height: 1;
+  }
+  .flow-name { font-weight: 600; font-size: 0.95rem; line-height: 1.25; margin: 0.45rem 0 0.65rem; }
+  .flow-say { font-size: 0.85rem; line-height: 1.4; animation: 14s ease-in-out infinite both; }
+  .flow-say span { animation: 14s ease-in-out infinite both; }
+  .bubble { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 0.5rem; padding: 0.5rem 0.6rem; }
+  .bubble small { display: block; color: var(--muted); font-size: 0.75rem; margin-bottom: 0.15rem; }
+  .bubble.reply { border-left: 3px solid var(--green); }
+  .ok {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    border: 1.5px solid var(--green); border-radius: 999px; padding: 0.3rem 0.85rem;
+    font-weight: 600; background: var(--green); color: #fff;
+    animation: 14s ease-in-out infinite both;
+  }
+  .ok svg { width: 0.85rem; height: 0.85rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .chip { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 0.2rem 0.65rem; white-space: nowrap; }
+  .slot { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 0.5rem; overflow: hidden; max-width: 11rem; }
+  .slot b { display: block; background: var(--green); color: #fff; font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.6rem; }
+  .slot span { display: block; padding: 0.4rem 0.6rem 0.5rem; }
+
+  /* Who arrives when, as a share of the 14 s loop. Step 1 at 2%, 2 at 16%, 3 at 30%,
+     4 at 44% (its second chip at 55%), 5 at 66%; all hold to 88%, dim by 95%.
+     A step is dim before it arrives, highlighted while it is the current one,
+     and plain once the next one takes over. */
+  .flow-step:nth-child(1) { animation-name: flow-c1; }
+  .flow-step:nth-child(2) { animation-name: flow-c2; }
+  .flow-step:nth-child(3) { animation-name: flow-c3; }
+  .flow-step:nth-child(4) { animation-name: flow-c4; }
+  .flow-step:nth-child(5) { animation-name: flow-c5; }
+  .flow-step:nth-child(1) .flow-say { animation-name: flow-t1; }
+  .flow-step:nth-child(2) .flow-say { animation-name: flow-t2; }
+  .flow-step:nth-child(2) .flow-say span:nth-of-type(1) { animation-name: flow-w1; }
+  .flow-step:nth-child(2) .flow-say span:nth-of-type(2) { animation-name: flow-w2; }
+  .flow-step:nth-child(2) .flow-say span:nth-of-type(3) { animation-name: flow-w3; }
+  .flow-step:nth-child(2) .flow-say span:nth-of-type(4) { animation-name: flow-w4; }
+  .flow-step:nth-child(3) .flow-say { animation-name: flow-t3; }
+  .flow-step:nth-child(3) .ok { animation-name: flow-ok; }
+  .flow-step:nth-child(4) .chip:nth-child(1) { animation-name: flow-t4; }
+  .flow-step:nth-child(4) .chip:nth-child(2) { animation-name: flow-t4b; }
+  .flow-step:nth-child(5) .flow-say { animation-name: flow-t5; }
+  .flow .chip { animation: 14s ease-in-out infinite both; }
+
+  @keyframes flow-c1 { 0%, 2% { opacity: .4; border-color: var(--line); background: #fff; } 6%, 16% { opacity: 1; border-color: var(--green); background: var(--wash); } 20%, 88% { opacity: 1; border-color: var(--line); background: #fff; } 95%, 100% { opacity: .4; border-color: var(--line); background: #fff; } }
+  @keyframes flow-c2 { 0%, 16% { opacity: .4; border-color: var(--line); background: #fff; } 20%, 30% { opacity: 1; border-color: var(--green); background: var(--wash); } 34%, 88% { opacity: 1; border-color: var(--line); background: #fff; } 95%, 100% { opacity: .4; border-color: var(--line); background: #fff; } }
+  @keyframes flow-c3 { 0%, 30% { opacity: .4; border-color: var(--line); background: #fff; } 34%, 44% { opacity: 1; border-color: var(--green); background: var(--wash); } 48%, 88% { opacity: 1; border-color: var(--line); background: #fff; } 95%, 100% { opacity: .4; border-color: var(--line); background: #fff; } }
+  @keyframes flow-c4 { 0%, 44% { opacity: .4; border-color: var(--line); background: #fff; } 48%, 66% { opacity: 1; border-color: var(--green); background: var(--wash); } 70%, 88% { opacity: 1; border-color: var(--line); background: #fff; } 95%, 100% { opacity: .4; border-color: var(--line); background: #fff; } }
+  @keyframes flow-c5 { 0%, 66% { opacity: .4; border-color: var(--line); background: #fff; } 70%, 88% { opacity: 1; border-color: var(--green); background: var(--wash); } 95%, 100% { opacity: .4; border-color: var(--line); background: #fff; } }
+  @keyframes flow-t1 { 0%, 2% { opacity: 0; } 6%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
+  @keyframes flow-t2 { 0%, 16% { opacity: 0; } 18%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
+  @keyframes flow-w1 { 0%, 17% { opacity: 0; } 19.5%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
+  @keyframes flow-w2 { 0%, 19.5% { opacity: 0; } 22%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
+  @keyframes flow-w3 { 0%, 22% { opacity: 0; } 24.5%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
+  @keyframes flow-w4 { 0%, 24.5% { opacity: 0; } 27%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
+  @keyframes flow-t3 { 0%, 30% { opacity: 0; } 34%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
+  @keyframes flow-ok { 0%, 37% { background: #fff; color: var(--green); } 40%, 100% { background: var(--green); color: #fff; } }
+  @keyframes flow-t4 { 0%, 44% { opacity: 0; } 48%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
+  @keyframes flow-t4b { 0%, 55% { opacity: 0; } 59%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
+  @keyframes flow-t5 { 0%, 66% { opacity: 0; } 70%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
+
+  .flow.is-paused .flow-step, .flow.is-paused .flow-step * { animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce) {
+    .flow-step, .flow-step * { animation: none !important; }
+  }
+
   /* The dark band: two of the three screens are dark, so they sit in their own light here. */
   .night { background: var(--night); color: var(--night-ink); }
   .night .lede { color: var(--night-muted); }
@@ -132,6 +221,9 @@
     section { padding: 5rem 0; }
     h2 { font-size: 2.25rem; margin-bottom: 2rem; }
     .fixes { grid-template-columns: 1fr 1fr; gap: 2.5rem 3.5rem; max-width: 60rem; }
+    .flow-lead { margin-top: 4rem; }
+    .flow { grid-template-columns: repeat(5, 1fr); gap: 1.25rem; max-width: none; }
+    .flow-step + .flow-step::before { left: calc(-1.25rem - 1px); top: 1.45rem; width: 1.25rem; height: 2px; }
     .system { grid-template-columns: 19rem 1fr; gap: 3.5rem; align-items: start; padding: 3.5rem 0; }
     .pair { grid-template-columns: 1.6fr 1fr; }
     .ways { grid-template-columns: repeat(3, 1fr); }
@@ -186,6 +278,35 @@
           <h3>Customers who never came back</h3>
           <p class="pain">Years of past customers sitting in a list, or on paper, that nobody ever contacts.</p>
           <p class="cure">They hear from you again, personally. A customer who already trusts you is the easiest one to win back.</p>
+        </div>
+      </div>
+
+      <p class="flow-lead">Here's what that looks like for one inquiry.</p>
+      <div class="flow" role="img" aria-label="One customer inquiry, step by step: a new inquiry comes in, a reply is drafted in minutes, you tap OK, follow-ups go out on day 2 and day 5, and the job is booked.">
+        <div class="flow-step">
+          <span class="flow-num">1</span>
+          <p class="flow-name">New inquiry</p>
+          <p class="flow-say bubble"><small>Sam</small>Hi, can you quote a kitchen tap replacement?</p>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">2</span>
+          <p class="flow-name">Reply drafted in minutes</p>
+          <p class="flow-say bubble reply"><span>Hi Sam, </span><span>yes, happy to. </span><span>Could you send </span><span>a photo of the tap?</span></p>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">3</span>
+          <p class="flow-name">You tap OK</p>
+          <div class="flow-say"><span class="ok"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>OK</span></div>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">4</span>
+          <p class="flow-name">Follow-ups on day 2 and day 5</p>
+          <div class="flow-say chips"><span class="chip">Day 2 follow-up</span><span class="chip">Day 5 follow-up</span></div>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">5</span>
+          <p class="flow-name">Booked</p>
+          <p class="flow-say slot"><b>Thursday, 9:00</b><span>Kitchen tap, Sam</span></p>
         </div>
       </div>
     </div>
@@ -322,6 +443,12 @@
       }, 0);
     });
   });
+  /* The one-inquiry diagram only moves while it is on screen; off screen it pauses
+     (a class that sets animation-play-state), so on a first visit it starts at step 1 when scrolled to. */
+  var flow = document.querySelector('.flow');
+  if (flow && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { flow.classList.toggle('is-paused', !es[0].isIntersecting); }).observe(flow);
+  }
   /* "Copy email" buttons: many owners use Gmail in the browser, not a mail app, so a
      mailto link alone sends them to an app they never open. */
   document.querySelectorAll('[data-copy]').forEach(function (b) {
