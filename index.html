@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jason Tang, systems for traditional businesses</title>
+<meta name="description" content="I find where a business is leaking time, money and customers, then build simple systems that fix it quietly in the background.">
+<!-- The preview a friend's forwarded link shows in WhatsApp, iMessage and the rest.
+     og:image needs a full address, so it assumes the page lives at howisjason.com. -->
+<meta property="og:title" content="Jason Tang, systems for traditional businesses">
+<meta property="og:description" content="I find where a business is leaking time, money and customers, then build simple systems that fix it quietly in the background.">
+<meta property="og:image" content="https://howisjason.com/img/jason.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  /* One accent, the green of the plant in his photo, so the page and the picture belong together.
+     Instrument Sans is the face of Jason's own design bible (content-creation),
+     so the page looks like his. The research behind the plan: looks are judged in
+     50 ms and drive trust, low clutter and a normal-looking layout win, and real
+     pictures beat decoration. So the striking part is the real screens on a dark
+     band, never painted art or moving particles (those read as AI-made and load slow). */
+  :root {
+    --paper: #FBFBF8;
+    --ink: #141A16;
+    --muted: #56615A;
+    --line: #E0E6E1;
+    --green: #3D6B45;
+    --wash: #EEF3EC;
+    --night: #0F1411;
+    --night-ink: #EEF2EE;
+    --night-muted: #A0ACA4;
+    --night-line: #233029;
+    --leaf: #A9CE9E;
+    --measure: 36rem;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 1.0625rem/1.6 "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  a { color: var(--green); }
+  a:focus-visible, .btn:focus-visible, video:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 4px; }
+  .night a:focus-visible { outline-color: var(--leaf); }
+  img { display: block; max-width: 100%; height: auto; }
+  .wrap { max-width: 70rem; margin: 0 auto; padding: 0 1.25rem; }
+
+  /* ---------- first screen: face, name, pitch, a way to reach him ---------- */
+  .hero { padding: 1.5rem 0 3rem; }
+  .who { display: flex; align-items: center; gap: 0.9rem; }
+  .avatar { width: 4.5rem; height: 4.5rem; border-radius: 50%; object-fit: cover; flex: none; }
+  .name { font-size: 1.15rem; font-weight: 700; margin: 0; line-height: 1.2; }
+  .title { margin: 0.15rem 0 0; color: var(--muted); font-size: 0.9rem; line-height: 1.35; }
+  h1 {
+    font-weight: 600;
+    font-size: clamp(2.1rem, 7vw, 4.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin: 1.5rem 0 1.1rem;
+    max-width: 17em;
+    text-wrap: balance;
+  }
+  .intro { max-width: var(--measure); color: var(--muted); margin: 0 0 1.6rem; }
+  .intro strong { color: var(--ink); font-weight: 600; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.6rem 1.25rem; align-items: center; }
+  .btn {
+    display: inline-block; text-decoration: none;
+    background: var(--green); color: #fff;
+    font-weight: 600; padding: 0.85rem 1.35rem; border-radius: 0.5rem;
+  }
+  .btn:hover { background: #31573A; }
+  .quiet { color: var(--ink); font-weight: 500; text-underline-offset: 0.2em; }
+  .copy {
+    font: inherit; font-weight: 600; color: var(--green); background: transparent; cursor: pointer;
+    border: 1.5px solid var(--green); border-radius: 0.5rem; padding: 0.75rem 1.1rem;
+  }
+  .copy:hover { background: var(--wash); }
+  .copy:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+  .portrait { display: none; }
+
+  /* ---------- sections ---------- */
+  section { padding: 3.25rem 0; }
+  h2 { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 1.5rem; }
+  .lede { color: var(--muted); max-width: var(--measure); margin: -0.6rem 0 2.25rem; }
+
+  .fixes { display: grid; gap: 1.75rem; }
+  .fix h3 { font-size: 1.3rem; font-weight: 600; margin: 0 0 0.35rem; letter-spacing: -0.01em; }
+  .fix .pain { margin: 0 0 0.6rem; color: var(--muted); }
+  .fix .cure { margin: 0; padding-left: 0.9rem; border-left: 3px solid var(--green); }
+
+  /* The dark band: two of the three screens are dark, so they sit in their own light here. */
+  .night { background: var(--night); color: var(--night-ink); }
+  .night .lede { color: var(--night-muted); }
+  .system { display: grid; gap: 1.25rem; padding: 2.5rem 0; border-top: 1px solid var(--night-line); }
+  .system:first-of-type { border-top: 0; padding-top: 0; }
+  .system h3 { font-size: 1.35rem; font-weight: 600; line-height: 1.2; margin: 0 0 0.6rem; letter-spacing: -0.01em; }
+  .system p { margin: 0; color: var(--night-muted); max-width: var(--measure); }
+  .system .yours { color: var(--night-ink); margin-top: 0.9rem; }
+  .system .yours b { color: var(--leaf); font-weight: 600; }
+  .figure { font-size: 2.9rem; font-weight: 700; color: var(--leaf); letter-spacing: -0.035em; line-height: 1; margin-top: 1.4rem; }
+  .figure-note { color: var(--night-ink); font-size: 0.95rem; margin-top: 0.4rem; max-width: 17rem; }
+  .shot { margin: 0; }
+  .shot img { border-radius: 0.6rem; border: 1px solid var(--night-line); box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.7); }
+  .shot figcaption { color: var(--night-muted); font-size: 0.85rem; margin-top: 0.6rem; }
+  .pair { display: grid; gap: 0.75rem; align-items: start; }
+  .phone { max-width: 16rem; }
+  .phone img { border-radius: 1.4rem; }
+
+  .video { display: block; width: 100%; height: auto; background: var(--night); border-radius: 0.6rem; border: 1px solid var(--line);
+    box-shadow: 0 1px 2px rgba(20, 26, 22, 0.06), 0 16px 40px -20px rgba(20, 26, 22, 0.45); }
+
+  .ways { display: grid; gap: 1.5rem 2.5rem; }
+  .ways h3 { font-size: 1.1rem; font-weight: 600; margin: 0 0 0.25rem; }
+  .ways p { margin: 0; color: var(--muted); }
+  .rule { border-top: 1px solid var(--line); }
+
+  .closing { background: var(--wash); padding: 3.75rem 0; }
+  .closing p { max-width: var(--measure); margin: 0 0 1.5rem; }
+  .email { font-size: clamp(1.25rem, 4.6vw, 1.8rem); font-weight: 600; word-break: break-word; }
+  footer { padding: 1.5rem 0 2.5rem; color: var(--muted); font-size: 0.85rem; }
+  footer a { color: var(--muted); }
+
+  @media (min-width: 52rem) {
+    .hero { padding: 3.5rem 0 5rem; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 21rem; gap: 3.5rem; align-items: center; }
+    .who .avatar { display: none; }
+    .portrait { display: block; width: 21rem; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 0.9rem; }
+    section { padding: 5rem 0; }
+    h2 { font-size: 2.25rem; margin-bottom: 2rem; }
+    .fixes { grid-template-columns: 1fr 1fr; gap: 2.5rem 3.5rem; max-width: 60rem; }
+    .system { grid-template-columns: 19rem 1fr; gap: 3.5rem; align-items: start; padding: 3.5rem 0; }
+    .pair { grid-template-columns: 1.6fr 1fr; }
+    .ways { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="who">
+        <img class="avatar" src="img/jason-face.jpg" width="320" height="320" alt="Jason Tang">
+        <div>
+          <p class="name">Jason Tang</p>
+          <p class="title">Automation Specialist for Traditional Businesses</p>
+        </div>
+      </div>
+      <h1>I find the leaks in your business and fix them quietly in the background.</h1>
+      <p class="intro"><strong>I'm the systems guy.</strong> I find where a business is losing time, money and customers, then build simple systems that stop it. I've been building business systems since 2022, first as co-founder of a 10-person marketing agency, and now with AI every single day. I've already made the expensive AI mistakes, building far too much and then cutting it back to what actually works, so the businesses I work with don't have to. AI overwhelms most owners. I make it simple.</p>
+      <div class="actions">
+        <a class="btn" href="mailto:jason@howisjason.com">jason@howisjason.com</a>
+        <button class="copy" type="button" data-copy="jason@howisjason.com">Copy email</button>
+        <a class="quiet" href="#built">See what I've built</a>
+      </div>
+    </div>
+    <img class="portrait" src="img/jason.jpg" width="900" height="900" alt="">
+  </div>
+</header>
+
+<main>
+  <section class="rule" aria-labelledby="fix">
+    <div class="wrap">
+      <h2 id="fix">What I fix</h2>
+      <div class="fixes">
+        <div class="fix">
+          <h3>Leads that wait</h3>
+          <p class="pain">The inquiry that sat for a day and went to whoever answered first. The quote nobody chased.</p>
+          <p class="cure">Every lead gets a reply drafted in minutes, ready for your OK, and a follow-up on time, without anyone having to remember.</p>
+        </div>
+        <div class="fix">
+          <h3>Admin that eats the day</h3>
+          <p class="pain">The same emails, quotes and updates, typed out by hand, and the late nights spent catching up.</p>
+          <p class="cure">The repeat work moves to a simple system your team can actually run.</p>
+        </div>
+        <div class="fix">
+          <h3>Answers buried in your software</h3>
+          <p class="pain">You pay for software that holds the answers, but nobody has time to dig them out.</p>
+          <p class="cure">I connect the software you already have so the answer comes to you. Only then would I suggest anything new.</p>
+        </div>
+        <div class="fix">
+          <h3>Customers who never came back</h3>
+          <p class="pain">Years of past customers sitting in a list, or on paper, that nobody ever contacts.</p>
+          <p class="cure">They hear from you again, personally. A customer who already trusts you is the easiest one to win back.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- A "Right now" section (a current client project) goes here, between "What I fix"
+       and "What I've built", only once the work is real and the client agrees to be shown. -->
+
+  <section id="built" class="night" aria-labelledby="built-h">
+    <div class="wrap">
+      <h2 id="built-h">What I've built</h2>
+      <p class="lede">My own business helps YouTube creators build paid online communities, so I built these for it first. Here's what each one does, and what the same idea looks like in yours. These are the real screens.</p>
+
+      <article class="system">
+        <div>
+          <h3>A system that finds the right people, researches them and follows up on its own</h3>
+          <p>It finds the right people to contact, researches each one, writes to each of them personally, and handles the follow-ups by itself, with every reply sent straight to my phone.</p>
+          <p class="yours"><b>In your business:</b> your past customers, and anyone with an open quote, each get a personal message, written the way you would write it, and a follow-up on time, so none go cold.</p>
+          <div class="figure">35,244</div>
+          <div class="figure-note">YouTube channels my system searched to find the 195 people worth contacting</div>
+        </div>
+        <figure class="shot">
+          <img src="img/lead-engine.jpg" width="1600" height="939" alt="The system's dashboard: 195 people worth contacting, found by searching 35,244 YouTube channels." loading="lazy">
+          <figcaption>The live dashboard: 35,244 channels in, 195 people worth contacting out. Names blurred.</figcaption>
+        </figure>
+      </article>
+
+      <article class="system">
+        <div>
+          <h3>A system that turns rough notes into finished videos</h3>
+          <p>It writes the script in my own voice, checks the facts, makes the pictures with an AI image generation tool I trained myself, and cuts the captioned short clips.</p>
+          <p class="yours"><b>In your business:</b> what you already know becomes posts and videos, without you sitting down to write them.</p>
+          <div class="figure">5 clips</div>
+          <div class="figure-note">cut and captioned automatically from one long recording</div>
+        </div>
+        <div class="pair">
+          <figure class="shot">
+            <img src="img/content-engine.jpg" width="1600" height="1000" alt="A finished video page the system made, with artwork from the AI image generation tool I trained." loading="lazy">
+          </figure>
+          <figure class="shot">
+            <img src="img/content-thumb.jpg" width="1200" height="675" alt="The matching video thumbnail, made by the same system." loading="lazy">
+            <figcaption>A video page and its thumbnail, artwork included, both made by the system.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="system">
+        <div>
+          <h3>An assistant that runs my admin every morning</h3>
+          <p>Every morning at 7 it does the day's admin on its own: it sends the emails and checks for replies. Then a separate AI reviewer grades its work, fixes any mistakes it finds by itself, and only asks me when a person is needed. Everything it knows lives on a private home page I open on my phone.</p>
+          <p class="yours"><b>In your business:</b> the morning admin is done and checked before you open, and you only hear about what needs a person.</p>
+          <div class="figure">450+</div>
+          <div class="figure-note">pieces of its work graded by the AI reviewer so far, with mistakes fixed as they were found</div>
+        </div>
+        <figure class="shot phone">
+          <img src="img/assistant-phone.jpg" width="646" height="1255" alt="The assistant's private home page on my phone." loading="lazy">
+          <figcaption>Its home page, on my phone.</figcaption>
+        </figure>
+      </article>
+    </div>
+  </section>
+
+  <!-- The video plays here, but preload="none" means nothing downloads until someone
+       presses play, so the page stays fast. The browser's address bar is covered in it. -->
+  <section aria-labelledby="watch">
+    <div class="wrap">
+      <h2 id="watch">Watch one running</h2>
+      <p class="lede">A 3-minute walkthrough of that first system, in my own words.</p>
+      <video class="video" aria-label="Jason's 3-minute walkthrough of the system" controls preload="none" playsinline poster="img/video-poster.jpg" width="1280" height="772">
+        <source src="video/walkthrough.mp4" type="video/mp4">
+      </video>
+    </div>
+  </section>
+
+  <section class="rule" aria-labelledby="how">
+    <div class="wrap">
+      <h2 id="how">How I work</h2>
+      <div class="ways">
+        <div>
+          <h3>Your data stays in your own systems</h3>
+          <p>Nothing gets sent anywhere you haven't approved.</p>
+        </div>
+        <div>
+          <h3>One piece at a time</h3>
+          <p>We start with the thing costing you the most, see it work, then decide what's next.</p>
+        </div>
+        <div>
+          <h3>Your rules, every time</h3>
+          <p>What I build follows how you already do things: your prices, your suppliers, your rules of thumb.</p>
+        </div>
+        <div>
+          <h3>A person says yes</h3>
+          <p>Nothing reaches a customer without your OK, and AI is kept out of the decisions where one mistake costs you a customer.</p>
+        </div>
+        <div>
+          <h3>A real person answers</h3>
+          <p>You talk to me, in plain English, not to a chatbot.</p>
+        </div>
+        <div>
+          <h3>Nothing new to learn</h3>
+          <p>It works inside the software your team already uses, unless something new is clearly worth it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing" aria-labelledby="talk">
+    <div class="wrap">
+      <h2 id="talk">Something keeps slipping through the cracks?</h2>
+      <p>If someone you know sent you this, they probably think I can help. Tell me what keeps slipping in your business, and I'll tell you honestly whether I can fix it.</p>
+      <div class="actions">
+        <a class="email" href="mailto:jason@howisjason.com">jason@howisjason.com</a>
+        <button class="copy" type="button" data-copy="jason@howisjason.com">Copy email</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Jason Tang &nbsp;/&nbsp; <a href="https://www.linkedin.com/in/howisjason">LinkedIn</a></div>
+</footer>
+
+<script>
+  /* Click anywhere on the video to play or pause. Chrome only does this from the small
+     play button; Firefox and Safari already do it themselves, so we check a moment later
+     and only act if the browser didn't, which avoids pausing it straight back. */
+  document.querySelectorAll('video').forEach(function (v) {
+    v.addEventListener('click', function (e) {
+      var r = v.getBoundingClientRect();
+      if (e.clientY > r.bottom - 64) return; /* a click on the control bar stays the bar's */
+      var wasPaused = v.paused;
+      setTimeout(function () {
+        if (v.paused === wasPaused) { if (wasPaused) { v.play().catch(function () {}); } else { v.pause(); } }
+      }, 0);
+    });
+  });
+  /* "Copy email" buttons: many owners use Gmail in the browser, not a mail app, so a
+     mailto link alone sends them to an app they never open. */
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var label = b.textContent;
+      var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = label; }, 1800); };
+      if (navigator.clipboard) { navigator.clipboard.writeText(b.dataset.copy).then(done, function () {}); }
+    });
+  });
+</script>
+</body>
+</html>
