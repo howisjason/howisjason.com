@@ -184,6 +184,14 @@
      the "fix" lines under each problem give way to the diagram that shows the fix,
      and each system leads with its picture so a screen never passes without one. */
   @media (max-width: 51.99rem) {
+    /* the hero's one picture: his photo, full width, straight under the headline, so the
+       first phone screen holds a real face instead of only text (the small circle goes) */
+    .hero-grid { display: flex; flex-direction: column; }
+    .hero-grid > div { display: contents; }
+    .who { order: 1; } .who .avatar { display: none; }
+    .hero h1 { order: 2; }
+    .portrait { order: 3; display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 45%; border-radius: 0.75rem; margin: 0 0 1.4rem; }
+    .intro { order: 4; } .actions { order: 5; }
     .fix .cure { display: none; }
     .fix .pain { margin-bottom: 0; }
     .system > .shot, .system > .pair { order: -1; }
