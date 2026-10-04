@@ -452,9 +452,9 @@
   /* "Copy email" buttons: many owners use Gmail in the browser, not a mail app, so a
      mailto link alone sends them to an app they never open. */
   document.querySelectorAll('[data-copy]').forEach(function (b) {
+    var label = b.textContent; /* saved once, so a double click can't save "Copied" as the label */
     b.addEventListener('click', function () {
-      var label = b.textContent;
-      var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = label; }, 1800); };
+      var done = function () { b.textContent = 'Copied'; clearTimeout(b._t); b._t = setTimeout(function () { b.textContent = label; }, 1800); };
       if (navigator.clipboard) { navigator.clipboard.writeText(b.dataset.copy).then(done, function () {}); }
     });
   });
