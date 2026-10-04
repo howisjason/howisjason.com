@@ -178,6 +178,32 @@
   @keyframes flow-t5 { 0%, 66% { opacity: 0; } 70%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
 
   .flow.is-paused .flow-step, .flow.is-paused .flow-step * { animation-play-state: paused; }
+  /* PHONES ONLY (measured 4 Oct: the page ran 9.3 phone screens and the first picture sat
+     4 screens down). Three changes, all undone at the 52rem breakpoint:
+     the diagram shows one step at a time in one card-sized space instead of a 5-card tower,
+     the "fix" lines under each problem give way to the diagram that shows the fix,
+     and each system leads with its picture so a screen never passes without one. */
+  @media (max-width: 51.99rem) {
+    .fix .cure { display: none; }
+    .fix .pain { margin-bottom: 0; }
+    .system > .shot, .system > .pair { order: -1; }
+  }
+  @media (max-width: 51.99rem) and (prefers-reduced-motion: no-preference) {
+    .flow { grid-template-columns: 1fr; gap: 0; }
+    .flow-step { grid-area: 1 / 1; border-color: var(--green); background: var(--wash); }
+    .flow-step + .flow-step::before { display: none; }
+    .flow-step:nth-child(1) { animation-name: flow-m1; }
+    .flow-step:nth-child(2) { animation-name: flow-m2; }
+    .flow-step:nth-child(3) { animation-name: flow-m3; }
+    .flow-step:nth-child(4) { animation-name: flow-m4; }
+    .flow-step:nth-child(5) { animation-name: flow-m5; }
+  }
+  @keyframes flow-m1 { 0% { opacity: 0; } 2%, 17% { opacity: 1; } 19%, 100% { opacity: 0; } }
+  @keyframes flow-m2 { 0%, 17% { opacity: 0; } 19%, 31% { opacity: 1; } 33%, 100% { opacity: 0; } }
+  @keyframes flow-m3 { 0%, 31% { opacity: 0; } 33%, 45% { opacity: 1; } 47%, 100% { opacity: 0; } }
+  @keyframes flow-m4 { 0%, 45% { opacity: 0; } 47%, 67% { opacity: 1; } 69%, 100% { opacity: 0; } }
+  @keyframes flow-m5 { 0%, 67% { opacity: 0; } 69%, 96% { opacity: 1; } 99%, 100% { opacity: 0; } }
+
   @media (prefers-reduced-motion: reduce) {
     .flow-step, .flow-step * { animation: none !important; }
   }
