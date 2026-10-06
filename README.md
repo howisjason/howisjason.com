@@ -12,5 +12,7 @@ page updates within a minute or two. Nothing private belongs here.
   the word is fine in the body copy.
 - **No niche on this page.** Referrals come from every kind of business.
 - **Exactly one animated diagram, and it explains something.** Nothing decorative.
+- **Small icon badges sit beside the problem and "How I work" headings** (Lucide icons,
+  drawn inline; his ask, 7 Oct 2026, from the content design bible's disc idea).
 - **No client is named** until the work is real and the client agrees to be named.
 - The rules the page's claims were checked against are in `index.html`'s own comments.

@@ -195,6 +195,7 @@
     .fix .cure { display: none; }
     .fix .pain { margin-bottom: 0; }
     .system > .shot { order: -1; }
+    .play-text { display: none; } /* on a phone the words would sit on his face; the button alone is enough */
   }
   @media (max-width: 51.99rem) and (prefers-reduced-motion: no-preference) {
     .flow { grid-template-columns: 1fr; gap: 0; }
@@ -236,13 +237,41 @@
   .video { display: block; width: 100%; height: auto; background: var(--night); border-radius: 0.6rem; border: 1px solid var(--line);
     box-shadow: 0 1px 2px rgba(20, 26, 22, 0.06), 0 16px 40px -20px rgba(20, 26, 22, 0.45); }
 
-  .ways { display: grid; gap: 1.5rem 2.5rem; }
+  /* Small round icon badges (Lucide icons, drawn inline so the page loads nothing extra),
+     the disc idea from the content design bible, redrawn for this light page. */
+  .badge { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; flex: none;
+    border-radius: 50%; background: var(--wash); color: var(--green);
+    outline: 1px dashed rgba(61, 107, 69, 0.35); outline-offset: 3px; }
+  /* the badge sits on the heading's line: icon, then heading, then the text below spans the full width */
+  .fix, .ways > div { display: grid; grid-template-columns: auto 1fr; column-gap: 0.9rem; align-items: center; align-content: start; }
+  .fix > :not(.badge):not(h3), .ways > div > :not(.badge):not(h3) { grid-column: 1 / -1; }
+  .fix > h3, .ways > div > h3 { margin-bottom: 0; }
+  .fix > .pain, .ways > div > p { margin-top: 0.7rem; }
+  .badge svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* The video's cover: a big play button over a smiling frame. It hides once the video starts. */
+  .video-wrap { position: relative; }
+  .play { position: absolute; inset: 0; display: flex; align-items: flex-end; gap: 0.9rem; padding: clamp(1rem, 3vw, 1.75rem);
+    border: 0; border-radius: 0.6rem; cursor: pointer; font: inherit; color: #fff; text-align: left;
+    background: linear-gradient(to top, rgba(15, 20, 17, 0.8), rgba(15, 20, 17, 0) 50%); }
+  .play-disc { display: grid; place-items: center; width: 4rem; height: 4rem; border-radius: 50%; flex: none;
+    background: var(--green); box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.18), 0 10px 30px -8px rgba(0, 0, 0, 0.6); transition: transform 0.15s; }
+  .play:hover .play-disc { transform: scale(1.06); }
+  .play-disc svg { width: 1.6rem; height: 1.6rem; fill: #fff; margin-left: 0.2rem; }
+  .play-text { font-size: 1.2rem; font-weight: 600; line-height: 1.2; }
+  .play-text small { display: block; font-size: 0.85rem; font-weight: 500; opacity: 0.8; }
+  .play:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+  .video-wrap.is-playing .play { display: none; }
+
+  .ways { display: grid; gap: 1.75rem 3.5rem; }
   .ways h3 { font-size: 1.1rem; font-weight: 600; margin: 0 0 0.25rem; }
   .ways p { margin: 0; color: var(--muted); }
   .rule { border-top: 1px solid var(--line); }
 
   .closing { background: var(--wash); padding: 3.75rem 0; }
   .closing p { max-width: var(--measure); margin: 0 0 1.5rem; }
+  .hello { display: block; width: 5.5rem; height: 5.5rem; border-radius: 50%; object-fit: cover; margin-bottom: 1.25rem;
+    box-shadow: 0 0 0 4px #fff, 0 10px 30px -12px rgba(20, 26, 22, 0.5); }
   .email { font-size: clamp(1.25rem, 4.6vw, 1.8rem); font-weight: 600; word-break: break-word; }
   footer { padding: 1.5rem 0 2.5rem; color: var(--muted); font-size: 0.85rem; }
   footer a { color: var(--muted); }
@@ -259,7 +288,10 @@
     .flow { grid-template-columns: repeat(5, 1fr); gap: 1.25rem; max-width: none; }
     .flow-step + .flow-step::before { left: calc(-1.25rem - 1px); top: 1.45rem; width: 1.25rem; height: 2px; }
     .system { grid-template-columns: 19rem 1fr; gap: 3.5rem; align-items: start; padding: 3.5rem 0; }
-    .ways { grid-template-columns: repeat(3, 1fr); }
+    .ways { grid-template-columns: 1fr 1fr; max-width: 60rem; }
+    .system.has-phone { grid-template-columns: minmax(0, 30rem) 16rem; column-gap: 6rem; align-items: center; }
+    .talk { display: grid; grid-template-columns: auto 1fr; gap: 3rem; align-items: center; }
+    .hello { width: 10rem; height: 10rem; margin: 0; }
   }
 </style>
 </head>
@@ -276,7 +308,7 @@
         </div>
       </div>
       <h1>I find the leaks in your business and fix them quietly in the background.</h1>
-      <p class="intro"><strong>I'm the systems guy.</strong> I find where a business is losing time, money and customers, then build simple systems that stop it. I've been building business systems since 2022, first as co-founder of a 10-person marketing agency, and now with AI every single day. I've already made the expensive AI mistakes, building far too much and then cutting it back to what actually works, so the businesses I work with don't have to. AI overwhelms most owners. I make it simple.</p>
+      <p class="intro"><strong>I'm the systems guy.</strong> I find where a business is losing time, money and customers, then build simple systems that stop it. I've been building business systems since 2022, first as co-founder of a 10-person marketing agency, and now with AI every single day. AI overwhelms most owners. I make it simple.</p>
       <div class="actions">
         <a class="btn" href="mailto:jason@howisjason.com">jason@howisjason.com</a>
         <button class="copy" type="button" data-copy="jason@howisjason.com">Copy email</button>
@@ -294,21 +326,25 @@
       <h2 id="fix">What I fix</h2>
       <div class="fixes">
         <div class="fix">
+          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg></span>
           <h3>Leads that wait</h3>
           <p class="pain">The inquiry that sat for a day and went to whoever answered first. The quote nobody chased.</p>
           <p class="cure">Every lead gets a reply drafted in minutes, ready for your OK, and a follow-up on time, without anyone having to remember.</p>
         </div>
         <div class="fix">
+          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></span>
           <h3>Admin that eats the day</h3>
           <p class="pain">The same emails, quotes and updates, typed out by hand, and the late nights spent catching up.</p>
           <p class="cure">The repeat work moves to a simple system your team can actually run.</p>
         </div>
         <div class="fix">
+          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><circle cx="11.5" cy="14.5" r="2.5"/><path d="M13.3 16.3 15 18"/></svg></span>
           <h3>Answers buried in your software</h3>
           <p class="pain">You pay for software that holds the answers, but nobody has time to dig them out.</p>
           <p class="cure">I connect the software you already have so the answer comes to you. Only then would I suggest anything new.</p>
         </div>
         <div class="fix">
+          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></span>
           <h3>Customers who never came back</h3>
           <p class="pain">Years of past customers sitting in a list, or on paper, that nobody ever contacts.</p>
           <p class="cure">They hear from you again, personally. A customer who already trusts you is the easiest one to win back.</p>
@@ -368,7 +404,7 @@
         </figure>
       </article>
 
-      <article class="system">
+      <article class="system has-phone">
         <div>
           <h3>An assistant that runs my admin every morning</h3>
           <p>Every morning at 7 it does the day's admin on its own: it sends the emails and checks for replies. Then a separate AI reviewer grades its work, fixes any mistakes it finds by itself, and only asks me when a person is needed. Everything it knows lives on a private home page I open on my phone.</p>
@@ -390,9 +426,12 @@
     <div class="wrap">
       <h2 id="watch">Watch one running</h2>
       <p class="lede">A 3-minute walkthrough of that first system, in my own words.</p>
+      <div class="video-wrap">
       <video class="video" aria-label="Jason's 3-minute walkthrough of the system" controls preload="none" playsinline poster="img/video-poster.jpg" width="1280" height="772">
         <source src="video/walkthrough.mp4" type="video/mp4">
       </video>
+      <button class="play" type="button" aria-label="Play the 3-minute walkthrough"><span class="play-disc" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg></span><span class="play-text">Watch it run<small>3 minutes</small></span></button>
+      </div>
     </div>
   </section>
 
@@ -401,41 +440,40 @@
       <h2 id="how">How I work</h2>
       <div class="ways">
         <div>
-          <h3>Your data stays in your own systems</h3>
-          <p>Nothing gets sent anywhere you haven't approved.</p>
-        </div>
-        <div>
+          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z"/></svg></span>
           <h3>One piece at a time</h3>
           <p>We start with the thing costing you the most, see it work, then decide what's next.</p>
         </div>
         <div>
-          <h3>Your rules, every time</h3>
-          <p>What I build follows how you already do things: your prices, your suppliers, your rules of thumb.</p>
-        </div>
-        <div>
+          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
           <h3>A person says yes</h3>
           <p>Nothing reaches a customer without your OK, and AI is kept out of the decisions where one mistake costs you a customer.</p>
         </div>
         <div>
-          <h3>A real person answers</h3>
-          <p>You talk to me, in plain English, not to a chatbot.</p>
-        </div>
-        <div>
+          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 20h20"/><path d="m9 10 2 2 4-4"/><rect x="3" y="4" width="18" height="12" rx="2"/></svg></span>
           <h3>Nothing new to learn</h3>
           <p>It works inside the software your team already uses, unless something new is clearly worth it.</p>
+        </div>
+        <div>
+          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg></span>
+          <h3>A real person answers</h3>
+          <p>You talk to me, in plain English, not to a chatbot.</p>
         </div>
       </div>
     </div>
   </section>
 
   <section class="closing" aria-labelledby="talk">
-    <div class="wrap">
+    <div class="wrap talk">
+      <img class="hello" src="img/jason-hello.jpg" width="320" height="320" alt="Jason, smiling, from his walkthrough video" loading="lazy">
+      <div>
       <h2 id="talk">Something keeps slipping through the cracks?</h2>
       <p>If someone you know sent you this, they probably think I can help. Tell me what keeps slipping in your business, and I'll tell you honestly whether I can fix it.</p>
       <div class="actions">
         <a class="email" href="mailto:jason@howisjason.com">jason@howisjason.com</a>
         <button class="copy" type="button" data-copy="jason@howisjason.com">Copy email</button>
         <a class="copy" href="https://wa.me/17789911388" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
       </div>
     </div>
   </section>
@@ -449,6 +487,14 @@
   /* Click anywhere on the video to play or pause. Chrome only does this from the small
      play button; Firefox and Safari already do it themselves, so we check a moment later
      and only act if the browser didn't, which avoids pausing it straight back. */
+  document.querySelectorAll('.video-wrap').forEach(function (w) {
+    var v = w.querySelector('video');
+    /* the browser's own control bar would show through the cover, so it waits until playback starts
+       (it stays in the HTML so the video still works if this script never runs) */
+    v.controls = false;
+    w.querySelector('.play').addEventListener('click', function () { v.play().catch(function () {}); });
+    v.addEventListener('play', function () { w.classList.add('is-playing'); v.controls = true; });
+  });
   document.querySelectorAll('video').forEach(function (v) {
     v.addEventListener('click', function (e) {
       var r = v.getBoundingClientRect();
