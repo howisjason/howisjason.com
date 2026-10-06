@@ -194,7 +194,7 @@
     .intro { order: 4; } .actions { order: 5; }
     .fix .cure { display: none; }
     .fix .pain { margin-bottom: 0; }
-    .system > .shot, .system > .pair { order: -1; }
+    .system > .shot { order: -1; }
   }
   @media (max-width: 51.99rem) and (prefers-reduced-motion: no-preference) {
     .flow { grid-template-columns: 1fr; gap: 0; }
@@ -216,7 +216,7 @@
     .flow-step, .flow-step * { animation: none !important; }
   }
 
-  /* The dark band: two of the three screens are dark, so they sit in their own light here. */
+  /* The dark band: the system screens sit in their own light here. */
   .night { background: var(--night); color: var(--night-ink); }
   .night .lede { color: var(--night-muted); }
   .system { display: grid; gap: 1.25rem; padding: 2.5rem 0; border-top: 1px solid var(--night-line); }
@@ -230,7 +230,6 @@
   .shot { margin: 0; }
   .shot img { border-radius: 0.6rem; border: 1px solid var(--night-line); box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.7); }
   .shot figcaption { color: var(--night-muted); font-size: 0.85rem; margin-top: 0.6rem; }
-  .pair { display: grid; gap: 0.75rem; align-items: start; }
   .phone { max-width: 16rem; }
   .phone img { border-radius: 1.4rem; }
 
@@ -260,7 +259,6 @@
     .flow { grid-template-columns: repeat(5, 1fr); gap: 1.25rem; max-width: none; }
     .flow-step + .flow-step::before { left: calc(-1.25rem - 1px); top: 1.45rem; width: 1.25rem; height: 2px; }
     .system { grid-template-columns: 19rem 1fr; gap: 3.5rem; align-items: start; padding: 3.5rem 0; }
-    .pair { grid-template-columns: 1.6fr 1fr; }
     .ways { grid-template-columns: repeat(3, 1fr); }
   }
 </style>
@@ -368,25 +366,6 @@
           <img src="img/lead-engine.jpg" width="1600" height="939" alt="The system's dashboard: 195 people worth contacting, found by searching 35,244 YouTube channels." loading="lazy">
           <figcaption>The live dashboard: 35,244 channels in, 195 people worth contacting out. Names blurred.</figcaption>
         </figure>
-      </article>
-
-      <article class="system">
-        <div>
-          <h3>A system that turns rough notes into finished videos</h3>
-          <p>It writes the script in my own voice, checks the facts, makes the pictures with an AI image generation tool I trained myself, and cuts the captioned short clips.</p>
-          <p class="yours"><b>In your business:</b> what you already know becomes posts and videos, without you sitting down to write them.</p>
-          <div class="figure">5 clips</div>
-          <div class="figure-note">cut and captioned automatically from one long recording</div>
-        </div>
-        <div class="pair">
-          <figure class="shot">
-            <img src="img/content-engine.jpg" width="1600" height="1000" alt="A finished video page the system made, with artwork from the AI image generation tool I trained." loading="lazy">
-          </figure>
-          <figure class="shot">
-            <img src="img/content-thumb.jpg" width="1200" height="675" alt="The matching video thumbnail, made by the same system." loading="lazy">
-            <figcaption>A video page and its thumbnail, artwork included, both made by the system.</figcaption>
-          </figure>
-        </div>
       </article>
 
       <article class="system">
