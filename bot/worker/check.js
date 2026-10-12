@@ -37,6 +37,8 @@ export function checkMessages(raw) {
 export function replyFrom(data) {
   if (!data || data.stop_reason === 'refusal') return null;
   const text = (data.content || []).filter((b) => b.type === 'text').map((b) => b.text).join('').trim();
-  return text || null;
+  // Cut to the size checkMessages accepts back as an earlier turn, or one long answer
+  // would make the visitor's next question fail as "broken" (the grader's catch).
+  return text ? text.slice(0, LIMITS.assistantChars) : null;
 }
 

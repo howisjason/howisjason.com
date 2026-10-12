@@ -68,8 +68,8 @@ work in a traditional business.
      one-of-a-kind video pitch script and a personal email sequence for each one.
    - It has sent 600+ personal emails to 130+ people, times the follow-ups by itself, and
      sends every reply straight to his phone.
-   - He rebuilt it 90% leaner after an AI step mistook an out-of-office for a "no" and
-     dropped a live lead. Now a simple rule does that job, and far less can break.
+   - He rebuilt it 90% leaner after an AI step dropped a live lead, so far less can
+     break.
    - When his emails were landing in spam, he found the one sentence setting off the
      filters; a later test reached 19 of 20 inboxes.
    - In a business: your past customers, and anyone with an open quote, each get a

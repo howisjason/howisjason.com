@@ -27,4 +27,5 @@ assert.equal(replyFrom({ stop_reason: 'end_turn', content: [{ type: 'thinking', 
 assert.equal(replyFrom({ stop_reason: 'refusal', content: [{ type: 'text', text: 'leaked?' }] }), null);
 assert.equal(replyFrom({ stop_reason: 'end_turn', content: [] }), null);
 assert.equal(replyFrom(null), null);
+assert.equal(replyFrom({ stop_reason: 'max_tokens', content: [{ type: 'text', text: 'x'.repeat(LIMITS.assistantChars + 50) }] }).length, LIMITS.assistantChars);
 console.log('check.test.mjs: all checks pass');

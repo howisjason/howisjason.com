@@ -66,7 +66,9 @@ export default {
     const ledger = env.LEDGER.get(env.LEDGER.idFromName('ledger'));
     const take = await (await ledger.fetch('https://ledger/take', {
       method: 'POST',
-      body: JSON.stringify({ ip, perVisitor: Number(env.PER_VISITOR_DAILY), total: Number(env.TOTAL_DAILY) }),
+      // A missing or broken cap reads as 0, so it refuses everything rather than
+      // letting everything through (NaN would compare false and switch the cap off).
+      body: JSON.stringify({ ip, perVisitor: Number(env.PER_VISITOR_DAILY) || 0, total: Number(env.TOTAL_DAILY) || 0 }),
     })).json();
     if (!take.ok) {
       const error = take.reason === 'visitor'
