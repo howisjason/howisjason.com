@@ -18,6 +18,7 @@ private comes out. J's review copy, with the source of every line, is the Brain 
   it back to what actually works, so the businesses he works with don't have to.
 - He works remotely, with businesses wherever they are. English is his first language;
   he also speaks Cantonese.
+- He can work North American hours.
 - He directs AI coding tools (Claude and Claude Code, daily since April 2026) to build his
   systems. Do not call him a developer or a software engineer.
 
@@ -122,6 +123,5 @@ work in a traditional business.
 
 - Email: jason@howisjason.com (there is also a "Copy email" button on the page).
 - WhatsApp: the WhatsApp button on his page.
-- LinkedIn: linkedin.com/in/howisjason
 - The honest offer, in his words: "Tell me what keeps slipping in your business, and I'll
   tell you honestly whether I can fix it."
