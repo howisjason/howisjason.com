@@ -16,3 +16,11 @@ page updates within a minute or two. Nothing private belongs here.
   drawn inline; his ask, 7 Oct 2026, from the content design bible's disc idea).
 - **No client is named** until the work is real and the client agrees to be named.
 - The rules the page's claims were checked against are in `index.html`'s own comments.
+
+## The "Ask my AI" chat box (`bot/`)
+
+`index.html`'s chat box sends each question to the Cloudflare Worker in `bot/worker/`
+(`jason-bot`, deployed with `npx wrangler deploy` from that folder). The worker holds the
+Anthropic API key as a secret, caps messages per visitor and per day, and answers from
+`prompt.md` (how it behaves) plus `facts.md` (everything it may say, all of it already
+public). Its tests: `node bot/worker/check.test.mjs`.

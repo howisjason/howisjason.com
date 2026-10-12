@@ -1,0 +1,31 @@
+# The "Ask my AI" chat box's server (12 Oct 2026). Deploy from this folder:
+#   npx wrangler deploy
+# The API key is a secret, never written here: npx wrangler secret put ANTHROPIC_API_KEY
+#
+# No [triggers] on purpose: the account allows 5 cron triggers in total, and nothing
+# here runs on a clock.
+name = "jason-bot"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+# prompt.md and facts.md are imported as plain text (Wrangler bundles only .txt and
+# .html as text by default).
+[[rules]]
+type = "Text"
+globs = ["**/*.md"]
+fallthrough = true
+
+# The daily caps. Worst case a day is TOTAL_DAILY messages at the dearest size the
+# limits in check.js allow; J's review copy carries the arithmetic.
+[vars]
+PER_VISITOR_DAILY = "15"
+TOTAL_DAILY = "60"
+
+# The ledger that counts today's messages (exact counts; see the Ledger class).
+[[durable_objects.bindings]]
+name = "LEDGER"
+class_name = "Ledger"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Ledger"]

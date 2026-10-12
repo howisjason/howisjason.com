@@ -293,6 +293,48 @@
     .talk { display: grid; grid-template-columns: auto 1fr; gap: 3rem; align-items: center; }
     .hello { width: 10rem; height: 10rem; margin: 0; }
   }
+
+  /* ---------- "Ask my AI": the chat box (jason-bot branch, 12 Oct 2026) ----------
+     A small pill in the corner opens a panel; on phones the panel is a bottom sheet.
+     It talks to the jason-bot worker (bot/worker/), which holds the API key and the caps.
+     The answers come from an AI, and the panel says so in its header. */
+  .ask-pill { position: fixed; right: 1rem; bottom: 1rem; z-index: 40; display: inline-flex; align-items: center; gap: 0.5rem;
+    font: inherit; font-weight: 600; color: #fff; background: var(--green); border: 0; border-radius: 999px; cursor: pointer;
+    padding: 0.7rem 1.1rem 0.7rem 0.9rem; box-shadow: 0 10px 30px -10px rgba(20, 26, 22, 0.55); }
+  .ask-pill:hover { background: #31573A; }
+  .ask-pill svg { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .ask-pill:focus-visible, .ask button:focus-visible, .ask textarea:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+  .ask-open .ask-pill { display: none; }
+  .ask { position: fixed; z-index: 50; right: 1rem; bottom: 1rem; width: min(23rem, calc(100vw - 2rem)); height: min(36rem, calc(100dvh - 2rem));
+    display: none; flex-direction: column; background: var(--paper); border: 1px solid var(--line); border-radius: 0.9rem; overflow: hidden;
+    box-shadow: 0 1px 2px rgba(20, 26, 22, 0.06), 0 24px 60px -20px rgba(20, 26, 22, 0.5); }
+  .ask-open .ask { display: flex; }
+  .ask-head { display: flex; align-items: center; gap: 0.7rem; padding: 0.8rem 0.8rem 0.8rem 1rem; border-bottom: 1px solid var(--line); background: #fff; }
+  .ask-head img { width: 2.4rem; height: 2.4rem; border-radius: 50%; object-fit: cover; flex: none; }
+  .ask-head p { margin: 0; line-height: 1.3; }
+  .ask-head b { font-weight: 600; }
+  .ask-head small { display: block; color: var(--muted); font-size: 0.8rem; }
+  .ask-close { margin-left: auto; flex: none; width: 2.25rem; height: 2.25rem; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; font-size: 1.4rem; line-height: 1; }
+  .ask-close:hover { background: var(--wash); color: var(--ink); }
+  .ask-log { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .ask-msg { margin: 0; max-width: 88%; padding: 0.55rem 0.75rem; border-radius: 0.75rem; font-size: 0.95rem; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .ask-msg.bot { align-self: flex-start; background: #fff; border: 1px solid var(--line); border-left: 3px solid var(--green); }
+  .ask-msg.you { align-self: flex-end; background: var(--green); color: #fff; }
+  .ask-msg.note { align-self: center; max-width: 100%; color: var(--muted); font-size: 0.85rem; text-align: center; padding: 0.2rem 0.5rem; }
+  .ask-msg.wait { color: var(--muted); }
+  .ask-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .ask-chips button { font: inherit; font-size: 0.85rem; color: var(--green); background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 0.35rem 0.75rem; cursor: pointer; text-align: left; }
+  .ask-chips button:hover { border-color: var(--green); background: var(--wash); }
+  .ask-form { display: flex; gap: 0.5rem; align-items: flex-end; padding: 0.75rem; border-top: 1px solid var(--line); background: #fff; }
+  .ask-form textarea { flex: 1; resize: none; font: inherit; font-size: 1rem; line-height: 1.4; color: var(--ink); background: var(--paper);
+    border: 1px solid var(--line); border-radius: 0.6rem; padding: 0.55rem 0.7rem; max-height: 7.5rem; }
+  .ask-form button { flex: none; font: inherit; font-weight: 600; color: #fff; background: var(--green); border: 0; border-radius: 0.6rem; padding: 0.6rem 0.95rem; cursor: pointer; }
+  .ask-form button:disabled { opacity: 0.5; cursor: default; }
+  @media (max-width: 40rem) {
+    .ask { right: 0; bottom: 0; width: 100%; height: 88dvh; border-radius: 0.9rem 0.9rem 0 0; border-bottom: 0; }
+    footer { padding-bottom: 5rem; } /* room so the pill never sits on the last line */
+    .ask-hide .ask-pill { display: none; } /* on the first phone screen it would sit on the hero's email buttons */
+  }
 </style>
 </head>
 <body>
@@ -483,6 +525,28 @@
   <div class="wrap">Jason Tang</div>
 </footer>
 
+<!-- "Ask my AI" (jason-bot branch). The panel's words make clear it is an AI. -->
+<button class="ask-pill" type="button" aria-controls="ask" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Ask my AI</button>
+<div class="ask" id="ask" role="dialog" aria-label="Ask my AI">
+  <div class="ask-head">
+    <img src="img/jason-face.jpg" width="320" height="320" alt="">
+    <p><b>Ask my AI</b><small>An AI that knows my work. For anything important, email me.</small></p>
+    <button class="ask-close" type="button" aria-label="Close">&times;</button>
+  </div>
+  <div class="ask-log" aria-live="polite">
+    <p class="ask-msg bot">Hi, I'm Jason's AI. Ask me about my work, what I've built, or what might be slipping in your business.</p>
+    <div class="ask-chips">
+      <button type="button">What could you automate for my business?</button>
+      <button type="button">What have you built?</button>
+      <button type="button">How would we work together?</button>
+    </div>
+  </div>
+  <form class="ask-form">
+    <textarea rows="1" maxlength="600" placeholder="Type a question" aria-label="Your question"></textarea>
+    <button type="submit">Send</button>
+  </form>
+</div>
+
 <script>
   /* Click anywhere on the video to play or pause. Chrome only does this from the small
      play button; Firefox and Safari already do it themselves, so we check a moment later
@@ -520,6 +584,62 @@
       if (navigator.clipboard) { navigator.clipboard.writeText(b.dataset.copy).then(done, function () {}); }
     });
   });
+  /* "Ask my AI": the conversation lives only in this page (nothing is saved in the
+     browser), and each question sends the whole chat to the jason-bot worker, which
+     checks the daily caps and answers. The worker's error messages are written to be
+     shown as they are. */
+  (function () {
+    var BOT = 'https://jason-bot.jaceebo.workers.dev/chat';
+    var pill = document.querySelector('.ask-pill'), panel = document.getElementById('ask');
+    if (!pill || !panel) return;
+    var log = panel.querySelector('.ask-log'), form = panel.querySelector('.ask-form');
+    var box = form.querySelector('textarea'), send = form.querySelector('button');
+    var chips = panel.querySelector('.ask-chips'), chat = [], busy = false;
+    function open(on) {
+      document.body.classList.toggle('ask-open', on);
+      pill.setAttribute('aria-expanded', on ? 'true' : 'false');
+      /* a phone's keyboard would cover the suggested questions, so only a mouse-and-keyboard screen gets the cursor */
+      if (on) { if (matchMedia('(hover: hover)').matches) box.focus(); } else { pill.focus(); }
+    }
+    function say(text, who) {
+      var p = document.createElement('p');
+      p.className = 'ask-msg ' + who; p.textContent = text;
+      log.appendChild(p); log.scrollTop = log.scrollHeight;
+      return p;
+    }
+    function grow() { box.style.height = 'auto'; box.style.height = box.scrollHeight + 'px'; }
+    function ask(text) {
+      text = text.trim();
+      if (!text || busy) return;
+      if (chips) { chips.remove(); chips = null; }
+      busy = true; send.disabled = true;
+      say(text, 'you'); box.value = ''; grow();
+      chat.push({ role: 'user', content: text });
+      var wait = say('Thinking…', 'bot wait');
+      fetch(BOT, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ messages: chat }) })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          wait.remove();
+          if (d.reply) { chat.push({ role: 'assistant', content: d.reply }); say(d.reply, 'bot'); }
+          else { chat.pop(); say(d.error || 'Something went wrong. You can email me at jason@howisjason.com.', 'note'); }
+        })
+        .catch(function () { wait.remove(); chat.pop(); say("Couldn't reach my AI just now. You can email me at jason@howisjason.com.", 'note'); })
+        .then(function () { busy = false; send.disabled = false; });
+    }
+    /* while the hero's own buttons are on screen, the pill waits (the CSS applies this on phones only) */
+    var heroBtns = document.querySelector('.hero .actions');
+    if (heroBtns && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { document.body.classList.toggle('ask-hide', es[0].isIntersecting); }).observe(heroBtns);
+    }
+    pill.addEventListener('click', function () { open(true); });
+    panel.querySelector('.ask-close').addEventListener('click', function () { open(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && document.body.classList.contains('ask-open')) open(false); });
+    if (chips) chips.addEventListener('click', function (e) { if (e.target.tagName === 'BUTTON') ask(e.target.textContent); });
+    form.addEventListener('submit', function (e) { e.preventDefault(); ask(box.value); });
+    box.addEventListener('input', grow);
+    /* Enter sends, Shift+Enter makes a new line */
+    box.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); ask(box.value); } });
+  })();
 </script>
 <!-- Visit counter (GoatCounter, no cookies). A link sent as howisjason.com/?ref=name
      shows that name as the visit's source in the dashboard (not as a separate page). -->
