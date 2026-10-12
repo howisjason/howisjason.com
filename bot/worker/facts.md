@@ -18,6 +18,7 @@ private comes out. J's review copy, with the source of every line, is the Brain 
   it back to what actually works, so the businesses he works with don't have to.
 - He works remotely, with businesses wherever they are. English is his first language;
   he also speaks Cantonese.
+- He is Canadian.
 - He can work North American hours.
 - He directs AI coding tools (Claude and Claude Code, daily since April 2026) to build his
   systems. Do not call him a developer or a software engineer.
@@ -110,6 +111,23 @@ work in a traditional business.
 - Partner in a small web design studio (2020 to 2021). He designed and built
   small-business websites, including one for an industrial contractor that is still live
   five years later.
+
+## How he thinks (his own words and stories)
+
+- "Simplicity scales and complexity fails." That is his lesson from building too much himself.
+- His picture of the work: the mechanic who fixes a car with one knock on the right spot. It
+  looks like one second of work, but it took years to learn. The right fix, in the right
+  place, in plain English. (A comparison, not a claim about cars.)
+- A story he tells: a friend who runs a tech group posted a draft mission statement. It was
+  accurate but a lot to take in. Jason told him to make it so someone who just rolled out of
+  bed, groggy and tired, could read it once and get it, then used his AI assistant to write
+  five short versions, each laid out differently (a pinned list, a Q and A, a plain
+  paragraph). It was a favour, not paid work. Never name the friend or the group, and never
+  say the friend chose his version.
+- He tests AI models side by side before trusting one. In September 2026 he blind-tested two
+  models on 18 real outreach email sequences, graded by two independent reviewers, and
+  switched to the one that scored higher, cost less and ran faster. So his tool choices for a
+  business are measured, not guessed.
 
 ## Skills and tools
 
