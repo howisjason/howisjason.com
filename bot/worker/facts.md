@@ -125,8 +125,8 @@ work in a traditional business.
   paragraph). It was a favour, not paid work. Never name the friend or the group, and never
   say the friend chose his version.
 - He tests AI models side by side before trusting one. In September 2026 he blind-tested two
-  models on 18 real outreach email sequences, graded by two independent reviewers, and
-  switched to the one that scored higher, cost less and ran faster. So his tool choices for a
+  models on 18 real outreach email sequences, graded by two independent reviewers; the one he
+  uses scored higher, cost less and ran faster. So his tool choices for a
   business are measured, not guessed.
 
 ## Skills and tools
