@@ -333,8 +333,6 @@
   @media (max-width: 40rem) {
     .ask { right: 0; bottom: 0; width: 100%; height: 88dvh; border-radius: 0.9rem 0.9rem 0 0; border-bottom: 0; }
     footer { padding-bottom: 5rem; } /* room so the pill never sits on the last line */
-    .ask-pill { transition: opacity 0.2s, transform 0.2s, visibility 0.2s; }
-    .ask-hide .ask-pill { opacity: 0; visibility: hidden; transform: translateY(0.5rem); } /* it would sit on the hero's email buttons */
   }
 </style>
 </head>
@@ -626,16 +624,6 @@
         })
         .catch(function () { wait.remove(); chat.pop(); say("Couldn't reach my AI just now. You can email me at jason@howisjason.com.", 'note'); })
         .then(function () { busy = false; send.disabled = false; });
-    }
-    /* the pill waits until the hero's own buttons have scrolled up past its corner, then stays.
-       Hiding it only while the buttons were on screen made it show at the top, vanish, then come back
-       on short phone screens (J's catch, 17 Oct 2026). The CSS applies this on phones only. */
-    var heroBtns = document.querySelector('.hero .actions');
-    if (heroBtns) {
-      var place = function () { document.body.classList.toggle('ask-hide', heroBtns.getBoundingClientRect().bottom > innerHeight - 72); };
-      addEventListener('scroll', place, { passive: true });
-      addEventListener('resize', place);
-      place();
     }
     pill.addEventListener('click', function () { open(true); });
     panel.querySelector('.ask-close').addEventListener('click', function () { open(false); });
