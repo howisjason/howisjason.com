@@ -11,87 +11,67 @@
 <meta property="og:description" content="I find where a business is leaking time, money and customers, then build simple systems that fix it quietly in the background.">
 <meta property="og:image" content="https://howisjason.com/img/jason.jpg">
 <meta property="og:type" content="website">
+<!-- The look is Jason's design kit, Moon Gate (kit/, copied whole from his design-kit repo;
+     kit/assets/SOURCES.md says where every picture came from). This page is the kit's
+     "business dose": the style lives at the top (the ensō door with his photo through it,
+     one leaf shadow kept to the corner); below it, his real screens are the brightest thing.
+     Every colour comes from kit/tokens.css. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Noto+Serif+TC:wght@500;900&display=block" rel="stylesheet">
+<link rel="stylesheet" href="kit/tokens.css">
+<link rel="stylesheet" href="kit/kit.css">
 <style>
-  /* One accent, the green of the plant in his photo, so the page and the picture belong together.
-     Instrument Sans is the face of Jason's own design bible (content-creation),
-     so the page looks like his. The research behind the plan: looks are judged in
-     50 ms and drive trust, low clutter and a normal-looking layout win, and real
-     pictures beat decoration. So the striking part is the real screens on a dark
-     band, never painted art or moving particles (those read as AI-made and load slow). */
-  :root {
-    --paper: #FBFBF8;
-    --ink: #141A16;
-    --muted: #56615A;
-    --line: #E0E6E1;
-    --green: #3D6B45;
-    --wash: #EEF3EC;
-    --night: #0F1411;
-    --night-ink: #EEF2EE;
-    --night-muted: #A0ACA4;
-    --night-line: #233029;
-    --leaf: #A9CE9E;
-    --measure: 36rem;
-  }
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font: 400 1.0625rem/1.6 "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  }
-  a { color: var(--green); }
-  a:focus-visible, .btn:focus-visible, video:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 4px; }
-  .night a:focus-visible { outline-color: var(--leaf); }
+  /* The page's own layout, on top of the kit. Phones first; the 52rem breakpoint is the
+     desktop layout, which matches the approved still (design-kit/mockups/moon-gate-portfolio/quiet). */
   img { display: block; max-width: 100%; height: auto; }
-  .wrap { max-width: 70rem; margin: 0 auto; padding: 0 1.25rem; }
+  a:focus-visible, button:focus-visible, video:focus-visible, textarea:focus-visible { outline: 3px solid var(--leaf); outline-offset: 3px; }
 
-  /* ---------- first screen: face, name, pitch, a way to reach him ---------- */
-  .hero { padding: 1.5rem 0 3rem; }
-  .who { display: flex; align-items: center; gap: 0.9rem; }
-  .avatar { width: 4.5rem; height: 4.5rem; border-radius: 50%; object-fit: cover; flex: none; }
-  .name { font-size: 1.15rem; font-weight: 700; margin: 0; line-height: 1.2; }
-  .title { margin: 0.15rem 0 0; color: var(--muted); font-size: 0.9rem; line-height: 1.35; }
-  h1 {
-    font-weight: 600;
-    font-size: clamp(2.1rem, 7vw, 4.2rem);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    margin: 1.5rem 0 1.1rem;
-    max-width: 17em;
-    text-wrap: balance;
+  /* ---------- first screen: name, pitch, the door with his photo, a way to reach him ---------- */
+  .hero {
+    position: relative; overflow: hidden; padding: 40px 0 48px; --s: .6;
+    background: linear-gradient(to bottom, var(--paper) 62%, var(--wall-clear));
   }
-  .intro { max-width: var(--measure); color: var(--muted); margin: 0 0 1.6rem; }
-  .intro strong { color: var(--ink); font-weight: 600; }
-  .actions { display: flex; flex-wrap: wrap; gap: 0.6rem 1.25rem; align-items: center; }
-  .btn {
-    display: inline-block; text-decoration: none;
-    background: var(--green); color: #fff;
-    font-weight: 600; padding: 0.85rem 1.35rem; border-radius: 0.5rem;
-  }
-  .btn:hover { background: #31573A; }
-  .quiet { color: var(--ink); font-weight: 500; text-underline-offset: 0.2em; }
-  .copy {
-    font: inherit; font-weight: 600; color: var(--green); background: transparent; cursor: pointer;
-    border: 1.5px solid var(--green); border-radius: 0.5rem; padding: 0.75rem 1.1rem;
-  }
-  .copy:hover { background: var(--wash); }
-  a.copy { display: inline-block; text-decoration: none; }
-  .copy:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
-  .portrait { display: none; }
+  /* the one soft leaf shadow, anchored to the top right corner whatever the screen width;
+     on phones it is drawn smaller and fainter, so it stays off the headline */
+  .hero .gate-shadow.corner { left: auto; right: -198px; width: 900px; height: 600px; opacity: .45; }
+  .hero .gate-fade { height: 240px; background: linear-gradient(to bottom, var(--wall-clear), color-mix(in srgb, var(--wall) 90%, transparent) 70%, var(--wall-clear)); }
+  /* phones: one column in reading order, the door between the headline and the intro */
+  .hero-grid { position: relative; display: flex; flex-direction: column; }
+  .hero-text { display: contents; }
+  .who { order: 1; } .hero h1 { order: 2; } .hero .door { order: 3; } .intro { order: 4; } .hero .actions { order: 5; }
+  .avatar { display: none; }
+  .name { font-weight: 800; font-size: var(--t-lead); letter-spacing: -.01em; line-height: 1.3; }
+  .hero .title { margin-top: 4px; line-height: 1.45; }
+  h1 { font-size: clamp(34px, 4.4vw, 56px); line-height: 1.04; font-weight: 800; letter-spacing: -.035em; margin-top: 24px; }
+  .intro { color: var(--ink-2); max-width: 560px; }
+  .intro strong { color: var(--ink); font-weight: 700; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 28px; }
+  /* the door: the kit's ensō at a scale --s of its 560px drawing, never transformed,
+     so the ink still multiplies onto the photo and the wall */
+  .hero .door { position: relative; left: auto; top: auto; margin: 30px auto 34px; flex: none; width: calc(560px * var(--s)); height: calc(560px * var(--s)); }
+  .hero .door-through { left: calc(31px * var(--s)); top: calc(16px * var(--s)); width: calc(500px * var(--s)); height: calc(500px * var(--s)); overflow: hidden; }
+  .hero .door-through > img.photo { transform: scale(1.093); transform-origin: 50% 34%; }
+  .hero .door-enso { left: calc(-108px * var(--s)); top: calc(-268px * var(--s)); width: calc(772px * var(--s)); height: calc(1092px * var(--s)); }
 
   /* ---------- sections ---------- */
-  section { padding: 3.25rem 0; }
-  h2 { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 1.5rem; }
-  .lede { color: var(--muted); max-width: var(--measure); margin: -0.6rem 0 2.25rem; }
+  main section { padding-top: 72px; }
+  main section.first { padding-top: 24px; }
+  .head { margin-bottom: 0; gap: 14px; }
+  .head h2 { font-size: 30px; }
+  .head .disc.plain { width: 44px; height: 44px; }
+  .head .disc.plain svg { width: 20px; height: 20px; }
+  .lede { margin-top: 18px; color: var(--ink-2); max-width: 660px; }
 
-  .fixes { display: grid; gap: 1.75rem; }
-  .fix h3 { font-size: 1.3rem; font-weight: 600; margin: 0 0 0.35rem; letter-spacing: -0.01em; }
-  .fix .pain { margin: 0 0 0.6rem; color: var(--muted); }
-  .fix .cure { margin: 0; padding-left: 0.9rem; border-left: 3px solid var(--green); }
+  /* what I fix and how I work: on the wall, no boxes; the icon sits on the heading's line */
+  .fixes, .ways { display: grid; gap: 36px; margin-top: 36px; }
+  .fix, .ways > div { display: grid; grid-template-columns: auto 1fr; column-gap: 14px; align-items: center; align-content: start; }
+  .fix > :not(.badge):not(h3), .ways > div > :not(.badge):not(h3) { grid-column: 1 / -1; }
+  .badge { display: grid; place-items: center; width: 46px; height: 46px; flex: none; border-radius: 50%; background: var(--spring-wash); color: var(--leaf); }
+  .badge svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .fix h3, .ways h3 { font-size: 19px; line-height: 1.25; font-weight: 800; letter-spacing: -.015em; }
+  .fix p, .ways p { margin-top: 12px; color: var(--ink-2); }
+  .fix .cure { color: var(--ink); padding-left: 16px; border-left: 3px solid var(--spring); }
 
   /* ---------- one inquiry, step by step ----------
      The motion IS the explanation (the research Jason approved): the five steps light
@@ -101,42 +81,41 @@
      The base styles below ARE the finished picture, so with no animation (reduced
      motion, or a browser that skips it) the reader sees all five steps, still.
      The script at the bottom pauses it while it is off-screen. */
-  .flow-lead { color: var(--muted); max-width: var(--measure); margin: 3rem 0 1.25rem; }
-  .flow { display: grid; gap: 1.5rem; max-width: 60rem; }
+  .flow-lead { color: var(--ink-2); margin-top: 56px; }
+  .flow { display: grid; gap: 24px; max-width: 60rem; margin-top: 20px; }
   .flow-step {
-    position: relative; background: #fff; border: 1px solid var(--line); border-radius: 0.6rem;
-    padding: 0.85rem 1rem 1rem;
+    position: relative; background: var(--paper); border: 1.5px solid var(--line); border-radius: 22px;
+    padding: 18px 18px 20px; box-shadow: 0 18px 30px -26px var(--shade);
     animation: 14s ease-in-out infinite both;
   }
-  .flow-step:last-child { border-color: var(--green); background: var(--wash); }
+  .flow-step:last-child { border-color: var(--spring); background: var(--spring-wash); }
   /* the thin line joining each step to the one before it (vertical on phones) */
   .flow-step + .flow-step::before {
-    content: ""; position: absolute; background: var(--line);
-    left: 1.6rem; top: calc(-1.5rem - 1px); width: 2px; height: 1.5rem;
+    content: ""; position: absolute; background: var(--line-2);
+    left: 26px; top: calc(-24px - 1.5px); width: 2px; height: 24px;
   }
   .flow-num {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 1.3rem; height: 1.3rem; border-radius: 50%; border: 1.5px solid var(--green);
-    color: var(--green); font-size: 0.72rem; font-weight: 700; line-height: 1;
+    display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%;
+    border: 1.5px solid var(--leaf); color: var(--leaf); font-size: 13px; font-weight: 800; line-height: 1;
   }
-  .flow-name { font-weight: 600; font-size: 0.95rem; line-height: 1.25; margin: 0.45rem 0 0.65rem; }
-  .flow-say { font-size: 0.85rem; line-height: 1.4; animation: 14s ease-in-out infinite both; }
+  .flow-name { font-weight: 700; font-size: var(--t-ui); line-height: 1.3; margin: 12px 0; }
+  .flow-say { font-size: 14.5px; line-height: 1.45; animation: 14s ease-in-out infinite both; }
   .flow-say span { animation: 14s ease-in-out infinite both; }
-  .bubble { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 0.5rem; padding: 0.5rem 0.6rem; }
-  .bubble small { display: block; color: var(--muted); font-size: 0.75rem; margin-bottom: 0.15rem; }
-  .bubble.reply { border-left: 3px solid var(--green); }
+  .bubble { background: var(--wall); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; }
+  .bubble small { display: block; color: var(--ink-2); font-size: var(--t-label); font-weight: 700; margin-bottom: 2px; }
+  .bubble.reply { border-left: 3px solid var(--spring); }
   .ok {
-    display: inline-flex; align-items: center; gap: 0.35rem;
-    border: 1.5px solid var(--green); border-radius: 999px; padding: 0.3rem 0.85rem;
-    font-weight: 600; background: var(--green); color: #fff;
+    display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 16px;
+    border: 1.5px solid var(--spring); border-radius: var(--r-pill);
+    font-weight: 800; background: var(--spring); color: var(--ink);
     animation: 14s ease-in-out infinite both;
   }
-  .ok svg { width: 0.85rem; height: 0.85rem; }
-  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .chip { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 0.2rem 0.65rem; white-space: nowrap; }
-  .slot { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 0.5rem; overflow: hidden; max-width: 11rem; }
-  .slot b { display: block; background: var(--green); color: #fff; font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.6rem; }
-  .slot span { display: block; padding: 0.4rem 0.6rem 0.5rem; }
+  .ok svg { width: 15px; height: 15px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: var(--r-pill); font-size: 13px; font-weight: 600; background: var(--paper); border: 1px solid var(--line); white-space: nowrap; }
+  .slot { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; max-width: 11rem; font-size: var(--t-small); }
+  .slot b { display: block; background: var(--leaf); color: var(--paper); font-size: var(--t-label); font-weight: 700; padding: 5px 12px; }
+  .slot span { display: block; padding: 8px 12px 10px; }
 
   /* Who arrives when, as a share of the 14 s loop. Step 1 at 2%, 2 at 16%, 3 at 30%,
      4 at 44% (its second chip at 55%), 5 at 66%; all hold to 88%, dim by 95%.
@@ -160,11 +139,11 @@
   .flow-step:nth-child(5) .flow-say { animation-name: flow-t5; }
   .flow .chip { animation: 14s ease-in-out infinite both; }
 
-  @keyframes flow-c1 { 0%, 2% { opacity: .4; border-color: var(--line); background: #fff; } 6%, 16% { opacity: 1; border-color: var(--green); background: var(--wash); } 20%, 88% { opacity: 1; border-color: var(--line); background: #fff; } 95%, 100% { opacity: .4; border-color: var(--line); background: #fff; } }
-  @keyframes flow-c2 { 0%, 16% { opacity: .4; border-color: var(--line); background: #fff; } 20%, 30% { opacity: 1; border-color: var(--green); background: var(--wash); } 34%, 88% { opacity: 1; border-color: var(--line); background: #fff; } 95%, 100% { opacity: .4; border-color: var(--line); background: #fff; } }
-  @keyframes flow-c3 { 0%, 30% { opacity: .4; border-color: var(--line); background: #fff; } 34%, 44% { opacity: 1; border-color: var(--green); background: var(--wash); } 48%, 88% { opacity: 1; border-color: var(--line); background: #fff; } 95%, 100% { opacity: .4; border-color: var(--line); background: #fff; } }
-  @keyframes flow-c4 { 0%, 44% { opacity: .4; border-color: var(--line); background: #fff; } 48%, 66% { opacity: 1; border-color: var(--green); background: var(--wash); } 70%, 88% { opacity: 1; border-color: var(--line); background: #fff; } 95%, 100% { opacity: .4; border-color: var(--line); background: #fff; } }
-  @keyframes flow-c5 { 0%, 66% { opacity: .4; border-color: var(--line); background: #fff; } 70%, 88% { opacity: 1; border-color: var(--green); background: var(--wash); } 95%, 100% { opacity: .4; border-color: var(--line); background: #fff; } }
+  @keyframes flow-c1 { 0%, 2% { opacity: .4; border-color: var(--line); background: var(--paper); } 6%, 16% { opacity: 1; border-color: var(--spring); background: var(--spring-wash); } 20%, 88% { opacity: 1; border-color: var(--line); background: var(--paper); } 95%, 100% { opacity: .4; border-color: var(--line); background: var(--paper); } }
+  @keyframes flow-c2 { 0%, 16% { opacity: .4; border-color: var(--line); background: var(--paper); } 20%, 30% { opacity: 1; border-color: var(--spring); background: var(--spring-wash); } 34%, 88% { opacity: 1; border-color: var(--line); background: var(--paper); } 95%, 100% { opacity: .4; border-color: var(--line); background: var(--paper); } }
+  @keyframes flow-c3 { 0%, 30% { opacity: .4; border-color: var(--line); background: var(--paper); } 34%, 44% { opacity: 1; border-color: var(--spring); background: var(--spring-wash); } 48%, 88% { opacity: 1; border-color: var(--line); background: var(--paper); } 95%, 100% { opacity: .4; border-color: var(--line); background: var(--paper); } }
+  @keyframes flow-c4 { 0%, 44% { opacity: .4; border-color: var(--line); background: var(--paper); } 48%, 66% { opacity: 1; border-color: var(--spring); background: var(--spring-wash); } 70%, 88% { opacity: 1; border-color: var(--line); background: var(--paper); } 95%, 100% { opacity: .4; border-color: var(--line); background: var(--paper); } }
+  @keyframes flow-c5 { 0%, 66% { opacity: .4; border-color: var(--line); background: var(--paper); } 70%, 88% { opacity: 1; border-color: var(--spring); background: var(--spring-wash); } 95%, 100% { opacity: .4; border-color: var(--line); background: var(--paper); } }
   @keyframes flow-t1 { 0%, 2% { opacity: 0; } 6%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
   @keyframes flow-t2 { 0%, 16% { opacity: 0; } 18%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
   @keyframes flow-w1 { 0%, 17% { opacity: 0; } 19.5%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
@@ -172,7 +151,7 @@
   @keyframes flow-w3 { 0%, 22% { opacity: 0; } 24.5%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
   @keyframes flow-w4 { 0%, 24.5% { opacity: 0; } 27%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
   @keyframes flow-t3 { 0%, 30% { opacity: 0; } 34%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
-  @keyframes flow-ok { 0%, 37% { background: #fff; color: var(--green); } 40%, 100% { background: var(--green); color: #fff; } }
+  @keyframes flow-ok { 0%, 37% { background: var(--paper); color: var(--leaf); } 40%, 100% { background: var(--spring); color: var(--ink); } }
   @keyframes flow-t4 { 0%, 44% { opacity: 0; } 48%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
   @keyframes flow-t4b { 0%, 55% { opacity: 0; } 59%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
   @keyframes flow-t5 { 0%, 66% { opacity: 0; } 70%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
@@ -184,22 +163,13 @@
      the "fix" lines under each problem give way to the diagram that shows the fix,
      and each system leads with its picture so a screen never passes without one. */
   @media (max-width: 51.99rem) {
-    /* the hero's one picture: his photo, full width, straight under the headline, so the
-       first phone screen holds a real face instead of only text (the small circle goes) */
-    .hero-grid { display: flex; flex-direction: column; }
-    .hero-grid > div { display: contents; }
-    .who { order: 1; } .who .avatar { display: none; }
-    .hero h1 { order: 2; }
-    .portrait { order: 3; display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 45%; border-radius: 0.75rem; margin: 0 0 1.4rem; }
-    .intro { order: 4; } .actions { order: 5; }
     .fix .cure { display: none; }
-    .fix .pain { margin-bottom: 0; }
     .system > .shot { order: -1; }
     .play-text { display: none; } /* on a phone the words would sit on his face; the button alone is enough */
   }
   @media (max-width: 51.99rem) and (prefers-reduced-motion: no-preference) {
     .flow { grid-template-columns: 1fr; gap: 0; }
-    .flow-step { grid-area: 1 / 1; border-color: var(--green); background: var(--wash); }
+    .flow-step { grid-area: 1 / 1; border-color: var(--spring); background: var(--spring-wash); }
     .flow-step + .flow-step::before { display: none; }
     .flow-step:nth-child(1) { animation-name: flow-m1; }
     .flow-step:nth-child(2) { animation-name: flow-m2; }
@@ -217,154 +187,169 @@
     .flow-step, .flow-step * { animation: none !important; }
   }
 
-  /* The dark band: the system screens sit in their own light here. */
-  .night { background: var(--night); color: var(--night-ink); }
-  .night .lede { color: var(--night-muted); }
-  .system { display: grid; gap: 1.25rem; padding: 2.5rem 0; border-top: 1px solid var(--night-line); }
-  .system:first-of-type { border-top: 0; padding-top: 0; }
-  .system h3 { font-size: 1.35rem; font-weight: 600; line-height: 1.2; margin: 0 0 0.6rem; letter-spacing: -0.01em; }
-  .system p { margin: 0; color: var(--night-muted); max-width: var(--measure); }
-  .system .yours { color: var(--night-ink); margin-top: 0.9rem; }
-  .system .yours b { color: var(--leaf); font-weight: 600; }
-  .figure { font-size: 2.9rem; font-weight: 700; color: var(--leaf); letter-spacing: -0.035em; line-height: 1; margin-top: 1.4rem; }
-  .figure-note { color: var(--night-ink); font-size: 0.95rem; margin-top: 0.4rem; max-width: 17rem; }
-  .shot { margin: 0; }
-  .shot img { border-radius: 0.6rem; border: 1px solid var(--night-line); box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.7); }
-  .shot figcaption { color: var(--night-muted); font-size: 0.85rem; margin-top: 0.6rem; }
+  /* ---------- what I've built: daylight; his real screens are the brightest thing ---------- */
+  .system { display: grid; gap: 22px; padding: 40px 0; border-top: 1px solid var(--line); }
+  .system:first-of-type { border-top: 0; padding-top: 36px; }
+  .system h3 { font-size: 22px; line-height: 1.22; font-weight: 800; letter-spacing: -.02em; }
+  .system p { margin-top: 14px; color: var(--ink-2); max-width: 36rem; }
+  .system .yours { color: var(--ink); }
+  .system .yours b { color: var(--leaf); font-weight: 800; }
+  .figure { font-size: 50px; font-weight: 800; letter-spacing: -.045em; line-height: 1; margin-top: 28px; color: var(--leaf); }
+  .figure-note { font-size: 15px; line-height: 1.5; margin-top: 10px; max-width: 300px; color: var(--ink); }
   .phone { max-width: 16rem; }
-  .phone img { border-radius: 1.4rem; }
+  .phone img { border-radius: 30px; }
 
-  .video { display: block; width: 100%; height: auto; background: var(--night); border-radius: 0.6rem; border: 1px solid var(--line);
-    box-shadow: 0 1px 2px rgba(20, 26, 22, 0.06), 0 16px 40px -20px rgba(20, 26, 22, 0.45); }
-
-  /* Small round icon badges (Lucide icons, drawn inline so the page loads nothing extra),
-     the disc idea from the content design bible, redrawn for this light page. */
-  .badge { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; flex: none;
-    border-radius: 50%; background: var(--wash); color: var(--green);
-    outline: 1px dashed rgba(61, 107, 69, 0.35); outline-offset: 3px; }
-  /* the badge sits on the heading's line: icon, then heading, then the text below spans the full width */
-  .fix, .ways > div { display: grid; grid-template-columns: auto 1fr; column-gap: 0.9rem; align-items: center; align-content: start; }
-  .fix > :not(.badge):not(h3), .ways > div > :not(.badge):not(h3) { grid-column: 1 / -1; }
-  .fix > h3, .ways > div > h3 { margin-bottom: 0; }
-  .fix > .pain, .ways > div > p { margin-top: 0.7rem; }
-  .badge svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
-
-  /* The video's cover: a big play button over a smiling frame. It hides once the video starts. */
-  .video-wrap { position: relative; }
-  .play { position: absolute; inset: 0; display: flex; align-items: flex-end; gap: 0.9rem; padding: clamp(1rem, 3vw, 1.75rem);
-    border: 0; border-radius: 0.6rem; cursor: pointer; font: inherit; color: #fff; text-align: left;
-    background: linear-gradient(to top, rgba(15, 20, 17, 0.8), rgba(15, 20, 17, 0) 50%); }
-  .play-disc { display: grid; place-items: center; width: 4rem; height: 4rem; border-radius: 50%; flex: none;
-    background: var(--green); box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.18), 0 10px 30px -8px rgba(0, 0, 0, 0.6); transition: transform 0.15s; }
+  /* the video, and its cover: a big play button over a smiling frame. It hides once the video starts. */
+  .video-wrap { position: relative; margin-top: 32px; }
+  .video { display: block; width: 100%; height: auto; background: var(--ink); border-radius: 24px; box-shadow: var(--sh-shot); }
+  .play { position: absolute; inset: 0; display: flex; align-items: flex-end; gap: 16px; padding: clamp(16px, 3vw, 30px);
+    border: 0; border-radius: 24px; cursor: pointer; font: inherit; color: var(--paper); text-align: left;
+    background: linear-gradient(to top, color-mix(in srgb, var(--ink) 78%, transparent), color-mix(in srgb, var(--ink) 0%, transparent) 45%); }
+  .play-disc { display: grid; place-items: center; width: 62px; height: 62px; border-radius: 50%; flex: none;
+    background: var(--spring); color: var(--ink); transition: transform .15s;
+    box-shadow: 0 0 0 7px color-mix(in srgb, var(--paper) 22%, transparent), 0 10px 30px -8px var(--shade-deep); }
   .play:hover .play-disc { transform: scale(1.06); }
-  .play-disc svg { width: 1.6rem; height: 1.6rem; fill: #fff; margin-left: 0.2rem; }
-  .play-text { font-size: 1.2rem; font-weight: 600; line-height: 1.2; }
-  .play-text small { display: block; font-size: 0.85rem; font-weight: 500; opacity: 0.8; }
-  .play:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+  .play-disc svg { width: 26px; height: 26px; fill: currentColor; margin-left: 4px; }
+  .play-text { font-size: 22px; font-weight: 800; line-height: 1.2; letter-spacing: -.01em; }
+  .play-text small { display: block; font-size: 14.5px; font-weight: 600; opacity: .85; }
   .video-wrap.is-playing .play { display: none; }
 
-  .ways { display: grid; gap: 1.75rem 3.5rem; }
-  .ways h3 { font-size: 1.1rem; font-weight: 600; margin: 0 0 0.25rem; }
-  .ways p { margin: 0; color: var(--muted); }
-  .rule { border-top: 1px solid var(--line); }
+  /* ---------- the close ---------- */
+  .talk { display: grid; gap: 28px; }
+  .window.hello { width: 150px; height: 150px; }
+  .talk h2 { font-size: 30px; line-height: 1.1; font-weight: 800; letter-spacing: -.03em; }
+  .talk p { margin-top: 18px; color: var(--ink-2); max-width: 640px; }
+  .email { font-size: clamp(22px, 4.6vw, 30px); font-weight: 800; letter-spacing: -.02em; word-break: break-word; margin-right: 12px;
+    text-decoration: underline; text-decoration-color: var(--spring); text-decoration-thickness: 3px; text-underline-offset: 7px; }
 
-  .closing { background: var(--wash); padding: 3.75rem 0; }
-  .closing p { max-width: var(--measure); margin: 0 0 1.5rem; }
-  .hello { display: block; width: 5.5rem; height: 5.5rem; border-radius: 50%; object-fit: cover; margin-bottom: 1.25rem;
-    box-shadow: 0 0 0 4px #fff, 0 10px 30px -12px rgba(20, 26, 22, 0.5); }
-  .email { font-size: clamp(1.25rem, 4.6vw, 1.8rem); font-weight: 600; word-break: break-word; }
-  footer { padding: 1.5rem 0 2.5rem; color: var(--muted); font-size: 0.85rem; }
-  footer a { color: var(--muted); }
+  /* the footer: the small gold seal signs the page once, beside his name, small and neat.
+     It sits on the left, so the Ask my AI pill in the bottom right corner never covers it. */
+  footer { margin-top: 88px; }
+  footer .wrap { display: flex; justify-content: flex-start; padding: 22px 0 32px; border-top: 1px solid var(--line); }
 
   @media (min-width: 52rem) {
-    .hero { padding: 3.5rem 0 5rem; }
-    .hero-grid { display: grid; grid-template-columns: 1fr 21rem; gap: 3.5rem; align-items: center; }
-    .who .avatar { display: none; }
-    .portrait { display: block; width: 21rem; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 0.9rem; }
-    section { padding: 5rem 0; }
-    h2 { font-size: 2.25rem; margin-bottom: 2rem; }
-    .fixes { grid-template-columns: 1fr 1fr; gap: 2.5rem 3.5rem; max-width: 60rem; }
-    .flow-lead { margin-top: 4rem; }
-    .flow { grid-template-columns: repeat(5, 1fr); gap: 1.25rem; max-width: none; }
-    .flow-step + .flow-step::before { left: calc(-1.25rem - 1px); top: 1.45rem; width: 1.25rem; height: 2px; }
-    .system { grid-template-columns: 19rem 1fr; gap: 3.5rem; align-items: start; padding: 3.5rem 0; }
-    .ways { grid-template-columns: 1fr 1fr; max-width: 60rem; }
-    .system.has-phone { grid-template-columns: minmax(0, 30rem) 16rem; column-gap: 6rem; align-items: center; }
-    .talk { display: grid; grid-template-columns: auto 1fr; gap: 3rem; align-items: center; }
-    .hello { width: 10rem; height: 10rem; margin: 0; }
+    .hero { padding: 124px 0 116px; --s: .66; }
+    .hero .gate-shadow.corner { right: -360px; width: 1760px; height: 1173px; opacity: .6; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 560px) calc(560px * var(--s)); column-gap: 12px; align-items: center; justify-content: space-between; }
+    .hero-text { display: block; }
+    .hero .door { margin: 0; }
+    .intro { margin-top: 26px; }
+    .actions { margin-top: 32px; }
+    main section { padding-top: 120px; }
+    main section.first { padding-top: 40px; }
+    main section.watch { padding-top: 70px; }
+    .head { gap: 18px; }
+    .head h2 { font-size: var(--t-title); }
+    .head .disc.plain { width: 52px; height: 52px; }
+    .head .disc.plain svg { width: var(--i-lg); height: var(--i-lg); }
+    .lede { margin-top: 20px; }
+    .fixes, .ways { grid-template-columns: 1fr 1fr; gap: 52px 80px; max-width: 1010px; margin-top: 52px; }
+    .fix h3, .ways h3 { font-size: 21px; }
+    .flow-lead { margin-top: 88px; }
+    .flow { grid-template-columns: repeat(5, 1fr); gap: 22px; max-width: none; margin-top: 22px; }
+    .flow-step + .flow-step::before { left: calc(-22px - 1.5px); top: 32px; width: 22px; height: 2px; }
+    .system { grid-template-columns: minmax(0, 400px) 1fr; gap: 64px; align-items: start; padding: 60px 0; }
+    .system:first-of-type { padding-top: 52px; }
+    .system h3 { font-size: 26px; }
+    .figure { font-size: 64px; margin-top: 30px; }
+    .system.has-phone { grid-template-columns: minmax(0, 520px) 270px; column-gap: clamp(48px, 9vw, 130px); align-items: center; }
+    .phone { max-width: none; }
+    .video-wrap { margin-top: 44px; }
+    .play-disc { width: 74px; height: 74px; }
+    .play-disc svg { width: 28px; height: 28px; }
+    .talk { grid-template-columns: auto 1fr; gap: 64px; align-items: center; padding-top: 20px; }
+    .window.hello { width: 210px; height: 210px; }
+    .talk h2 { font-size: 42px; }
+    footer { margin-top: 110px; }
+    footer .wrap { padding: 26px 0 40px; }
+  }
+  @media (min-width: 75rem) {
+    .hero { --s: .86; }
+    .hero-grid { justify-content: start; }
   }
 
   /* ---------- "Ask my AI": the chat box (jason-bot branch, 12 Oct 2026) ----------
      A small pill in the corner opens a panel; on phones the panel is a bottom sheet.
      It talks to the jason-bot worker (bot/worker/), which holds the API key and the caps.
      The answers come from an AI, and the panel says so in its header. */
-  .ask-pill { position: fixed; right: 1rem; bottom: 1rem; z-index: 40; display: inline-flex; align-items: center; gap: 0.5rem;
-    font: inherit; font-weight: 600; color: #fff; background: var(--green); border: 0; border-radius: 999px; cursor: pointer;
-    padding: 0.7rem 1.1rem 0.7rem 0.9rem; box-shadow: 0 10px 30px -10px rgba(20, 26, 22, 0.55); }
-  .ask-pill:hover { background: #31573A; }
-  .ask-pill svg { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
-  .ask-pill:focus-visible, .ask button:focus-visible, .ask textarea:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+  .ask-pill { position: fixed; right: 16px; bottom: 16px; z-index: 40; display: inline-flex; align-items: center; gap: 9px;
+    height: 50px; padding: 0 22px 0 18px; border: 0; border-radius: var(--r-pill); cursor: pointer;
+    font: 700 var(--t-ui)/1 var(--sans); color: var(--wall); background: var(--ink);
+    box-shadow: 0 12px 30px -10px color-mix(in srgb, var(--ink) 55%, transparent); }
+  .ask-pill:hover { background: color-mix(in srgb, var(--ink) 86%, var(--paper)); }
+  .ask-pill svg { width: 19px; height: 19px; color: var(--spring); fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
   .ask-open .ask-pill { display: none; }
-  .ask { position: fixed; z-index: 50; right: 1rem; bottom: 1rem; width: min(23rem, calc(100vw - 2rem)); height: min(36rem, calc(100dvh - 2rem));
-    display: none; flex-direction: column; background: var(--paper); border: 1px solid var(--line); border-radius: 0.9rem; overflow: hidden;
-    box-shadow: 0 1px 2px rgba(20, 26, 22, 0.06), 0 24px 60px -20px rgba(20, 26, 22, 0.5); }
+  .ask { position: fixed; z-index: 50; right: 16px; bottom: 16px; width: min(23rem, calc(100vw - 2rem)); height: min(36rem, calc(100dvh - 2rem));
+    display: none; flex-direction: column; background: var(--wall); border-radius: 24px; overflow: hidden;
+    box-shadow: 0 0 0 1px var(--line), 0 30px 60px -24px color-mix(in srgb, var(--ink) 45%, transparent); }
   .ask-open .ask { display: flex; }
-  .ask-head { display: flex; align-items: center; gap: 0.7rem; padding: 0.8rem 0.8rem 0.8rem 1rem; border-bottom: 1px solid var(--line); background: #fff; }
-  .ask-head img { width: 2.4rem; height: 2.4rem; border-radius: 50%; object-fit: cover; flex: none; }
-  .ask-head p { margin: 0; line-height: 1.3; }
-  .ask-head b { font-weight: 600; }
-  .ask-head small { display: block; color: var(--muted); font-size: 0.8rem; }
-  .ask-close { margin-left: auto; flex: none; width: 2.25rem; height: 2.25rem; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; font-size: 1.4rem; line-height: 1; }
-  .ask-close:hover { background: var(--wash); color: var(--ink); }
-  .ask-log { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem; }
-  .ask-msg { margin: 0; max-width: 88%; padding: 0.55rem 0.75rem; border-radius: 0.75rem; font-size: 0.95rem; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; }
-  .ask-msg.bot { align-self: flex-start; background: #fff; border: 1px solid var(--line); border-left: 3px solid var(--green); }
-  .ask-msg.you { align-self: flex-end; background: var(--green); color: #fff; }
-  .ask-msg.note { align-self: center; max-width: 100%; color: var(--muted); font-size: 0.85rem; text-align: center; padding: 0.2rem 0.5rem; }
-  .ask-msg.wait { color: var(--muted); }
-  .ask-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .ask-chips button { font: inherit; font-size: 0.85rem; color: var(--green); background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 0.35rem 0.75rem; cursor: pointer; text-align: left; }
-  .ask-chips button:hover { border-color: var(--green); background: var(--wash); }
-  .ask-form { display: flex; gap: 0.5rem; align-items: flex-end; padding: 0.75rem; border-top: 1px solid var(--line); background: #fff; }
-  .ask-form textarea { flex: 1; resize: none; font: inherit; font-size: 1rem; line-height: 1.4; color: var(--ink); background: var(--paper);
-    border: 1px solid var(--line); border-radius: 0.6rem; padding: 0.55rem 0.7rem; max-height: 7.5rem; }
-  .ask-form button { flex: none; font: inherit; font-weight: 600; color: #fff; background: var(--green); border: 0; border-radius: 0.6rem; padding: 0.6rem 0.95rem; cursor: pointer; }
-  .ask-form button:disabled { opacity: 0.5; cursor: default; }
+  .ask-head { display: flex; align-items: center; gap: 12px; padding: 12px 12px 12px 16px; border-bottom: 1px solid var(--line); background: var(--paper); }
+  .ask-head img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex: none; }
+  .ask-head p { line-height: 1.3; }
+  .ask-head b { font-weight: 800; }
+  .ask-head small { display: block; color: var(--ink-2); font-size: 13px; }
+  .ask-close { margin-left: auto; flex: none; width: 36px; height: 36px; border: 0; border-radius: 50%; background: transparent; color: var(--ink-2); cursor: pointer; font-size: 22px; line-height: 1; }
+  .ask-close:hover { background: var(--spring-wash); color: var(--ink); }
+  .ask-log { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .ask-msg { max-width: 88%; padding: 9px 13px; border-radius: 16px; font-size: 15px; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .ask-msg.bot { align-self: flex-start; background: var(--paper); border: 1px solid var(--line); border-left: 3px solid var(--spring); }
+  .ask-msg.you { align-self: flex-end; background: var(--ink); color: var(--wall); }
+  .ask-msg.note { align-self: center; max-width: 100%; color: var(--ink-2); font-size: 13.5px; text-align: center; padding: 3px 8px; }
+  .ask-msg.wait { color: var(--ink-2); }
+  .ask-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ask-chips button { font: 600 13.5px/1.35 var(--sans); color: var(--leaf); background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-pill); padding: 7px 13px; cursor: pointer; text-align: left; }
+  .ask-chips button:hover { border-color: var(--spring); background: var(--spring-wash); }
+  .ask-form { display: flex; gap: 8px; align-items: flex-end; padding: 12px; border-top: 1px solid var(--line); background: var(--paper); }
+  .ask-form textarea { flex: 1; resize: none; font: 400 16px/1.4 var(--sans); color: var(--ink); background: var(--wall);
+    border: 1px solid var(--line-2); border-radius: 20px; padding: 9px 14px; max-height: 7.5rem; }
+  .ask-form textarea::placeholder { color: var(--ink-3); }
+  .ask-form button { flex: none; font: 700 var(--t-ui)/1 var(--sans); color: var(--wall); background: var(--ink); border: 0; border-radius: var(--r-pill); height: 42px; padding: 0 18px; cursor: pointer; }
+  .ask-form button:disabled { opacity: .5; cursor: default; }
+  @media (min-width: 52rem) {
+    .ask-pill { right: 28px; bottom: 28px; }
+  }
   @media (max-width: 40rem) {
-    .ask { right: 0; bottom: 0; width: 100%; height: 88dvh; border-radius: 0.9rem 0.9rem 0 0; border-bottom: 0; }
+    .ask { right: 0; bottom: 0; width: 100%; height: 88dvh; border-radius: 24px 24px 0 0; }
     footer { padding-bottom: 5rem; } /* room so the pill never sits on the last line */
   }
 </style>
 </head>
 <body>
+<div class="wall" aria-hidden="true"></div>
 
 <header class="hero">
+  <div class="gate-shadow corner" aria-hidden="true"></div>
+  <div class="gate-fade" aria-hidden="true"></div>
   <div class="wrap hero-grid">
-    <div>
+    <div class="hero-text">
       <div class="who">
         <img class="avatar" src="img/jason-face.jpg" width="320" height="320" alt="Jason Tang">
         <div>
           <p class="name">Jason Tang</p>
-          <p class="title">Automation Specialist for Traditional Businesses</p>
+          <p class="title eyebrow">Automation Specialist for Traditional Businesses</p>
         </div>
       </div>
-      <h1>I find the leaks in your business and fix them quietly in the background.</h1>
+      <h1>I find the leaks in your business and fix them <span class="old">quietly</span> in the background.</h1>
       <p class="intro"><strong>I'm the systems guy.</strong> I find where a business is losing time, money and customers, then build simple systems that stop it. I've been building business systems since 2022, first as co-founder of a 10-person marketing agency, and now with AI every single day. AI overwhelms most owners. I make it simple.</p>
       <div class="actions">
-        <a class="btn" href="mailto:jason@howisjason.com">jason@howisjason.com</a>
-        <button class="copy" type="button" data-copy="jason@howisjason.com">Copy email</button>
-        <a class="copy" href="https://wa.me/17789911388" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="quiet" href="#built">See what I've built</a>
+        <a class="btn go" href="mailto:jason@howisjason.com"><svg class="i" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>jason@howisjason.com</a>
+        <button class="btn soft" type="button" data-copy="jason@howisjason.com"><svg class="i" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span>Copy email</span></button>
+        <a class="btn soft" href="https://wa.me/17789911388" target="_blank" rel="noopener"><svg class="i" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg>WhatsApp</a>
+        <a class="btn quiet" href="#built">See what I've built <svg class="i" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
       </div>
     </div>
-    <img class="portrait" src="img/jason.jpg" width="900" height="900" alt="Jason Tang at work on his laptop">
+    <!-- his photo, seen through the ensō door -->
+    <div class="door">
+      <div class="door-through"><img class="photo" src="img/jason.jpg" width="900" height="900" alt="Jason Tang at work on his laptop"></div>
+      <div class="door-enso" aria-hidden="true"></div>
+    </div>
   </div>
 </header>
 
 <main>
-  <section class="rule" aria-labelledby="fix">
+  <section class="first" aria-labelledby="fix">
     <div class="wrap">
-      <h2 id="fix">What I fix</h2>
+      <div class="head"><span class="disc plain" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></svg></span><h2 id="fix">What I fix</h2></div>
       <div class="fixes">
         <div class="fix">
           <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg></span>
@@ -426,9 +411,9 @@
   <!-- A "Right now" section (a current client project) goes here, between "What I fix"
        and "What I've built", only once the work is real and the client agrees to be shown. -->
 
-  <section id="built" class="night" aria-labelledby="built-h">
+  <section id="built" aria-labelledby="built-h">
     <div class="wrap">
-      <h2 id="built-h">What I've built</h2>
+      <div class="head"><span class="disc plain" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 12-9.373 9.373a1 1 0 0 1-3.001-3L12 9"/><path d="m18 15 4-4"/><path d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172v-.344a2 2 0 0 0-.586-1.414l-1.657-1.657A6 6 0 0 0 12.516 3H9l1.243 1.243A6 6 0 0 1 12 8.485V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5"/></svg></span><h2 id="built-h">What I've built</h2></div>
       <p class="lede">My own business helps YouTube creators build paid online communities, so I built these for it first. Here's what each one does, and what the same idea looks like in yours. These are the real screens.</p>
 
       <article class="system">
@@ -463,9 +448,9 @@
 
   <!-- The video plays here, but preload="none" means nothing downloads until someone
        presses play, so the page stays fast. The browser's address bar is covered in it. -->
-  <section aria-labelledby="watch">
+  <section class="watch" aria-labelledby="watch">
     <div class="wrap">
-      <h2 id="watch">Watch one running</h2>
+      <div class="head"><span class="disc plain" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg></span><h2 id="watch">Watch one running</h2></div>
       <p class="lede">A 3-minute walkthrough of that first system, in my own words.</p>
       <div class="video-wrap">
       <video class="video" aria-label="Jason's 3-minute walkthrough of the system" controls preload="none" playsinline poster="img/video-poster.jpg" width="1280" height="772">
@@ -476,9 +461,9 @@
     </div>
   </section>
 
-  <section class="rule" aria-labelledby="how">
+  <section aria-labelledby="how">
     <div class="wrap">
-      <h2 id="how">How I work</h2>
+      <div class="head"><span class="disc plain" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg></span><h2 id="how">How I work</h2></div>
       <div class="ways">
         <div>
           <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z"/></svg></span>
@@ -504,16 +489,16 @@
     </div>
   </section>
 
-  <section class="closing" aria-labelledby="talk">
+  <section aria-labelledby="talk">
     <div class="wrap talk">
-      <img class="hello" src="img/jason-hello.jpg" width="320" height="320" alt="Jason, smiling" loading="lazy">
+      <span class="window hello"><img src="img/jason-hello.jpg" width="320" height="320" alt="Jason, smiling" loading="lazy"></span>
       <div>
       <h2 id="talk">Something keeps slipping through the cracks?</h2>
       <p>If someone you know sent you this, they probably think I can help. Tell me what keeps slipping in your business, and I'll tell you honestly whether I can fix it.</p>
       <div class="actions">
         <a class="email" href="mailto:jason@howisjason.com">jason@howisjason.com</a>
-        <button class="copy" type="button" data-copy="jason@howisjason.com">Copy email</button>
-        <a class="copy" href="https://wa.me/17789911388" target="_blank" rel="noopener">WhatsApp</a>
+        <button class="btn soft" type="button" data-copy="jason@howisjason.com"><svg class="i" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span>Copy email</span></button>
+        <a class="btn soft" href="https://wa.me/17789911388" target="_blank" rel="noopener"><svg class="i" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg>WhatsApp</a>
       </div>
       </div>
     </div>
@@ -521,7 +506,7 @@
 </main>
 
 <footer>
-  <div class="wrap">Jason Tang</div>
+  <div class="wrap"><span class="sign"><span class="seal sm" aria-hidden="true"><span>鄧</span><span>正</span></span><span class="who">Jason Tang</span></span></div>
 </footer>
 
 <!-- "Ask my AI" (jason-bot branch). The panel's words make clear it is an AI. -->
@@ -575,11 +560,13 @@
     new IntersectionObserver(function (es) { flow.classList.toggle('is-paused', !es[0].isIntersecting); }).observe(flow);
   }
   /* "Copy email" buttons: many owners use Gmail in the browser, not a mail app, so a
-     mailto link alone sends them to an app they never open. */
+     mailto link alone sends them to an app they never open. Only the words change to
+     "Copied" (they sit in their own span, so the button's icon stays). */
   document.querySelectorAll('[data-copy]').forEach(function (b) {
-    var label = b.textContent; /* saved once, so a double click can't save "Copied" as the label */
+    var t = b.querySelector('span') || b;
+    var label = t.textContent; /* saved once, so a double click can't save "Copied" as the label */
     b.addEventListener('click', function () {
-      var done = function () { b.textContent = 'Copied'; clearTimeout(b._t); b._t = setTimeout(function () { b.textContent = label; }, 1800); };
+      var done = function () { t.textContent = 'Copied'; clearTimeout(b._t); b._t = setTimeout(function () { t.textContent = label; }, 1800); };
       if (navigator.clipboard) { navigator.clipboard.writeText(b.dataset.copy).then(done, function () {}); }
     });
   });

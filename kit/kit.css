@@ -1,0 +1,301 @@
+/* =====================================================================
+   MOON GATE · parts
+   Link tokens.css first, then this file. Every colour and size here is
+   var(...). Pictures come only from kit/assets/ (see SOURCES.md), and the
+   paths below are relative to this file, so copy kit/ whole.
+   Built from the approved page, drafts/round8/a3-moon-gate (18 Oct 2026).
+   ("black" in a mask is only a stencil: it marks what shows, it is never painted.)
+   ===================================================================== */
+
+/* ---------- 1. base ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: var(--wall); }
+/* The page must scroll in any panel: never overflow:hidden on html or body.
+   overflow-x:clip trims sideways spill (a leaf over an edge) without making a scroll box. */
+body {
+  position: relative; overflow-x: clip;
+  color: var(--ink); font: 400 var(--t-body)/1.65 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+header, main, footer { position: relative; }
+a { color: inherit; text-decoration: none; }
+.wrap { width: min(var(--wrap), 100% - 48px); margin: 0 auto; position: relative; }
+
+/* the ONE slanted old word in a headline: <span class="old">fresh</span> */
+.old { font-family: var(--old); font-style: italic; font-weight: 600; letter-spacing: -.01em; font-size: 1.18em; line-height: .9; }
+/* tracked green capitals over a title */
+.eyebrow { font-size: var(--t-label); font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--leaf); }
+.lead { font-size: var(--t-lead); color: var(--ink-2); }
+.muted { color: var(--ink-2); }
+
+/* Lucide icons, pasted inline: <svg class="i" ...>. They take the text colour around them. */
+svg.i { width: 1em; height: 1em; flex: none; stroke-width: 1.9; vertical-align: -.14em; }
+
+/* ---------- 2. the wall: one long sunlit plaster wall under the whole page ----------
+   Put <div class="wall" aria-hidden="true"></div> as the first thing in <body>.
+   The tile is a strip of real plaster over its own mirror, so it repeats with no seam. */
+.wall {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: url("assets/plaster-tile.jpg") 50% 0 / max(1280px, 100%) auto repeat-y;
+  filter: brightness(1.12); mix-blend-mode: multiply; opacity: .4;
+}
+
+/* ---------- 3. the gate: the hero, with the band, the leaf shadow and the ensō door ----------
+   Drawn for a 1280px-wide page; everything is placed from the centre line. */
+.gate { position: relative; height: 900px; overflow: hidden; background: var(--paper); }
+/* the pale green band, centred under the ensō (J, 18 Oct 2026, 8d) */
+.gate-band { position: absolute; top: 0; bottom: 0; left: calc(50% - 88px); width: 196px; background: var(--band); }
+/* the leaf shadow falling across the wall: real photo, multiplied, soft-edged */
+.gate-shadow {
+  position: absolute; left: -120px; top: -70px; width: 1760px; height: 1173px; pointer-events: none;
+  background: url("assets/leaf-shadow.jpg") 0 0 / 100% 100% no-repeat; mix-blend-mode: multiply;
+}
+.gate-shadow.soft {
+  filter: blur(2.2px) brightness(1.3) contrast(1.02) saturate(1.2); opacity: .72;
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 60% 20%, black 45%, transparent 100%);
+          mask-image: radial-gradient(ellipse 75% 70% at 60% 20%, black 45%, transparent 100%);
+}
+/* the live green leaves at the very top of the same photo */
+.gate-shadow.leaves {
+  filter: brightness(1.32) contrast(1.06) saturate(1.75) hue-rotate(-10deg);
+  -webkit-mask-image: radial-gradient(ellipse 34% 26% at 63% 6%, black 55%, transparent 100%);
+          mask-image: radial-gradient(ellipse 34% 26% at 63% 6%, black 55%, transparent 100%);
+}
+/* the business dose: the soft shadow only, kept to the top right corner, off the words */
+.gate-shadow.corner {
+  filter: blur(2.2px) brightness(1.3) contrast(1.02) saturate(1.2); opacity: .6;
+  -webkit-mask-image: radial-gradient(ellipse 48% 42% at 78% 4%, black 30%, transparent 100%);
+          mask-image: radial-gradient(ellipse 48% 42% at 78% 4%, black 30%, transparent 100%);
+}
+.gate-fade { position: absolute; left: 0; right: 0; bottom: 0; height: 260px; background: linear-gradient(to bottom, var(--wall-clear), var(--wall) 92%); }
+
+/* the door: a real ensō (brush circle) with spring light inside, at the true centre */
+.door { position: absolute; left: 50%; margin-left: -280px; top: 118px; width: 560px; height: 560px; }
+.door-light, .door-through { position: absolute; left: 31px; top: 16px; width: 500px; height: 500px; border-radius: 50%; }
+.door-light { background: radial-gradient(circle at 42% 38%, var(--door-1) 0%, var(--door-2) 55%, var(--door-3) 100%); }
+/* the green reaches the ink: the ring is drawn over the light (J, 8d) */
+.door-enso {
+  position: absolute; left: -108px; top: -268px; width: 772px; height: 1092px; pointer-events: none;
+  background: url("assets/enso.png") 0 0 / 100% 100% no-repeat;
+  mix-blend-mode: multiply; filter: grayscale(1) brightness(.86) contrast(2);
+}
+.door-through { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.door-through h1 { font-size: var(--t-hero); line-height: 1; font-weight: 800; letter-spacing: -.035em; margin-top: 18px; }
+.door-through .note { margin-top: 22px; font-size: var(--t-small); font-weight: 600; color: var(--ink-2); }
+/* a photo seen through the door instead of the light (the portfolio dose) */
+.door-through > img.photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.door .spark { position: absolute; right: 20px; bottom: 78px; }
+
+/* the words under the door */
+.gate-say { position: absolute; left: 50%; margin-left: -300px; width: 600px; top: 716px; text-align: center; }
+/* full ink here: the band and the leaf shadow sit behind this line, and ink-2 fell under 7:1 at their darkest */
+.gate-say .lead { color: var(--ink); }
+.gate-say .row { justify-content: center; margin-top: 24px; }
+
+/* the gold calligraphy title, to the side; it never moves the door off centre (J, 8c) */
+.gate-title { position: absolute; left: calc(50% + 350px); top: 122px; width: 222px; height: 590px; }
+/* the crop for calligraphy-profound-sincerity.jpg; another ink needs its own crop */
+.gate-title img { width: 402px; left: -92px; top: -40px; }
+/* small vertical Chinese text beside the title, like a book cover */
+.vtext { position: absolute; left: calc(50% + 582px); top: 228px; writing-mode: vertical-rl; font: 500 var(--t-body)/1.65 var(--cjk); letter-spacing: .3em; color: var(--ink); }
+.vtext small { display: block; font: 600 var(--t-label)/1.65 var(--sans); letter-spacing: .2em; color: var(--ink-2); margin-right: 7px; }
+
+/* the nav: a white pill floating on the wall */
+.topnav { position: absolute; top: 0; left: 0; right: 0; z-index: 6; }
+.topnav .wrap { display: flex; align-items: center; height: 84px; gap: 10px; }
+.brand { font-weight: 800; font-size: var(--t-lead); letter-spacing: -.01em; display: flex; align-items: center; gap: 9px; }
+.brand svg { width: 20px; height: 20px; color: var(--leaf); }
+.topnav ul { list-style: none; display: flex; gap: 2px; margin-left: auto; background: var(--paper); padding: 5px; border-radius: var(--r-pill); box-shadow: var(--sh-float); }
+.topnav li { font-size: var(--t-small); font-weight: 600; color: var(--ink-2); padding: 8px 16px; border-radius: var(--r-pill); }
+.topnav li.on { background: var(--ink); color: var(--wall); }
+
+/* ---------- 4. the ink moves ---------- */
+/* Lifted ink: a museum scan's yellowed paper turns white, so only the ink sits on the wall.
+   Bold ink lifts cleanly. Crop the scroll's mounting off with a wrapper (overflow hidden). */
+img.ink { filter: grayscale(1) brightness(1.35) contrast(2.2); mix-blend-mode: multiply; }
+/* soft grey washes fade under the full lift; start here and judge by eye */
+img.ink.wash { filter: grayscale(1) brightness(1.15) contrast(1.5); }
+
+/* Gold ink: real ink turned flat matte gold, no mask needed.
+   <div class="gold-ink"><img src="..."></div>. The ink is lifted, then a flat gold layer
+   with "lighten" turns black to gold and leaves white white; the box multiplies onto the wall. */
+.gold-ink { position: relative; overflow: hidden; isolation: isolate; mix-blend-mode: multiply; }
+.gold-ink img { position: absolute; filter: grayscale(1) brightness(1.35) contrast(2.4); }
+.gold-ink::after { content: ""; position: absolute; inset: 0; background: var(--gold); mix-blend-mode: lighten; }
+
+/* the leaf over the edge: a real banana leaf crossing a box's corner (breaking the frame).
+   Place it inside a box that has position:relative. */
+.leaf-over {
+  position: absolute; right: -70px; top: -92px; width: 300px; height: 250px; z-index: 3; pointer-events: none;
+  background: url("assets/banana-leaf.jpg") -150px -60px / 520px auto no-repeat;
+  filter: brightness(1.42) contrast(1.12) saturate(1.3); mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(ellipse 50% 44% at 52% 38%, black 60%, transparent 100%);
+          mask-image: radial-gradient(ellipse 50% 44% at 52% 38%, black 60%, transparent 100%);
+}
+
+/* the spark: the one alive thing, a tilted spring pill */
+.spark {
+  display: inline-flex; align-items: center; gap: 7px; transform: rotate(var(--tilt, -9deg));
+  background: var(--spring); color: var(--ink); font-weight: 800; font-size: var(--t-small); letter-spacing: .02em;
+  padding: 9px 18px; border-radius: var(--r-pill); box-shadow: var(--sh-spark); white-space: nowrap;
+}
+.spark svg { width: var(--i-sm); height: var(--i-sm); }
+/* a spark pinned across a box's top right edge */
+.spark.edge { position: absolute; top: -16px; right: -20px; --tilt: 8deg; font-size: var(--t-label); padding: 7px 15px; }
+
+/* ---------- 5. the seal: 鄧正, wide, both characters on one line, flat gold ink. Never red. ---------- */
+.seal {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: 116px; height: 62px; gap: 6px; border-radius: var(--r-seal);
+  background: var(--gold); color: var(--seal-paper); box-shadow: var(--sh-seal);
+  font: 900 28px/1 var(--cjk);
+}
+.seal.sm { width: 64px; height: 34px; gap: 3px; font-size: 15px; box-shadow: var(--sh-seal-sm); }
+/* the signature: the small seal beside a small date and a name, the way the artist signs */
+.sign { display: inline-flex; align-items: center; gap: 12px; }
+.sign .date { display: block; white-space: nowrap; font: 500 var(--t-label)/1.4 var(--cjk); letter-spacing: .18em; color: var(--ink); }
+.sign .who { display: block; font-size: var(--t-label); line-height: 1.4; font-weight: 700; letter-spacing: .06em; color: var(--ink); }
+
+/* ---------- 6. buttons, inputs, tags ---------- */
+.row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.stack { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; height: 50px; padding: 0 26px; border: 0; border-radius: var(--r-pill);
+  font: 700 var(--t-ui)/1 var(--sans); white-space: nowrap; cursor: pointer;
+}
+.btn svg { width: var(--i-md); height: var(--i-md); }
+.btn.go { background: var(--spring); color: var(--ink); }       /* the main action: alive */
+.btn.ink { background: var(--ink); color: var(--wall); }
+.btn.soft { background: var(--paper); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.btn.quiet { background: transparent; color: var(--leaf); padding: 0 6px; text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1.5px; }
+.btn.sm { height: 40px; padding: 0 20px; font-size: var(--t-small); }
+
+.field label { display: flex; align-items: center; gap: 7px; font-size: var(--t-small); font-weight: 700; margin-bottom: 8px; }
+.field label svg { width: 16px; height: 16px; }
+.field .box {
+  height: 52px; border-radius: var(--r-pill); background: var(--paper); box-shadow: inset 0 0 0 1.5px var(--line-2);
+  display: flex; align-items: center; gap: 10px; padding: 0 22px; font-size: var(--t-ui); color: var(--ink);
+}
+.field .box svg { width: var(--i-md); height: var(--i-md); color: var(--ink-2); }
+.field .box.empty { color: var(--ink-3); }
+.field .box.focus { box-shadow: inset 0 0 0 2px var(--ink), 0 0 0 5px var(--spring-wash); }
+.field .caret { width: 1.5px; height: 22px; background: var(--ink); margin-left: -8px; }
+.field small { display: block; font-size: var(--t-small); color: var(--ink-2); margin-top: 8px; padding-left: 22px; }
+.field + .field { margin-top: 20px; }
+
+.tag {
+  display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 14px; border-radius: var(--r-pill);
+  font-size: var(--t-small); font-weight: 600; background: var(--paper); box-shadow: inset 0 0 0 1px var(--line); color: var(--ink); white-space: nowrap;
+}
+.tag i { width: 8px; height: 8px; border-radius: 50%; background: var(--spring); }   /* the live dot */
+.tag svg { width: var(--i-sm); height: var(--i-sm); }
+.tag.fill { background: var(--spring-wash); box-shadow: none; color: var(--leaf); }
+.tag.dark { background: var(--ink); color: var(--wall); box-shadow: none; }
+
+/* ---------- 7. sections and their heads ---------- */
+.section { padding-top: var(--section); position: relative; }
+.section.tight { padding-top: 40px; }
+.section.roomy { padding-top: 120px; }
+/* the head: an icon in a white disc, the title, and a short line to the right */
+.head { display: flex; align-items: center; gap: 18px; margin-bottom: 46px; position: relative; }
+.head h2 { font-size: var(--t-title); line-height: 1.1; font-weight: 800; letter-spacing: -.03em; }
+.head p { margin-left: auto; max-width: 400px; color: var(--ink-2); font-size: var(--t-note); }
+
+/* icon discs: one Lucide icon in a circle */
+.disc { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; flex: none; background: var(--spring-wash); color: var(--leaf); }
+.disc svg { width: 21px; height: 21px; }
+.disc.plain { width: 52px; height: 52px; background: var(--paper); color: var(--ink); box-shadow: 0 0 0 1px var(--line); }   /* section heads */
+.disc.plain svg { width: var(--i-lg); height: var(--i-lg); }
+.disc.alive { background: var(--spring); color: var(--ink); }
+.disc.sm { width: 32px; height: 32px; }
+.disc.sm svg { width: 17px; height: 17px; }
+
+/* fewer boxes: columns that sit on the wall, split by hairlines */
+.cols { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; }
+.cols > * { padding: 4px 40px 0; border-left: 1px solid var(--line); }
+.cols > :first-child { border-left: 0; padding-left: 0; }
+.cols > :last-child { padding-right: 0; }
+.split { display: grid; grid-template-columns: 1.3fr 1fr; gap: 60px; align-items: start; }
+.grid { display: grid; gap: 40px; }
+.grid.c3 { grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+.grid.c5 { grid-template-columns: repeat(5, 1fr); }
+/* a row on the wall under a hairline */
+.ruled { margin-top: 64px; padding-top: 26px; border-top: 1px solid var(--line); display: flex; align-items: center; gap: 60px; }
+.label { font-size: var(--t-label); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--leaf); margin-bottom: 20px; }
+
+/* ---------- 8. round windows: every picture is seen through a round hole in the wall ---------- */
+.window { display: block; border-radius: 50%; overflow: hidden; position: relative; background: var(--paper); flex: none; }
+.window img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.window::after { content: ""; position: absolute; inset: 0; border-radius: 50%; box-shadow: var(--sh-window); }
+.window.sm { width: 150px; height: 150px; }
+.window.md { width: 210px; height: 210px; }
+.window.lg { width: 330px; height: 330px; }
+/* a hole pressed into the wall, filled with a colour (the swatches) */
+.hole { aspect-ratio: 1; border-radius: 50%; box-shadow: var(--sh-hole); }
+
+/* ---------- 9. the card: the one box on the wall ---------- */
+.card { position: relative; border-radius: var(--r-card); background: var(--paper); box-shadow: var(--sh-card); padding: 26px 26px 24px; }
+.card h4 { font-size: var(--t-lead); font-weight: 800; letter-spacing: -.015em; margin-top: 14px; }
+.card p { font-size: var(--t-small); color: var(--ink-2); line-height: 1.55; margin-top: 6px; }
+.card .pin { position: absolute; left: 26px; top: 150px; height: 26px; font-size: var(--t-label); }
+.card .ft { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; font-size: var(--t-small); font-weight: 700; }
+.card .ft svg { width: var(--i-md); height: var(--i-md); color: var(--leaf); }
+
+/* ---------- 10. the panel: a big soft box for a whole page-within-a-page ---------- */
+.panel { position: relative; background: var(--paper); border-radius: var(--r-panel); box-shadow: var(--sh-panel); }
+.panel-bar { display: flex; align-items: center; gap: 12px; padding: 22px 40px; border-bottom: 1px solid var(--line); }
+.panel-bar b { font-weight: 800; }
+.panel-bar ul { list-style: none; display: flex; gap: 26px; margin-left: auto; font-size: var(--t-small); font-weight: 600; color: var(--ink-2); align-items: center; }
+.panel-top { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; padding: 48px 56px 40px; align-items: center; }
+.panel-top h3 { font-size: var(--t-title); line-height: 1.06; font-weight: 800; letter-spacing: -.035em; margin-top: 18px; }
+.panel-top p { color: var(--ink-2); margin-top: 16px; max-width: 470px; }
+.panel-top .window { justify-self: center; }
+.panel .grid.c3 { padding: 0 56px 56px; }
+.trust { display: flex; gap: 30px; margin-top: 22px; font-size: var(--t-small); font-weight: 600; color: var(--ink-2); }
+.trust b { color: var(--ink); font-size: var(--t-lead); font-weight: 800; display: flex; align-items: center; gap: 7px; letter-spacing: -.01em; }
+.trust b svg { width: var(--i-md); height: var(--i-md); color: var(--leaf); }
+
+/* offer tiles: soft tiles inside a panel; .pick is the one to choose */
+.offer { position: relative; border-radius: var(--r-tile); padding: 28px; background: var(--wall); box-shadow: inset 0 0 0 1px var(--line); }
+.offer.pick { background: var(--paper); box-shadow: inset 0 0 0 2px var(--ink); }
+.offer.pick .disc { background: var(--spring); color: var(--ink); }
+.offer h5 { font-size: var(--t-lead); font-weight: 800; margin-top: 18px; letter-spacing: -.015em; }
+.offer p { font-size: var(--t-small); color: var(--ink-2); line-height: 1.55; margin-top: 6px; }
+.offer .price { margin-top: 18px; font-size: var(--t-small); color: var(--ink-2); font-weight: 600; }
+.offer .price b { font-size: var(--t-lead); color: var(--ink); font-weight: 800; }
+
+/* a screenshot of real work: on a business page, the brightest thing */
+.shot img { display: block; width: 100%; height: auto; border-radius: var(--r-shot); box-shadow: var(--sh-shot); }
+.shot figcaption { font-size: var(--t-small); color: var(--ink-2); margin-top: 14px; }
+
+/* ---------- 11. the footer ---------- */
+.foot { margin-top: 110px; }
+.foot .wrap { display: flex; align-items: center; gap: 22px; padding: 36px 0 48px; border-top: 1px solid var(--line); }
+.foot .t b { display: block; font-weight: 800; }
+.foot .t span { font-size: var(--t-small); color: var(--ink-2); }
+.foot .credits { font-size: var(--t-label); color: var(--ink-2); line-height: 1.6; margin-left: 60px; max-width: 560px; }
+.foot .sign { margin-left: auto; }
+
+/* ---------- 12. specimen helpers, for kit pages that show the kit itself ---------- */
+.swatch .hole { margin-bottom: 18px; }
+.swatch b { display: block; font-size: var(--t-note); font-weight: 700; }
+.swatch code { font: 600 var(--t-small) var(--sans); color: var(--ink-2); letter-spacing: .02em; }
+.swatch span { display: block; font-size: var(--t-small); color: var(--ink-2); margin-top: 6px; line-height: 1.45; }
+.spec { border-top: 1.5px solid var(--ink); padding-top: 16px; }
+.spec + .spec { margin-top: 36px; }
+.spec .label { display: flex; justify-content: space-between; margin-bottom: 18px; }
+.spec .label em { font-style: normal; color: var(--ink-2); letter-spacing: .04em; text-transform: none; font-weight: 600; }
+.display { font-size: var(--t-display); line-height: .95; font-weight: 800; letter-spacing: -.045em; }
+.display.old { font-size: var(--t-display); line-height: .9; letter-spacing: -.01em; }
+.abc { margin-top: 20px; color: var(--ink-2); letter-spacing: .02em; }
+.weights { margin-top: 28px; display: flex; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 14px; }
+.sizes { display: flex; gap: 18px; margin-top: 18px; align-items: baseline; color: var(--ink-2); font-size: var(--t-label); font-weight: 600; }
+.sizes span { color: var(--ink); font-weight: 800; }
+.field + .row { margin-top: 24px; }
+.ruled .intro { max-width: 330px; }
+.ruled .intro b { display: flex; align-items: center; gap: 8px; font-size: var(--t-body); font-weight: 700; }
+.ruled .intro b svg { width: var(--i-md); height: var(--i-md); }
+.ruled .intro span { display: block; font-size: var(--t-small); color: var(--ink-2); margin-top: 6px; line-height: 1.45; }
+.ruled figure { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.ruled figure > div { height: 78px; display: flex; align-items: center; }
+.ruled figcaption { font-size: var(--t-label); font-weight: 600; color: var(--ink-2); letter-spacing: .02em; }

@@ -1,0 +1,82 @@
+/* =====================================================================
+   MOON GATE · tokens
+   Every colour, size, font, corner and shadow the kit uses lives here,
+   and only here. kit.css never writes a colour of its own.
+   Daylight only: there is no night mode (J, 18 Oct 2026).
+   Link this file first, then kit.css.
+   ===================================================================== */
+
+:root {
+  /* ---- colours: a white wall in sun, black ink, the green of new leaves, flat gold ink ---- */
+  --wall: #FBFAF7;         /* the page: a white wall in sun */
+  --paper: #FFFFFF;        /* the one or two boxes that sit on the wall (card, panel, input) */
+  --ink: #17191C;          /* titles, reading text, outlines, the door's ring */
+  --ink-2: #4A4F55;        /* softer reading text: descriptions, captions, meta */
+  --ink-3: #5F656B;        /* placeholders only */
+  --spring: #8CC63F;       /* the one alive thing per screen: the main button, the spark */
+  --spring-wash: #EAF4DA;  /* soft green behind icons, filled tags, the focus glow */
+  --band: #E2EFCD;         /* the pale green band behind the door */
+  --leaf: #356019;         /* green for small words: labels, links, icons on the wash */
+  --line: #E3E4DF;         /* hairlines and box edges */
+  --line-2: #D5D8D2;       /* the input's resting edge, the step connector */
+  --gold: #B08D46;         /* flat matte gold ink: the seal and the calligraphy title, nothing else */
+  --seal-paper: #FBF6EE;   /* the characters cut out of the gold seal */
+
+  /* the light inside the door: three steps of spring air */
+  --door-1: #F7FBEF;
+  --door-2: #E7F3D3;
+  --door-3: #D3E9B1;
+
+  /* see-through versions, for fades and shadows */
+  --wall-clear: rgba(251, 250, 247, 0);  /* the wall at zero, so the hero fades into it */
+  --seal-ring: rgba(251, 246, 238, .85); /* the thin pale ring inside the seal's edge */
+  --shade: rgba(23, 25, 28, .35);        /* ink at a third: soft shadows */
+  --shade-deep: rgba(23, 25, 28, .45);   /* the inner shadow of a round window */
+  --shade-leaf: rgba(53, 96, 25, .55);   /* the green shadow under the spark */
+
+  /* ---- fonts ---- */
+  --sans: "Plus Jakarta Sans", system-ui, sans-serif;   /* everything you read */
+  --old: "Cormorant Garamond", Georgia, serif;          /* the ONE slanted old word per headline */
+  --cjk: "Noto Serif TC", serif;                        /* 鄧正 on the seal, the vertical text */
+
+  /* ---- sizes: seven for pages, one poster size for creative places ---- */
+  --t-hero: 76px;      /* the one hero headline */
+  --t-title: 44px;     /* section titles, the big headline inside a panel */
+  --t-lead: 19px;      /* the line under the hero, small headings, the brand, prices */
+  --t-body: 17px;      /* reading text */
+  --t-ui: 15.5px;      /* buttons, inputs */
+  --t-note: 16px;      /* the short line beside a section title, swatch names */
+  --t-small: 14px;     /* captions, card text, tags, nav, footer */
+  --t-label: 12.5px;   /* tracked capitals, credits, the signature date */
+  --t-display: 104px;  /* one huge word, on a creative page only */
+
+  /* icon sizes (Lucide, inline SVG) */
+  --i-sm: 14px;
+  --i-md: 18px;
+  --i-lg: 22px;
+
+  /* ---- layout ---- */
+  --wrap: 1120px;      /* the content column */
+  --section: 96px;     /* space above every section */
+  --gap: 18px;
+
+  /* ---- corners: every edge is soft ---- */
+  --r-pill: 999px;     /* buttons, tags, inputs, the nav */
+  --r-card: 28px;      /* the card */
+  --r-tile: 24px;      /* offer tiles inside a panel */
+  --r-panel: 36px;     /* the big panel */
+  --r-shot: 18px;      /* a screenshot of real work */
+  --r-seal: 6px;
+
+  /* ---- shadows ---- */
+  --sh-float: 0 0 0 1px var(--line), 0 10px 30px -18px rgba(23, 25, 28, .3);      /* the nav pill */
+  --sh-card: 0 0 0 1px var(--line), 0 24px 40px -30px var(--shade);               /* the card */
+  --sh-panel: 0 0 0 1px var(--line), 0 30px 60px -40px rgba(23, 25, 28, .3);      /* the panel */
+  --sh-shot: 0 0 0 1px rgba(23, 25, 28, .14), 0 34px 60px -34px rgba(23, 25, 28, .6); /* real work */
+  --sh-spark: 0 8px 20px -8px var(--shade-leaf);
+  --sh-window: inset 0 12px 22px -6px var(--shade-deep), inset 0 0 0 1px rgba(23, 25, 28, .08);
+  --sh-hole: inset 0 16px 14px -10px rgba(10, 12, 14, .55), inset 0 3px 2px -1px rgba(10, 12, 14, .35),
+             0 -2px 0 rgba(23, 25, 28, .10), 0 3px 0 #fff, 0 4px 6px -2px rgba(255, 255, 255, .9);
+  --sh-seal: inset 0 0 0 3px var(--gold), inset 0 0 0 5px var(--seal-ring);
+  --sh-seal-sm: inset 0 0 0 2px var(--gold), inset 0 0 0 3.5px var(--seal-ring);
+}
