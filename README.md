@@ -8,8 +8,11 @@ page updates within a minute or two. Nothing private belongs here.
 
 ## Decisions the page is built on (Jason's, 3–4 Oct 2026)
 
-- **"AI" stays out of his title** ("Automation Specialist for Traditional Businesses");
-  the word is fine in the body copy.
+- **"AI" stays out of his title and the top of the page** ("Systems simplified for
+  traditional businesses · Canadian", his words, 26 Oct 2026, after three cold readers playing owners called
+  "Automation Specialist" salesman talk; a seller at a Chiang Mai meetup told him the word AI
+  puts outsiders off). The word is fine lower down. The chat box is "Quick questions" for the
+  same reason.
 - **No niche on this page.** Referrals come from every kind of business.
 - **Exactly one animated diagram, and it explains something.** Nothing decorative.
 - **Small icon badges sit beside the problem and "How I work" headings** (Lucide icons,
