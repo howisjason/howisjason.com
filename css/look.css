@@ -368,3 +368,13 @@ main > section::before { content: none; }
 footer .sign .who { display: inline-flex !important; flex-direction: row !important; align-items: center; gap: .6em; }
 footer .sign .flag { width: 16px; height: 16px; }
 @media (min-width: 52rem) { .flow-say { justify-self: center !important; } }
+@media (max-width: 51.99rem) {
+  .flow-step { text-align: center; }
+  .flow-say.chips { justify-content: center; }
+  .flow-say.bubble, .flow-say.slot { margin-inline: auto; width: fit-content; max-width: 100%; text-align: left; }
+  .talk .window.hello { justify-self: center; }
+  .talk .actions { display: flex; justify-content: center; }
+}
+@media (max-width: 640px) {
+  footer .wrap { flex-direction: column; align-items: center !important; gap: 16px; }
+}
