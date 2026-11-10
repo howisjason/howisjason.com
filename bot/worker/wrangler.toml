@@ -6,6 +6,10 @@
 # here runs on a clock.
 name = "jason-bot"
 main = "worker.js"
+# SWITCHED OFF (J's word, 10 Nov 2026): the new page has no chat box, so the worker has no public address.
+# The code, its API key secret and its ledger stay, ready to reuse for a future chatbot build.
+# To switch it back on: delete the next line, then npx wrangler deploy.
+workers_dev = false
 compatibility_date = "2026-10-01"
 
 # prompt.md and facts.md are imported as plain text (Wrangler bundles only .txt and

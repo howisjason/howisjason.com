@@ -36,4 +36,6 @@ within a minute or two.
 
 `kit/` (the old Moon Gate look) and `bot/` (the "Quick questions" chat box and its
 `jason-bot` Cloudflare Worker) belong to the page that was live until 10 Nov 2026; the new
-pages use neither.
+pages use neither. The worker is switched off (J's word, 10 Nov 2026): `workers_dev = false`
+in `bot/worker/wrangler.toml`, so it has no public address. Its code, key and ledger are kept
+on purpose, to reuse for a future chatbot build; the toml says how to switch it back on.
