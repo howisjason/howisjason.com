@@ -1,29 +1,39 @@
 # howisjason.com
 
-Jason Tang's one-page portfolio. GitHub Pages serves this repo's `main` branch at
-https://howisjason.com (the `CNAME` file names the domain; DNS lives at Porkbun).
+Jason Tang's page. GitHub Pages serves this repo's `main` branch at https://howisjason.com
+(the `CNAME` file names the domain; DNS lives at Porkbun, whose MX and TXT records carry his
+email forwarding: never touch them).
 
-Everything in this repo is public. Edit `index.html` here, commit, push, and the live
-page updates within a minute or two. Nothing private belongs here.
+Everything in this repo is public. Nothing private belongs here.
 
-## Decisions the page is built on (Jason's, 3–4 Oct 2026)
+## What is live (since 10 Nov 2026)
 
-- **"AI" stays out of his title and the top of the page** ("Systems simplified for
-  traditional businesses · Canadian", his words, 26 Oct 2026, after three cold readers playing owners called
-  "Automation Specialist" salesman talk; a seller at a Chiang Mai meetup told him the word AI
-  puts outsiders off). The word is fine lower down. The chat box is "Quick questions" for the
-  same reason.
-- **No niche on this page.** Referrals come from every kind of business.
-- **Exactly one animated diagram, and it explains something.** Nothing decorative.
-- **Small icon badges sit beside the problem and "How I work" headings** (Lucide icons,
-  drawn inline; his ask, 7 Oct 2026, from the content design bible's disc idea).
-- **No client is named** until the work is real and the client agrees to be named.
-- The rules the page's claims were checked against are in `index.html`'s own comments.
+- `index.html`: the offer page. One offer up front (past customers, back and paying again in
+  30 days, free setup, paid only from a share of what returning customers spend), with the
+  other two of the three ways to make more money (more customers, higher prices) below it.
+- `book.html`: the free setup call, with his Cal.com calendar (cal.com/howisjason/setup) inside.
+- `privacy.html`: what the booking form and the visit counter collect, and the picture credits.
+- `css/base.css` and `css/look.css`: the look (the S2F3 sky look); `img/` and `video/`: the
+  pictures and the walkthrough video. Credits for added pictures: `img/SOURCES.md`.
 
-## The "Ask my AI" chat box (`bot/`)
+Visits are counted by GoatCounter (howisjason.goatcounter.com); each friend's ask link adds
+`?ref=name`, and the counter records it.
 
-`index.html`'s chat box sends each question to the Cloudflare Worker in `bot/worker/`
-(`jason-bot`, deployed with `npx wrangler deploy` from that folder). The worker holds the
-Anthropic API key as a secret, caps messages per visitor and per day, and answers from
-`prompt.md` (how it behaves) plus `facts.md` (everything it may say, all of it already
-public). Its tests: `node bot/worker/check.test.mjs`.
+## How to change it
+
+The three pages are built, never edited here by hand. Their source is in `drafts/`, which git
+ignores (it holds working notes), so it lives only on Jason's Mac:
+draft 4 (`drafts/picks/index.html`) holds the words, `drafts/book/` and `drafts/privacy/` the
+two other pages, `drafts/look-full/s2f3/` the look. From this folder:
+
+    python3 -I drafts/look-full/build.py && python3 -I drafts/look-full/publish.py
+
+`build.py` builds the drafts; `publish.py` copies them here, strips every comment (the drafts'
+comments quote his working sessions), and fixes the picture paths. Check, commit, push: live
+within a minute or two.
+
+## Left from the old page
+
+`kit/` (the old Moon Gate look) and `bot/` (the "Quick questions" chat box and its
+`jason-bot` Cloudflare Worker) belong to the page that was live until 10 Nov 2026; the new
+pages use neither.

@@ -3,43 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jason Tang, systems for traditional businesses</title>
-<meta name="description" content="I find where a business is leaking time, money and customers, then build simple systems that fix it quietly in the background.">
-<!-- The preview a friend's forwarded link shows in WhatsApp, iMessage and the rest.
-     og:image needs a full address, so it assumes the page lives at howisjason.com. -->
-<meta property="og:title" content="Jason Tang, systems for traditional businesses">
-<meta property="og:description" content="I find where a business is leaking time, money and customers, then build simple systems that fix it quietly in the background.">
-<meta property="og:image" content="https://howisjason.com/img/jason.jpg">
+<title>Jason Tang · Get Your Past Customers Back</title>
+<meta name="description" content="I build simple systems that make business owners more money. Step 1: your past customers, back and paying you again in 30 days, with free setup.">
 <meta property="og:type" content="website">
-<!-- The look is Jason's design kit, Moon Gate (kit/, copied whole from his design-kit repo;
-     kit/assets/SOURCES.md says where every picture came from). This page is the kit's
-     "business dose": the style lives at the top (the ensō door with his photo through it,
-     one leaf shadow kept to the corner); below it, his real screens are the brightest thing.
-     Every colour comes from kit/tokens.css. -->
+<meta property="og:title" content="Jason Tang · Get Your Past Customers Back">
+<meta property="og:description" content="I build simple systems that make business owners more money. Step 1: your past customers, back and paying you again in 30 days, with free setup.">
+<meta property="og:image" content="https://howisjason.com/img/jason.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Noto+Serif+TC:wght@500;900&display=block" rel="stylesheet">
-<link rel="stylesheet" href="kit/tokens.css">
-<link rel="stylesheet" href="kit/kit.css">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
 <style>
-  /* The page's own layout, on top of the kit. Phones first; the 52rem breakpoint is the
-     desktop layout, which matches the approved still (design-kit/mockups/moon-gate-portfolio/quiet). */
   img { display: block; max-width: 100%; height: auto; }
   a:focus-visible, button:focus-visible, video:focus-visible, textarea:focus-visible { outline: 3px solid var(--leaf); outline-offset: 3px; }
-
-  /* ---------- first screen: name, pitch, the door with his photo, a way to reach him ---------- */
   .hero {
     position: relative; overflow: hidden; padding: 40px 0 48px; --s: .6;
     background: linear-gradient(to bottom, var(--paper) 62%, var(--wall-clear));
   }
-  /* the one soft leaf shadow, anchored to the top right corner whatever the screen width;
-     on phones it is drawn smaller and fainter, so it stays off the headline */
   .hero .gate-shadow.corner { left: auto; right: -198px; width: 900px; height: 600px; opacity: .45; }
   .hero .gate-fade { height: 240px; background: linear-gradient(to bottom, var(--wall-clear), color-mix(in srgb, var(--wall) 90%, transparent) 70%, var(--wall-clear)); }
-  /* phones: one column in reading order, the door between the headline and the intro */
   .hero-grid { position: relative; display: flex; flex-direction: column; }
   .hero-text { display: contents; }
-  .who { order: 1; } .hero h1 { order: 2; } .hero .door { order: 3; } .intro { order: 4; } .hero .actions { order: 5; }
+  .who { order: 1; } .hero h1 { order: 2; } .hero .actions { order: 3; } .hero .door { order: 4; } .intro { order: 5; }  
+  .hero .actions-calc { order: 6; }
   .avatar { display: none; }
   .name { font-weight: 800; font-size: var(--t-lead); letter-spacing: -.01em; line-height: 1.3; }
   .hero .title { margin-top: 4px; line-height: 1.45; }
@@ -47,14 +33,10 @@
   .intro { color: var(--ink-2); max-width: 560px; }
   .intro strong { color: var(--ink); font-weight: 700; }
   .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 28px; }
-  /* the door: the kit's ensō at a scale --s of its 560px drawing, never transformed,
-     so the ink still multiplies onto the photo and the wall */
   .hero .door { position: relative; left: auto; top: auto; margin: 30px auto 34px; flex: none; width: calc(560px * var(--s)); height: calc(560px * var(--s)); }
   .hero .door-through { left: calc(31px * var(--s)); top: calc(16px * var(--s)); width: calc(500px * var(--s)); height: calc(500px * var(--s)); overflow: hidden; }
   .hero .door-through > img.photo { transform: scale(1.093); transform-origin: 50% 34%; }
   .hero .door-enso { left: calc(-108px * var(--s)); top: calc(-268px * var(--s)); width: calc(772px * var(--s)); height: calc(1092px * var(--s)); }
-
-  /* ---------- sections ---------- */
   main section { padding-top: 72px; }
   main section.first { padding-top: 24px; }
   .head { margin-bottom: 0; gap: 14px; }
@@ -62,8 +44,6 @@
   .head .disc.plain { width: 44px; height: 44px; }
   .head .disc.plain svg { width: 20px; height: 20px; }
   .lede { margin-top: 18px; color: var(--ink-2); max-width: 660px; }
-
-  /* what I fix and how I work: on the wall, no boxes; the icon sits on the heading's line */
   .fixes, .ways { display: grid; gap: 36px; margin-top: 36px; }
   .fix, .ways > div { display: grid; grid-template-columns: auto 1fr; column-gap: 14px; align-items: center; align-content: start; }
   .fix > :not(.badge):not(h3), .ways > div > :not(.badge):not(h3) { grid-column: 1 / -1; }
@@ -72,24 +52,14 @@
   .fix h3, .ways h3 { font-size: 19px; line-height: 1.25; font-weight: 800; letter-spacing: -.015em; }
   .fix p, .ways p { margin-top: 12px; color: var(--ink-2); }
   .fix .cure { color: var(--ink); padding-left: 16px; border-left: 3px solid var(--spring); }
-
-  /* ---------- one inquiry, step by step ----------
-     The motion IS the explanation (the research Jason approved): the five steps light
-     up one after another, slowly, using only fades and a highlight that moves along.
-     No sliding, bouncing, glow or 3D. One 14 s loop: the steps arrive over ~9.5 s,
-     everything holds for ~3 s (the pause), then it all dims and starts again.
-     The base styles below ARE the finished picture, so with no animation (reduced
-     motion, or a browser that skips it) the reader sees all five steps, still.
-     The script at the bottom pauses it while it is off-screen. */
   .flow-lead { color: var(--ink-2); margin-top: 56px; }
   .flow { display: grid; gap: 24px; max-width: 60rem; margin-top: 20px; }
   .flow-step {
     position: relative; background: var(--paper); border: 1.5px solid var(--line); border-radius: 22px;
     padding: 18px 18px 20px; box-shadow: 0 18px 30px -26px var(--shade);
-    animation: 14s ease-in-out infinite both;
+    animation: 9.33s ease-in-out infinite both;
   }
   .flow-step:last-child { border-color: var(--spring); background: var(--spring-wash); }
-  /* the thin line joining each step to the one before it (vertical on phones) */
   .flow-step + .flow-step::before {
     content: ""; position: absolute; background: var(--line-2);
     left: 26px; top: calc(-24px - 1.5px); width: 2px; height: 24px;
@@ -99,8 +69,8 @@
     border: 1.5px solid var(--leaf); color: var(--leaf); font-size: 13px; font-weight: 800; line-height: 1;
   }
   .flow-name { font-weight: 700; font-size: var(--t-ui); line-height: 1.3; margin: 12px 0; }
-  .flow-say { font-size: 14.5px; line-height: 1.45; animation: 14s ease-in-out infinite both; }
-  .flow-say span { animation: 14s ease-in-out infinite both; }
+  .flow-say { font-size: 14.5px; line-height: 1.45; animation: 9.33s ease-in-out infinite both; }
+  .flow-say span { animation: 9.33s ease-in-out infinite both; }
   .bubble { background: var(--wall); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; }
   .bubble small { display: block; color: var(--ink-2); font-size: var(--t-label); font-weight: 700; margin-bottom: 2px; }
   .bubble.reply { border-left: 3px solid var(--spring); }
@@ -108,7 +78,7 @@
     display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 16px;
     border: 1.5px solid var(--spring); border-radius: var(--r-pill);
     font-weight: 800; background: var(--spring); color: var(--ink);
-    animation: 14s ease-in-out infinite both;
+    animation: 9.33s ease-in-out infinite both;
   }
   .ok svg { width: 15px; height: 15px; }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -116,11 +86,7 @@
   .slot { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; max-width: 11rem; font-size: var(--t-small); }
   .slot b { display: block; background: var(--leaf); color: var(--paper); font-size: var(--t-label); font-weight: 700; padding: 5px 12px; }
   .slot span { display: block; padding: 8px 12px 10px; }
-
-  /* Who arrives when, as a share of the 14 s loop. Step 1 at 2%, 2 at 16%, 3 at 30%,
-     4 at 44% (its second chip at 55%), 5 at 66%; all hold to 88%, dim by 95%.
-     A step is dim before it arrives, highlighted while it is the current one,
-     and plain once the next one takes over. */
+  .slot .counted { padding-top: 0; color: var(--leaf); font-weight: 700; border-top: 1px dashed var(--line); padding-top: 8px; }
   .flow-step:nth-child(1) { animation-name: flow-c1; }
   .flow-step:nth-child(2) { animation-name: flow-c2; }
   .flow-step:nth-child(3) { animation-name: flow-c3; }
@@ -137,8 +103,7 @@
   .flow-step:nth-child(4) .chip:nth-child(1) { animation-name: flow-t4; }
   .flow-step:nth-child(4) .chip:nth-child(2) { animation-name: flow-t4b; }
   .flow-step:nth-child(5) .flow-say { animation-name: flow-t5; }
-  .flow .chip { animation: 14s ease-in-out infinite both; }
-
+  .flow .chip { animation: 9.33s ease-in-out infinite both; }
   @keyframes flow-c1 { 0%, 2% { opacity: .4; border-color: var(--line); background: var(--paper); } 6%, 16% { opacity: 1; border-color: var(--spring); background: var(--spring-wash); } 20%, 88% { opacity: 1; border-color: var(--line); background: var(--paper); } 95%, 100% { opacity: .4; border-color: var(--line); background: var(--paper); } }
   @keyframes flow-c2 { 0%, 16% { opacity: .4; border-color: var(--line); background: var(--paper); } 20%, 30% { opacity: 1; border-color: var(--spring); background: var(--spring-wash); } 34%, 88% { opacity: 1; border-color: var(--line); background: var(--paper); } 95%, 100% { opacity: .4; border-color: var(--line); background: var(--paper); } }
   @keyframes flow-c3 { 0%, 30% { opacity: .4; border-color: var(--line); background: var(--paper); } 34%, 44% { opacity: 1; border-color: var(--spring); background: var(--spring-wash); } 48%, 88% { opacity: 1; border-color: var(--line); background: var(--paper); } 95%, 100% { opacity: .4; border-color: var(--line); background: var(--paper); } }
@@ -155,17 +120,10 @@
   @keyframes flow-t4 { 0%, 44% { opacity: 0; } 48%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
   @keyframes flow-t4b { 0%, 55% { opacity: 0; } 59%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
   @keyframes flow-t5 { 0%, 66% { opacity: 0; } 70%, 88% { opacity: 1; } 95%, 100% { opacity: 0; } }
-
   .flow.is-paused .flow-step, .flow.is-paused .flow-step * { animation-play-state: paused; }
-  /* PHONES ONLY (measured 4 Oct: the page ran 9.3 phone screens and the first picture sat
-     4 screens down). Three changes, all undone at the 52rem breakpoint:
-     the diagram shows one step at a time in one card-sized space instead of a 5-card tower,
-     the "fix" lines under each problem give way to the diagram that shows the fix,
-     and each system leads with its picture so a screen never passes without one. */
   @media (max-width: 51.99rem) {
     .fix .cure { display: none; }
-    .system > .shot { order: -1; }
-    .play-text { display: none; } /* on a phone the words would sit on his face; the button alone is enough */
+    .play-text { display: none; } 
   }
   @media (max-width: 51.99rem) and (prefers-reduced-motion: no-preference) {
     .flow { grid-template-columns: 1fr; gap: 0; }
@@ -182,12 +140,9 @@
   @keyframes flow-m3 { 0%, 31% { opacity: 0; } 33%, 45% { opacity: 1; } 47%, 100% { opacity: 0; } }
   @keyframes flow-m4 { 0%, 45% { opacity: 0; } 47%, 67% { opacity: 1; } 69%, 100% { opacity: 0; } }
   @keyframes flow-m5 { 0%, 67% { opacity: 0; } 69%, 96% { opacity: 1; } 99%, 100% { opacity: 0; } }
-
   @media (prefers-reduced-motion: reduce) {
     .flow-step, .flow-step * { animation: none !important; }
   }
-
-  /* ---------- what I've built: daylight; his real screens are the brightest thing ---------- */
   .system { display: grid; gap: 22px; padding: 40px 0; border-top: 1px solid var(--line); }
   .system:first-of-type { border-top: 0; padding-top: 36px; }
   .system h3 { font-size: 22px; line-height: 1.22; font-weight: 800; letter-spacing: -.02em; }
@@ -198,8 +153,6 @@
   .figure-note { font-size: 15px; line-height: 1.5; margin-top: 10px; max-width: 300px; color: var(--ink); }
   .phone { max-width: 16rem; }
   .phone img { border-radius: 30px; }
-
-  /* the video, and its cover: a big play button over a smiling frame. It hides once the video starts. */
   .video-wrap { position: relative; margin-top: 32px; }
   .video { display: block; width: 100%; height: auto; background: var(--ink); border-radius: 24px; box-shadow: var(--sh-shot); }
   .play { position: absolute; inset: 0; display: flex; align-items: flex-end; gap: 16px; padding: clamp(16px, 3vw, 30px);
@@ -213,20 +166,14 @@
   .play-text { font-size: 22px; font-weight: 800; line-height: 1.2; letter-spacing: -.01em; }
   .play-text small { display: block; font-size: 14.5px; font-weight: 600; opacity: .85; }
   .video-wrap.is-playing .play { display: none; }
-
-  /* ---------- the close ---------- */
   .talk { display: grid; gap: 28px; }
   .window.hello { width: 150px; height: 150px; }
   .talk h2 { font-size: 30px; line-height: 1.1; font-weight: 800; letter-spacing: -.03em; }
   .talk p { margin-top: 18px; color: var(--ink-2); max-width: 640px; }
   .email { font-size: clamp(22px, 4.6vw, 30px); font-weight: 800; letter-spacing: -.02em; word-break: break-word; margin-right: 12px;
     text-decoration: underline; text-decoration-color: var(--spring); text-decoration-thickness: 3px; text-underline-offset: 7px; }
-
-  /* the footer: the small gold seal signs the page once, beside his name, small and neat.
-     It sits on the left, so the "Quick questions" pill in the bottom right corner never covers it. */
   footer { margin-top: 88px; }
   footer .wrap { display: flex; justify-content: flex-start; padding: 22px 0 32px; border-top: 1px solid var(--line); }
-
   @media (min-width: 52rem) {
     .hero { padding: 124px 0 116px; --s: .66; }
     .hero .gate-shadow.corner { right: -360px; width: 1760px; height: 1173px; opacity: .6; }
@@ -248,7 +195,7 @@
     .flow-lead { margin-top: 88px; }
     .flow { grid-template-columns: repeat(5, 1fr); gap: 22px; max-width: none; margin-top: 22px; }
     .flow-step + .flow-step::before { left: calc(-22px - 1.5px); top: 32px; width: 22px; height: 2px; }
-    .system { grid-template-columns: minmax(0, 400px) 1fr; gap: 64px; align-items: start; padding: 60px 0; }
+    .system { gap: 64px; align-items: start; padding: 60px 0; }
     .system:first-of-type { padding-top: 52px; }
     .system h3 { font-size: 26px; }
     .figure { font-size: 64px; margin-top: 30px; }
@@ -267,56 +214,107 @@
     .hero { --s: .86; }
     .hero-grid { justify-content: start; }
   }
-
-  /* ---------- "Ask my AI": the chat box (jason-bot branch, 12 Oct 2026) ----------
-     A small pill in the corner opens a panel; on phones the panel is a bottom sheet.
-     It talks to the jason-bot worker (bot/worker/), which holds the API key and the caps.
-     The answers come from an AI, and the panel says so in its header. */
-  .ask-pill { position: fixed; right: 16px; bottom: 16px; z-index: 40; display: inline-flex; align-items: center; gap: 9px;
-    height: 50px; padding: 0 22px 0 18px; border: 0; border-radius: var(--r-pill); cursor: pointer;
-    font: 700 var(--t-ui)/1 var(--sans); color: var(--wall); background: var(--ink);
-    box-shadow: 0 12px 30px -10px color-mix(in srgb, var(--ink) 55%, transparent); }
-  .ask-pill:hover { background: color-mix(in srgb, var(--ink) 86%, var(--paper)); }
-  .ask-pill svg { width: 19px; height: 19px; color: var(--spring); fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
-  .ask-open .ask-pill { display: none; }
-  .ask { position: fixed; z-index: 50; right: 16px; bottom: 16px; width: min(23rem, calc(100vw - 2rem)); height: min(36rem, calc(100dvh - 2rem));
-    display: none; flex-direction: column; background: var(--wall); border-radius: 24px; overflow: hidden;
-    box-shadow: 0 0 0 1px var(--line), 0 30px 60px -24px color-mix(in srgb, var(--ink) 45%, transparent); }
-  .ask-open .ask { display: flex; }
-  .ask-head { display: flex; align-items: center; gap: 12px; padding: 12px 12px 12px 16px; border-bottom: 1px solid var(--line); background: var(--paper); }
-  .ask-head img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex: none; }
-  .ask-head p { line-height: 1.3; }
-  .ask-head b { font-weight: 800; }
-  .ask-head small { display: block; color: var(--ink-2); font-size: 13px; }
-  .ask-close { margin-left: auto; flex: none; width: 36px; height: 36px; border: 0; border-radius: 50%; background: transparent; color: var(--ink-2); cursor: pointer; font-size: 22px; line-height: 1; }
-  .ask-close:hover { background: var(--spring-wash); color: var(--ink); }
-  .ask-log { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
-  .ask-msg { max-width: 88%; padding: 9px 13px; border-radius: 16px; font-size: 15px; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; }
-  .ask-msg.bot { align-self: flex-start; background: var(--paper); border: 1px solid var(--line); border-left: 3px solid var(--spring); }
-  .ask-msg.you { align-self: flex-end; background: var(--ink); color: var(--wall); }
-  .ask-msg.note { align-self: center; max-width: 100%; color: var(--ink-2); font-size: 13.5px; text-align: center; padding: 3px 8px; }
-  .ask-msg.wait { color: var(--ink-2); }
-  .ask-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-  .ask-chips button { font: 600 13.5px/1.35 var(--sans); color: var(--leaf); background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-pill); padding: 7px 13px; cursor: pointer; text-align: left; }
-  .ask-chips button:hover { border-color: var(--spring); background: var(--spring-wash); }
-  .ask-form { display: flex; gap: 8px; align-items: flex-end; padding: 12px; border-top: 1px solid var(--line); background: var(--paper); }
-  .ask-form textarea { flex: 1; resize: none; font: 400 16px/1.4 var(--sans); color: var(--ink); background: var(--wall);
-    border: 1px solid var(--line-2); border-radius: 20px; padding: 9px 14px; max-height: 7.5rem; }
-  .ask-form textarea::placeholder { color: var(--ink-3); }
-  .ask-form button { flex: none; font: 700 var(--t-ui)/1 var(--sans); color: var(--wall); background: var(--ink); border: 0; border-radius: var(--r-pill); height: 42px; padding: 0 18px; cursor: pointer; }
-  .ask-form button:disabled { opacity: .5; cursor: default; }
+  .callout { order: 1; margin-top: 22px; font-weight: 700; color: var(--leaf); font-size: var(--t-lead); line-height: 1.3; }
+  .hero h1 { margin-top: 10px; }
+  .offer-name { display: inline-block; margin-bottom: 6px; font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--leaf); }
+  .guar { margin-top: 18px; padding: 12px 16px; border-left: 4px solid var(--spring); background: var(--spring-wash); border-radius: 0 14px 14px 0; font-weight: 700; color: var(--ink); max-width: 560px; }
+  .stats { display: grid; gap: 40px; margin-top: 40px; }
+  .stats .figure { margin-top: 0; white-space: nowrap; font-size: clamp(44px, 4.6vw, 60px); }
+  .stats .figure-note { max-width: 360px; }
+  .quote { font-size: clamp(22px, 2.6vw, 28px); line-height: 1.25; font-weight: 800; letter-spacing: -.02em; max-width: 440px; }
+  .src { margin-top: 10px; font-size: 13px; line-height: 1.45; color: var(--ink-3); max-width: 340px; }
+  .calc { display: grid; gap: 28px; margin-top: 36px; background: var(--paper); border: 1.5px solid var(--line); border-radius: 22px; padding: 22px; box-shadow: 0 18px 30px -26px var(--shade); max-width: 980px; }
+  .calc label { display: grid; gap: 8px; font-weight: 700; font-size: var(--t-ui); line-height: 1.3; }
+  .calc label small { font-weight: 500; color: var(--ink-2); font-size: 13.5px; }
+  .calc input { font: inherit; font-size: 22px; font-weight: 800; width: 100%; max-width: 12rem; padding: 10px 14px; border: 1.5px solid var(--line-2); border-radius: 14px; background: var(--wall); color: var(--ink); }
+  .calc input:focus-visible { outline: 3px solid var(--leaf); outline-offset: 2px; }
+  .calc-inputs { display: grid; gap: 20px; }
+  .calc-out { border-top: 1px solid var(--line); padding-top: 20px; }
+  .calc-out .figure { margin-top: 4px; }
+  .calc-out .if { margin-top: 14px; color: var(--ink-2); max-width: 30rem; }
+  .calc-out .if b { color: var(--ink); }
+  .calc-note { margin-top: 14px; font-size: 13px; color: var(--ink-3); max-width: 30rem; }
+  .three { display: grid; gap: 24px; margin-top: 44px; }
+  .way3 { background: var(--paper); border: 1.5px solid var(--line); border-radius: 22px; padding: 24px; box-shadow: 0 18px 30px -26px var(--shade); }
+  .way3.first { border: 2px solid var(--spring); background: var(--spring-wash); }
+  .way3 .k { font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--leaf); }
+  .way3 h3 { margin-top: 6px; font-size: 24px; line-height: 1.2; font-weight: 800; letter-spacing: -.02em; }
+  .way3 .figure { margin-top: 18px; font-size: clamp(40px, 4vw, 54px); }
+  .way3 .figure-note { max-width: 420px; }
+  .way3 .quote { margin-top: 18px; font-size: 19px; max-width: 460px; }
+  .build { margin-top: 20px; padding-left: 16px; border-left: 3px solid var(--spring); }
+  .build b { display: block; font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--leaf); margin-bottom: 4px; }
+  .build p { color: var(--ink); }
+  .build p + p { margin-top: 8px; color: var(--ink-2); }
+  .tbd { display: inline-block; padding: 0 8px; border: 1.5px dashed var(--leaf); border-radius: 8px; color: var(--leaf); font-weight: 800; }
+  .story { margin-top: 14px; color: var(--ink-2); max-width: 460px; }
   @media (min-width: 52rem) {
-    .ask-pill { right: 28px; bottom: 28px; }
-  }
-  @media (max-width: 40rem) {
-    .ask { right: 0; bottom: 0; width: 100%; height: 88dvh; border-radius: 24px 24px 0 0; }
-    footer { padding-bottom: 5rem; } /* room so the pill never sits on the last line */
+    .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 56px; margin-top: 52px; }
+    .calc { grid-template-columns: 1fr 1fr; gap: 48px; padding: 32px; align-items: center; }
+    .calc-out { border-top: 0; padding-top: 0; border-left: 1px solid var(--line); padding-left: 48px; }
+    .three { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .way3.first { grid-column: 1 / -1; padding: 30px 32px; }
+    .way3 { padding: 30px 32px; }
   }
 </style>
+<link rel="stylesheet" href="css/look.css">
 </head>
-<body>
+<body class="look-s2f3">
+<div class="skyframe" aria-hidden="true">
+  <i class="t"></i><i class="b"></i><i class="l"></i><i class="r"></i>
+  <span class="glint g1"></span><span class="glint g2"></span>
+  <span class="bracket tl"></span><span class="bracket tr"></span><span class="bracket bl"></span><span class="bracket br"></span>
+  <span class="tag top"><span class="nametag">Jason Tang <img class="flag" src="img/flag-ca.svg" width="18" height="18" alt=""></span></span><span class="tag bot">@HOWISJASON</span>
+  <span class="cap left">SYSTEMS SIMPLIFIED <i></i> FOR TRADITIONAL BUSINESSES</span>
+  <span class="cap right">MORE TIMES <i></i> MORE CUSTOMERS <i></i> HIGHER PRICES</span>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s, r = document) => [...r.querySelectorAll(s)];
+  const make = (tag, cls, attrs = {}) => { const e = document.createElement(tag); if (cls) e.className = cls; for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
+  const strong = document.querySelector('.hero .not-a8 strong');
+  if (strong) {
+    const parts = strong.textContent.trim().replace(/\.$/, '').split(/,\s*(?:and\s+)?/);
+    const icons = ['megaphone-off', 'book-x', 'phone-off'];
+    const row = make('div', 'nochips', { 'aria-hidden': 'true' });
+    parts.forEach((t, i) => { const c = make('span', 'nochip'); c.style.setProperty('--i', `var(--i-${icons[i] || 'sparkles'})`);
+      const small = /^(a|an|the|and|but|or|for|nor|to|of|in|on|at|by|as)$/i;
+      c.textContent = t.split(' ').map((w, k) => k && small.test(w) ? w.toLowerCase() : w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+      row.append(c); });
+    strong.parentElement.classList.add('as-chips'); strong.parentElement.after(row);
+  }
+  const C = 2 * Math.PI * 26;
+  const ringFor = fig => { if (!fig) return; const p = parseFloat((fig.textContent.match(/\d+(\.\d+)?/) || [0])[0]);
+    const row = make('span', 'ringrow'); fig.before(row);
+    row.innerHTML = `<svg class="ring" viewBox="0 0 60 60" aria-hidden="true"><circle class="track" cx="30" cy="30" r="26"/><circle class="fill" cx="30" cy="30" r="26"/></svg>`;
+    row.style.setProperty('--off', (C * (1 - p / 100)).toFixed(2) + 'px'); row.style.setProperty('--c', C.toFixed(2) + 'px'); row.append(fig); };
+  ringFor(document.querySelector('.stats > div:nth-child(3) .figure'));
+  ringFor(document.querySelector('.way3.first .figure'));
+  const ifLine = document.querySelector('.calc-out .if');
+  if (ifLine) { const d = make('div', 'dots10', { 'aria-hidden': 'true' }); for (let k = 0; k < 10; k++) { const i = make('i'); i.style.setProperty('--k', k); d.append(i); } ifLine.before(d); }
+  const counts = $('.stats .figure, .way3 .figure, .tbd, .tick').map(el => { const m = el.textContent.match(/^([^\d]*)(\d+(?:\.\d+)?)(.*)$/s);
+    return m && { el, pre: m[1], n: +m[2], dec: (m[2].split('.')[1] || '').length, post: m[3] }; }).filter(Boolean);
+  const show = (c, v) => { c.el.textContent = c.pre + v.toFixed(c.dec) + c.post; };
+  const run = c => { const t0 = performance.now(); const step = now => { const k = Math.min((now - t0) / 2000, 1); show(c, c.n * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); };
+  const rows = $('.nochips, .hero .actions');
+  const panel = document.querySelector('.hero .wrap');
+  const fit = () => rows.forEach(r => { r.classList.remove('stacked'); r.style.zoom = ''; const cs = getComputedStyle(panel);
+    const room = panel.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight); const w = r.scrollWidth;
+    if (w <= room) return; if (innerWidth < 640) r.classList.add('stacked'); else r.style.zoom = (room / w).toFixed(3); });
+  if (rows.length && panel) { fit(); new ResizeObserver(fit).observe(panel); document.fonts && document.fonts.ready.then(fit); }
+  const targets = [...$('.ringrow'), ...$('.dots10')];
+  if (reduce || !('IntersectionObserver' in window)) { targets.forEach(t => t.classList.add('in-view')); return; }
+  const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; io.unobserve(e.target);
+    const c = counts.find(c => c.el === e.target); if (c) run(c); else e.target.classList.add('in-view'); }), { threshold: 0.5 });
+  targets.forEach(t => io.observe(t));
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => {
+    counts.forEach(c => { const w = c.el.getBoundingClientRect().width; if (getComputedStyle(c.el).display === 'inline') c.el.style.display = 'inline-block';
+      c.el.style.minWidth = w + 'px'; c.el.style.textAlign = 'center'; c.el.style.fontVariantNumeric = 'tabular-nums'; show(c, 0); io.observe(c.el); });
+  });
+});
+</script>
 <div class="wall" aria-hidden="true"></div>
-
 <header class="hero">
   <div class="gate-shadow corner" aria-hidden="true"></div>
   <div class="gate-fade" aria-hidden="true"></div>
@@ -325,303 +323,210 @@
       <div class="who">
         <img class="avatar" src="img/jason-face.jpg" width="320" height="320" alt="Jason Tang">
         <div>
-          <p class="name">Jason Tang</p>
-          <p class="title eyebrow">Systems simplified for traditional businesses · Canadian</p>
+          <p class="name">Jason Tang <img class="flag" src="img/flag-ca.svg" width="18" height="18" alt="Canadian flag"></p>
+          <p class="title eyebrow">I build simple systems that make business owners more money</p>
         </div>
       </div>
-      <h1>I find the leaks in your business and fix them <span class="old">quietly</span> in the background.</h1>
-      <p class="intro"><strong>I'm the systems guy.</strong> I find where a business is losing time, money and customers, then build simple systems that stop it. I've been building business systems since 2022, first as co-founder of a 10-person marketing agency, and now every single day. New tech overwhelms most owners. I make it simple.</p>
+      <h1>Your Past Customers, Back and Paying You Again in <span class="tick">30</span> Days.</h1>
       <div class="actions">
-        <a class="btn go" href="mailto:jason@howisjason.com"><svg class="i" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>jason@howisjason.com</a>
-        <button class="btn soft" type="button" data-copy="jason@howisjason.com"><svg class="i" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span>Copy email</span></button>
-        <a class="btn soft" href="https://wa.me/17789911388" target="_blank" rel="noopener"><svg class="i" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg>WhatsApp</a>
-        <a class="btn quiet" href="#built">See what I've built <svg class="i" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
+        <a class="btn go book" data-btn="call" href="book.html">Book to Start Free Setup</a>
+      </div>
+      <div class="intro">
+        <span class="offer-name">The Free 30-Day Comeback Season</span>
+        <p>Your past customers already know you, trust you and have paid you before. Most of them just stopped coming, and nobody asked them back.</p>
+        <p class="not-a8" style="margin-top:12px"><strong>No ads, no new software to learn, and no chasing anyone yourself.</strong></p>
+        <div class="offer-opts">
+          <div class="offer-zero">
+            <p class="zero-fig">$0</p>
+            <div><p class="zero-line">to build and set it all up, and $0 if nobody comes back.</p>
+            <p class="zero-sub">I only get paid a share of what returning customers spend.</p>
+            <p class="zero-sub zero-dime">Not a single dime comes out of your own pocket.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="actions actions-calc">
+        <a class="btn soft" data-btn="calc" href="#calc">See What Yours Are Worth <svg class="i" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
       </div>
     </div>
-    <!-- his photo, seen through the ensō door -->
     <div class="door">
       <div class="door-through"><img class="photo" src="img/jason.jpg" width="900" height="900" alt="Jason Tang at work on his laptop"></div>
       <div class="door-enso" aria-hidden="true"></div>
     </div>
   </div>
 </header>
-
 <main>
-  <section class="first" aria-labelledby="fix">
+  <section class="first" aria-labelledby="why">
     <div class="wrap">
-      <div class="head"><span class="disc plain" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></svg></span><h2 id="fix">What I fix</h2></div>
-      <div class="fixes">
-        <div class="fix">
-          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg></span>
-          <h3>Leads that wait</h3>
-          <p class="pain">The inquiry that sat for a day and went to whoever answered first. The quote nobody chased.</p>
-          <p class="cure">Every lead gets a reply drafted in minutes, ready for your OK, and a follow-up on time, without anyone having to remember.</p>
+      <div class="head"><span class="disc plain" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></span><h2 id="why">The Easiest Sale Is the One You've Made Before</h2></div>
+      <p class="lede">You already paid to win every customer on your list: the ads, the first visit, the good work. Winning them back costs a message.</p>
+      <div class="stats">
+        <div>
+          <p class="quote">"Current customers always have a higher chance of buying your stuff than strangers."</p>
+          <p class="src">Alex Hormozi, <i>$100M Money Models</i></p>
         </div>
-        <div class="fix">
-          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></span>
-          <h3>Admin that eats the day</h3>
-          <p class="pain">The same emails, quotes and updates, typed out by hand, and the late nights spent catching up.</p>
-          <p class="cure">The repeat work moves to a simple system your team can actually run.</p>
+        <div>
+          <p class="figure">~$1.9M</p>
+          <p class="figure-note">a year in extra revenue, from one day of recording personal videos to 200 past customers. About 20% came back.</p>
+          <p class="src">Alex Hormozi, <i>$100M Money Models</i></p>
         </div>
-        <div class="fix">
-          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><circle cx="11.5" cy="14.5" r="2.5"/><path d="M13.3 16.3 15 18"/></svg></span>
-          <h3>Answers buried in your software</h3>
-          <p class="pain">You pay for software that holds the answers, but nobody has time to dig them out.</p>
-          <p class="cure">I connect the software you already have so the answer comes to you. Only then would I suggest anything new.</p>
-        </div>
-        <div class="fix">
-          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></span>
-          <h3>Customers who never came back</h3>
-          <p class="pain">Years of past customers sitting in a list, or on paper, that nobody ever contacts.</p>
-          <p class="cure">They hear from you again, personally. A customer who already trusts you is the easiest one to win back.</p>
+        <div>
+          <p class="figure">59%</p>
+          <p class="figure-note">of home service owners say referrals and repeat work are their top source of new business.</p>
+          <p class="src">Jobber, a survey of 1,050 US home service owners</p>
         </div>
       </div>
-
-      <p class="flow-lead">Here's what that looks like for one inquiry.</p>
-      <div class="flow" role="img" aria-label="One customer inquiry, step by step: a new inquiry comes in, a reply is drafted in minutes, you tap OK, follow-ups go out on day 2 and day 5, and the job is booked.">
+    </div>
+  </section>
+  <section aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="head"><span class="disc plain" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z"/></svg></span><h2 id="how-h">How It Works</h2></div>
+      <p class="lede">One download from the software you already use. One message, written together in your words. Then it runs by itself.</p>
+      <div class="flow" role="img" aria-label="One past customer, step by step: she is found among the customers who stopped coming, your message goes to her with her details filled in, it comes from your own email, one follow-up goes a week later and stops if she books, and she books, then shows up in your Monday report with what she is worth a year.">
         <div class="flow-step">
           <span class="flow-num">1</span>
-          <p class="flow-name">New inquiry</p>
-          <p class="flow-say bubble"><small>Sam</small>Hi, can you quote a kitchen tap replacement?</p>
+          <p class="flow-name">Someone Who Stopped Coming</p>
+          <p class="flow-say bubble"><small>Anna · every 6 weeks</small>Gone 7 months. Used to spend $600 a year.</p>
         </div>
         <div class="flow-step">
           <span class="flow-num">2</span>
-          <p class="flow-name">Reply drafted in minutes</p>
-          <p class="flow-say bubble reply"><span>Hi Sam, </span><span>yes, happy to. </span><span>Could you send </span><span>a photo of the tap?</span></p>
+          <p class="flow-name">Your Message, Her Details</p>
+          <p class="flow-say bubble reply"><span>Hi Anna, </span><span>it's Mia. It's been a while! </span><span>Here's $20 toward a colour and treatment </span><span>if you book this month.</span></p>
         </div>
         <div class="flow-step">
           <span class="flow-num">3</span>
-          <p class="flow-name">You tap OK</p>
-          <div class="flow-say"><span class="ok"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>OK</span></div>
+          <p class="flow-name">From Your Own Email</p>
+          <p class="flow-say bubble"><small>From</small>mia@miasalon.com</p>
         </div>
         <div class="flow-step">
           <span class="flow-num">4</span>
-          <p class="flow-name">Follow-ups on day 2 and day 5</p>
-          <div class="flow-say chips"><span class="chip">Day 2 follow-up</span><span class="chip">Day 5 follow-up</span></div>
+          <p class="flow-name">One Follow-Up</p>
+          <div class="flow-say chips"><span class="chip">A week later</span><span class="chip">Stops if she books</span></div>
         </div>
         <div class="flow-step">
           <span class="flow-num">5</span>
-          <p class="flow-name">Booked</p>
-          <p class="flow-say slot"><b>Thursday, 9:00</b><span>Kitchen tap, Sam</span></p>
+          <p class="flow-name">She's Back, and Counted</p>
+          <p class="flow-say slot"><b>Thursday, 10:00</b><span>Colour, Anna</span><span class="counted">In Monday's report: Anna, back · $600 a year</span></p>
         </div>
+      </div>
+      <div id="calc" class="calc" style="margin-top:64px">
+        <div class="calc-inputs">
+          <p class="offer-name">The Free Missing-Customer Count</p>
+          <p style="font-weight:800;font-size:22px;line-height:1.2">What Are Your Missing Customers Worth?</p>
+          <p style="color:var(--ink-2)">Most owners have never seen this number.</p>
+          <label for="c-gone">How many customers haven't been back in 6 months or more?<small>A rough guess is fine.</small>
+            <input id="c-gone" type="number" inputmode="numeric" min="0" step="1" value="100"></label>
+          <label for="c-visits">How many times a year did a usual customer come?
+            <input id="c-visits" type="number" inputmode="decimal" min="0" step="0.5" value="6"></label>
+          <label for="c-value">What is one visit worth to you, in dollars?
+            <input id="c-value" type="number" inputmode="decimal" min="0" step="1" value="80"></label>
+        </div>
+        <div class="calc-out" aria-live="polite">
+          <p>Walking out the door every year:</p>
+          <p class="figure" id="c-total">$48,000</p>
+          <p class="if">If just <b>1 in 10</b> of them came back, that's <b id="c-tenth">$4,800</b> a year you'd have again.</p>
+          <p class="calc-note">Your own guesses. Export your records, and we'll find out how big a gold mine you're sitting on.</p>
+        </div>
+      </div>
+      <div class="mid-book"><a class="btn go book" data-btn="mid" href="book.html">Book to Start Free Setup</a></div>
+    </div>
+  </section>
+  <section aria-labelledby="more">
+    <div class="wrap">
+      <div class="head"><span class="disc plain" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><h2 id="more">There Are Only Three Ways to Make More Money</h2></div>
+      <p class="lede">Customers pay more times. More customers pay. Customers pay a higher price.<br><strong style="white-space:nowrap">I help with all three.</strong> We start with the first, because it's the pile of gold you're already sitting on: money you've already earned once.</p>
+      <div class="three">
+        <article class="way3 first">
+          <p class="k">1 · Start here</p>
+          <h3>Customers Pay More Times</h3>
+          <p class="figure">About 20%</p>
+          <p class="figure-note">of 200 past customers came back when Hormozi sent each one a personal video with a credit.</p>
+          <p class="src">Alex Hormozi, <i>$100M Money Models</i></p>
+          <div class="build"><b>What I build</b><p>The Free 30-Day Comeback Season, above: your past customers found, written to in your words, and counted when they come back.</p></div>
+        </article>
+        <article class="way3">
+          <p class="k">2</p>
+          <h3>More Customers Pay</h3>
+          <p class="quote">"Most businesses don't get referrals for two reasons. First, their product isn't as good as they think it is. Second, they don't ask for them."</p>
+          <p class="quote">"…the lowest cost, highest profit, and best quality leads out there: referrals."</p>
+          <p class="src">Alex Hormozi, <i>$100M Leads</i></p>
+          <div class="build"><b>What I build</b><p>A simple referral system. When a job is done or a regular rebooks, your happy customer gets a note from you asking who they know, and both of them get something off.</p></div>
+        </article>
+        <article class="way3">
+          <p class="k">3</p>
+          <h3>Customers Pay a Higher Price</h3>
+          <p class="quote">"The truth is that 99 percent of businesses need to raise their prices to grow, not lower them."</p>
+          <p class="quote">When you raise your prices, you "attract the best clients who are the easiest to satisfy and actually cost less to fulfill."</p>
+          <p class="src">Alex Hormozi, <i>$100M Offers</i></p>
+          <div class="build"><b>What I do</b><p>Once your customers are coming back, the Quick-Win Audit: I go through how your business runs and point out the easiest wins. Better processes mean better work, and better work is worth a higher price.</p></div>
+        </article>
       </div>
     </div>
   </section>
-
-  <!-- A "Right now" section (a current client project) goes here, between "What I fix"
-       and "What I've built", only once the work is real and the client agrees to be shown. -->
-
   <section id="built" aria-labelledby="built-h">
     <div class="wrap">
-      <div class="head"><span class="disc plain" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 12-9.373 9.373a1 1 0 0 1-3.001-3L12 9"/><path d="m18 15 4-4"/><path d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172v-.344a2 2 0 0 0-.586-1.414l-1.657-1.657A6 6 0 0 0 12.516 3H9l1.243 1.243A6 6 0 0 1 12 8.485V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5"/></svg></span><h2 id="built-h">What I've built</h2></div>
-      <p class="lede">I built these for my own business first. Here's what each one does, and what the same idea looks like in yours. These are the real screens.</p>
-
-      <article class="system">
+      <div class="head"><span class="disc plain" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 12-9.373 9.373a1 1 0 0 1-3.001-3L12 9"/><path d="m18 15 4-4"/><path d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172v-.344a2 2 0 0 0-.586-1.414l-1.657-1.657A6 6 0 0 0 12.516 3H9l1.243 1.243A6 6 0 0 1 12 8.485V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5"/></svg></span><h2 id="built-h">Watch It Running</h2></div>
+      <p class="lede">I co-founded a 10-person marketing agency in 2022 and ran its whole back end with systems and automations. Past clients include a creator now at 1.3 million followers.</p>
+      <article class="system" style="margin-top:24px">
         <div>
-          <h3>A system that finds the right people, researches them and follows up on its own</h3>
-          <p>It finds the right people to contact, researches each one, writes to each of them personally, and handles the follow-ups by itself, with every reply sent straight to my phone.</p>
-          <p class="yours"><b>In your business:</b> your past customers, and anyone with an open quote, each get a personal message, written the way you would write it, and a follow-up on time, so none go cold.</p>
+          <h3>The Same Engine Already Runs My Own Outreach</h3>
+          <p>It finds the right people, writes to each one personally, follows up by itself, and sends every reply straight to my phone.</p>
         </div>
-        <figure class="shot">
-          <img src="img/lead-engine.jpg" width="1600" height="939" alt="The system's dashboard: 195 people worth contacting, found by searching 35,244 YouTube channels." loading="lazy">
-          <figcaption>The live dashboard. Names blurred.</figcaption>
-        </figure>
       </article>
-
-      <article class="system has-phone">
-        <div>
-          <h3>An assistant that runs my admin every morning</h3>
-          <p>Every morning at 7 it does the day's admin on its own: it sends the emails and checks for replies. Then a separate AI reviewer grades its work, fixes any mistakes it finds by itself, and only asks me when a person is needed. Everything it knows lives on a private home page I open on my phone.</p>
-          <p class="yours"><b>In your business:</b> the morning admin is done and checked before you open, and you only hear about what needs a person.</p>
-        </div>
-        <figure class="shot phone">
-          <img src="img/assistant-phone.jpg" width="646" height="1255" alt="The assistant's private home page on my phone." loading="lazy">
-          <figcaption>Its home page, on my phone.</figcaption>
-        </figure>
-      </article>
-    </div>
-  </section>
-
-  <!-- The video plays here, but preload="none" means nothing downloads until someone
-       presses play, so the page stays fast. The browser's address bar is covered in it. -->
-  <section class="watch" aria-labelledby="watch">
-    <div class="wrap">
-      <div class="head"><span class="disc plain" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg></span><h2 id="watch">Watch one running</h2></div>
-      <p class="lede">A 3-minute walkthrough of that first system, in my own words.</p>
       <div class="video-wrap">
-      <video class="video" aria-label="Jason's 3-minute walkthrough of the system" controls preload="none" playsinline poster="img/video-poster.jpg" width="1280" height="772">
-        <source src="video/walkthrough.mp4" type="video/mp4">
-      </video>
-      <button class="play" type="button" aria-label="Play the 3-minute walkthrough"><span class="play-disc" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg></span><span class="play-text">Watch it run<small>3 minutes</small></span></button>
+        <video class="video" aria-label="Jason's 3-minute walkthrough of the system" controls preload="none" playsinline poster="img/video-poster.jpg" width="1280" height="772">
+          <source src="video/walkthrough.mp4" type="video/mp4">
+        </video>
+        <button class="play" type="button" aria-label="Play the 3-minute walkthrough"><span class="play-disc" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg></span><span class="play-text">Watch It Run<small>3 minutes</small></span></button>
       </div>
     </div>
   </section>
-
-  <section aria-labelledby="how">
-    <div class="wrap">
-      <div class="head"><span class="disc plain" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg></span><h2 id="how">How I work</h2></div>
-      <div class="ways">
-        <div>
-          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z"/></svg></span>
-          <h3>One piece at a time</h3>
-          <p>We start with the thing costing you the most, see it work, then decide what's next.</p>
-        </div>
-        <div>
-          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
-          <h3>A person says yes</h3>
-          <p>Nothing reaches a customer without your OK, and AI is kept out of the decisions where one mistake costs you a customer.</p>
-        </div>
-        <div>
-          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 20h20"/><path d="m9 10 2 2 4-4"/><rect x="3" y="4" width="18" height="12" rx="2"/></svg></span>
-          <h3>Nothing new to learn</h3>
-          <p>It works inside the software your team already uses, unless something new is clearly worth it.</p>
-        </div>
-        <div>
-          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg></span>
-          <h3>A real person answers</h3>
-          <p>When we work together, you talk to me, in plain English.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section aria-labelledby="talk">
+  <section aria-labelledby="talk" id="talk">
     <div class="wrap talk">
-      <span class="window hello"><img src="img/jason-hello.jpg" width="320" height="320" alt="Jason, smiling" loading="lazy"></span>
+      <span class="window hello"><img src="img/jason-hello-2.jpg" width="320" height="320" alt="Jason, smiling" loading="lazy"></span>
       <div>
-      <h2 id="talk">Something keeps slipping through the cracks?</h2>
-      <p>If someone you know sent you this, they probably think I can help. Tell me what keeps slipping in your business, and I'll tell you honestly whether I can fix it.</p>
+      <h2>How Much Are Your Past Customers Worth?</h2>
+      <p>Past customers are where we start. Once they're back, we look at your referrals and your prices.</p>
+      <p>Your past customers, back and paying you again in 30 days. No ads, no new software, and nobody to chase yourself. I build and set it all up for free, and if nobody comes back, you pay nothing. I only take on 3 new businesses a month, so each one gets my full attention during setup.</p>
+      <p>If someone you know sent you this, they probably think I can help.</p>
       <div class="actions">
-        <a class="email" href="mailto:jason@howisjason.com">jason@howisjason.com</a>
-        <button class="btn soft" type="button" data-copy="jason@howisjason.com"><svg class="i" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span>Copy email</span></button>
-        <a class="btn soft" href="https://wa.me/17789911388" target="_blank" rel="noopener"><svg class="i" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg>WhatsApp</a>
+        <a class="btn go book" data-btn="calendar" href="book.html">Book to Start Free Setup</a>
       </div>
       </div>
     </div>
   </section>
 </main>
-
 <footer>
-  <div class="wrap"><span class="sign"><span class="seal sm" aria-hidden="true"><span>鄧</span><span>正</span></span><span class="who">Jason Tang</span></span></div>
+  <div class="wrap">
+  <span class="sign"><span class="who">Jason Tang <img class="flag" src="img/flag-ca.svg" width="16" height="16" alt="Canada"></span></span>
+    <nav class="foot-links" aria-label="Contact">
+      <a class="foot-text" href="privacy.html">Privacy</a>
+      <a class="social" href="mailto:jason@howisjason.com" aria-label="Email jason@howisjason.com" title="jason@howisjason.com"><svg class="i" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+      <a class="social" href="https://wa.me/17789911388" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg class="i" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+      <a class="social" href="https://www.instagram.com/howisjason/" target="_blank" rel="noopener" aria-label="Instagram @howisjason" title="Instagram"><svg class="i" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a>
+    </nav>
+  </div>
 </footer>
-
-<!-- "Quick questions", the chat box (jason-bot branch; labelled "Ask my AI" until 26 Oct 2026,
-     when three cold readers playing owners all skipped it and J dropped "AI" from the label).
-     The panel's words still make clear it is an AI. -->
-<button class="ask-pill" type="button" aria-controls="ask" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Quick questions</button>
-<div class="ask" id="ask" role="dialog" aria-label="Quick questions">
-  <div class="ask-head">
-    <img src="img/jason-face.jpg" width="320" height="320" alt="">
-    <p><b>Quick questions</b><small>Instant answers from an AI that knows my work. For anything real, message me directly.</small></p>
-    <button class="ask-close" type="button" aria-label="Close">&times;</button>
-  </div>
-  <div class="ask-log" aria-live="polite">
-    <p class="ask-msg bot">Hi, I'm Jason's AI. Ask me about my work, what I've built, or what might be slipping in your business.</p>
-    <div class="ask-chips">
-      <button type="button">What could you automate for my business?</button>
-      <button type="button">What have you built?</button>
-      <button type="button">How would we work together?</button>
-    </div>
-  </div>
-  <form class="ask-form">
-    <textarea rows="1" maxlength="600" placeholder="Type a question" aria-label="Your question"></textarea>
-    <button type="submit">Send</button>
-  </form>
-</div>
-
 <script>
-  /* Click anywhere on the video to play or pause. Chrome only does this from the small
-     play button; Firefox and Safari already do it themselves, so we check a moment later
-     and only act if the browser didn't, which avoids pausing it straight back. */
   document.querySelectorAll('.video-wrap').forEach(function (w) {
-    var v = w.querySelector('video');
-    /* the browser's own control bar would show through the cover, so it waits until playback starts
-       (it stays in the HTML so the video still works if this script never runs) */
-    v.controls = false;
+    var v = w.querySelector('video'); v.controls = false;
     w.querySelector('.play').addEventListener('click', function () { v.play().catch(function () {}); });
     v.addEventListener('play', function () { w.classList.add('is-playing'); v.controls = true; });
   });
-  document.querySelectorAll('video').forEach(function (v) {
-    v.addEventListener('click', function (e) {
-      var r = v.getBoundingClientRect();
-      if (e.clientY > r.bottom - 64) return; /* a click on the control bar stays the bar's */
-      var wasPaused = v.paused;
-      setTimeout(function () {
-        if (v.paused === wasPaused) { if (wasPaused) { v.play().catch(function () {}); } else { v.pause(); } }
-      }, 0);
-    });
-  });
-  /* The one-inquiry diagram only moves while it is on screen; off screen it pauses
-     (a class that sets animation-play-state), so on a first visit it starts at step 1 when scrolled to. */
   var flow = document.querySelector('.flow');
   if (flow && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (es) { flow.classList.toggle('is-paused', !es[0].isIntersecting); }).observe(flow);
   }
-  /* "Copy email" buttons: many owners use Gmail in the browser, not a mail app, so a
-     mailto link alone sends them to an app they never open. Only the words change to
-     "Copied" (they sit in their own span, so the button's icon stays). */
-  document.querySelectorAll('[data-copy]').forEach(function (b) {
-    var t = b.querySelector('span') || b;
-    var label = t.textContent; /* saved once, so a double click can't save "Copied" as the label */
-    b.addEventListener('click', function () {
-      var done = function () { t.textContent = 'Copied'; clearTimeout(b._t); b._t = setTimeout(function () { t.textContent = label; }, 1800); };
-      if (navigator.clipboard) { navigator.clipboard.writeText(b.dataset.copy).then(done, function () {}); }
-    });
-  });
-  /* "Ask my AI": the conversation lives only in this page (nothing is saved in the
-     browser), and each question sends the whole chat to the jason-bot worker, which
-     checks the daily caps and answers. The worker's error messages are written to be
-     shown as they are. */
   (function () {
-    var BOT = 'https://jason-bot.jaceebo.workers.dev/chat';
-    var pill = document.querySelector('.ask-pill'), panel = document.getElementById('ask');
-    if (!pill || !panel) return;
-    var log = panel.querySelector('.ask-log'), form = panel.querySelector('.ask-form');
-    var box = form.querySelector('textarea'), send = form.querySelector('button');
-    var chips = panel.querySelector('.ask-chips'), chat = [], busy = false;
-    function open(on) {
-      document.body.classList.toggle('ask-open', on);
-      pill.setAttribute('aria-expanded', on ? 'true' : 'false');
-      /* a phone's keyboard would cover the suggested questions, so only a mouse-and-keyboard screen gets the cursor */
-      if (on) { if (matchMedia('(hover: hover)').matches) box.focus(); } else { pill.focus(); }
-    }
-    function say(text, who) {
-      var p = document.createElement('p');
-      p.className = 'ask-msg ' + who; p.textContent = text;
-      log.appendChild(p); log.scrollTop = log.scrollHeight;
-      return p;
-    }
-    function grow() { box.style.height = 'auto'; box.style.height = box.scrollHeight + 'px'; }
-    function ask(text) {
-      text = text.trim();
-      if (!text || busy) return;
-      if (chips) { chips.remove(); chips = null; }
-      busy = true; send.disabled = true;
-      say(text, 'you'); box.value = ''; grow();
-      chat.push({ role: 'user', content: text });
-      var wait = say('Thinking…', 'bot wait');
-      fetch(BOT, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ messages: chat }) })
-        .then(function (r) { return r.json(); })
-        .then(function (d) {
-          wait.remove();
-          if (d.reply) { chat.push({ role: 'assistant', content: d.reply }); say(d.reply, 'bot'); }
-          else { chat.pop(); say(d.error || 'Something went wrong. You can email me at jason@howisjason.com.', 'note'); }
-        })
-        .catch(function () { wait.remove(); chat.pop(); say("Couldn't reach my AI just now. You can email me at jason@howisjason.com.", 'note'); })
-        .then(function () { busy = false; send.disabled = false; });
-    }
-    pill.addEventListener('click', function () { open(true); });
-    panel.querySelector('.ask-close').addEventListener('click', function () { open(false); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && document.body.classList.contains('ask-open')) open(false); });
-    if (chips) chips.addEventListener('click', function (e) { if (e.target.tagName === 'BUTTON') ask(e.target.textContent); });
-    form.addEventListener('submit', function (e) { e.preventDefault(); ask(box.value); });
-    box.addEventListener('input', grow);
-    /* Enter sends, Shift+Enter makes a new line */
-    box.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); ask(box.value); } });
+    var g = document.getElementById('c-gone'), v = document.getElementById('c-visits'), w = document.getElementById('c-value');
+    var total = document.getElementById('c-total'), tenth = document.getElementById('c-tenth');
+    if (!g) return;
+    var fmt = function (n) { return '$' + Math.round(n).toLocaleString('en-US'); };
+    var num = function (el) { var x = parseFloat(el.value); return isFinite(x) && x > 0 ? x : 0; };
+    var run = function () { var t = num(g) * num(v) * num(w); total.textContent = fmt(t); tenth.textContent = fmt(t / 10); };
+    [g, v, w].forEach(function (el) { el.addEventListener('input', run); });
+    run();
   })();
 </script>
-<!-- Visit counter (GoatCounter, no cookies). A link sent as howisjason.com/?ref=name
-     shows that name as the visit's source in the dashboard (not as a separate page). -->
 <script data-goatcounter="https://howisjason.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
