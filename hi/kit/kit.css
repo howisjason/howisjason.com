@@ -737,14 +737,17 @@ body::before {
    would make a scroll box and the sticky layer would stop holding.)
    Why it exists: on 18 Nov 2026 every ambient layer was cut because pale blue and white light was lost
    on the pale grey sheet. In these colours it shows. J tried seven kinds that day, first one per panel
-   ("how do you choose which section?"), then pinned to the window, and kept this one. */
+   ("how do you choose which section?"), then pinned to the window, and kept this one.
+   The colours never get narrower than they are on a wide screen: the band of colour is at least 1100px
+   wide and a narrow window shows only its middle (two or three colours, softly). Before that, a phone
+   squeezed all ten colour steps into its width and J saw them "squished ... smushed together" (18 Nov 2026). */
 :where(*):has(> .ribbon) { isolation: isolate; }   /* the sheet becomes its own layer, so the ribbon sits behind its words but over its own grey */
 .ribbon { position: absolute; inset: 0; z-index: -1; overflow: clip; pointer-events: none; border-radius: inherit; }
 .ribbon > i { display: block; position: sticky; top: 0; height: 100vh; overflow: clip; opacity: var(--iri-strength); }
 .ribbon > i::before { content: ""; position: absolute; left: -15%; right: -15%; top: 48%; height: 56%; will-change: transform;
   background: linear-gradient(90deg,
     var(--iri-rose), var(--iri-mint), var(--iri-aqua), var(--iri-lilac), var(--iri-peach),
-    var(--iri-rose), var(--iri-mint), var(--iri-aqua), var(--iri-lilac), var(--iri-peach), var(--iri-rose));
+    var(--iri-rose), var(--iri-mint), var(--iri-aqua), var(--iri-lilac), var(--iri-peach), var(--iri-rose)) center / max(100%, 1100px) 100% no-repeat;
   -webkit-mask: radial-gradient(ellipse 50% 50% at center, var(--mask-ink) 0, var(--mask-half) 45%, var(--clear) 72%);
   mask: radial-gradient(ellipse 50% 50% at center, var(--mask-ink) 0, var(--mask-half) 45%, var(--clear) 72%);
   animation: sky-ribbon 16s ease-in-out infinite alternate; }
