@@ -13,6 +13,11 @@ Everything in this repo is public. Nothing private belongs here.
   other two of the three ways to make more money (more customers, higher prices) below it.
 - `book.html`: the free setup call, with his Cal.com calendar (cal.com/howisjason/setup) inside.
 - `privacy.html`: what the booking form and the visit counter collect, and the picture credits.
+- `hi/index.html` (https://howisjason.com/hi/, since 18 Nov 2026): the small page for people he meets in
+  person, one screen with his photo, his name, a WhatsApp button, an Instagram button and a link to
+  the main page. The QR code on his phone's lock screen leads here as `/hi/?ref=qr`, so never move or
+  rename it. It is built from its own copy of the Sky kit in `hi/kit/` (the kit's home is
+  `Projects/design-kit/sky/`), not from `css/`.
 - `css/base.css` and `css/look.css`: the look (the S2F3 sky look); `img/` and `video/`: the
   pictures and the walkthrough video. Credits for added pictures: `img/SOURCES.md`.
 

@@ -1,0 +1,162 @@
+/* =====================================================================
+   SKY · tokens
+   Every colour, size, font, corner and shadow the kit uses lives here,
+   and only here. kit.css never writes a colour of its own.
+   Lifted from the live look of howisjason.com (11 Nov 2026).
+   Daylight only: there is no night mode.
+   Link this file first, then kit.css.
+   ===================================================================== */
+
+:root {
+  /* ---- colours: a pale grey sheet on a blue sky, navy ink, sky blue, one gold ---- */
+  --sky-fill: #7AA0D2;     /* the flat blue under the sky photo, seen only while the photo loads */
+  --wall: #F2F2F3;         /* the sheet: the light grey page that floats on the sky */
+  --sheet-top: #F5F5F6;    /* the opening block at the top of the sheet, a shade lighter */
+  --paper: #FFFFFF;        /* cards, chips, boxes, the light buttons */
+  --panel-2: #E9E9EC;      /* a shaded panel, to set one section apart from its neighbours */
+  --mist: #F6F7F9;         /* inside an input, a message bubble */
+  --ink: #232838;          /* headings, reading text in boxes, outlines */
+  --ink-2: #474C59;        /* softer reading text and the small capital labels.
+                              The live page uses #555B6B, which measures 6.06:1 on the sheet and
+                              misses the 7:1 floor for reading text; this is the nearest darker
+                              grey of the same hue that passes on every background (see KIT.md). */
+  --ink-3: #6B7080;        /* placeholders inside inputs only */
+  --sky: #9EBDE6;          /* sky blue: rules beside text, the border of the picked card, the lit step */
+  --sky-wash: #E8EFF9;     /* pale blue: behind icons, the lit step, the light blue button */
+  --sky-wash-2: #D6E3F5;   /* the light blue button under the pointer */
+  --deep: #35598C;         /* deep blue: small labels' icons, links, the big numbers, step numbers */
+  --night: #1D2232;        /* the dark button */
+  --night-2: #2B3348;      /* the dark button under the pointer */
+  --gold: #F6C343;         /* the one push: the main button, and nothing else */
+  --gold-deep: #EBB52A;    /* the gold button under the pointer */
+  --line: #DCDDE2;         /* hairlines and box edges */
+  --line-2: #C8CAD1;       /* an input's edge, the dots, the line between steps */
+  --frame-line: #D3D5DB;   /* the double line around every panel, the ring around the dark buttons */
+  --tick: #A7ABB5;         /* the small drawn marks: the line under a heading, the dashed ring */
+  --dot: #C3C6CD;          /* the dot grid in a corner of the opening */
+  --focus: #4F7FC2;        /* the outline round whatever the keyboard is on */
+  --selection: #C6D8F1;    /* selected text */
+
+  /* see-through versions: the white words and lines on the sky, fades and shadows */
+  --cloud: rgba(255, 255, 255, .85);       /* the words on the sky */
+  --cloud-line: rgba(255, 255, 255, .6);   /* the little dividers between the words on the sky */
+  --cloud-frame: rgba(255, 255, 255, .75); /* the optional frame lines on the sky */
+  --cloud-rim: rgba(255, 255, 255, .6);    /* the bright top edge of the sheet */
+  --cloud-shade: rgba(30, 60, 110, .35);   /* the soft shadow that lifts the sky words off a cloud */
+  --glint: #FFFFFF;                        /* the star-shaped glints at the frame's corners */
+  --veil: rgba(35, 40, 56, .78);           /* the dark fade at the foot of a video, so its white words read */
+  --veil-clear: rgba(35, 40, 56, 0);
+  --play-ring: rgba(255, 255, 255, .22);   /* the pale ring round the play button */
+  --shade: rgba(30, 45, 80, .3);           /* navy at a third: soft shadows */
+  --shade-deep: rgba(30, 45, 80, .45);
+  --shade-sheet: rgba(25, 40, 80, .45);    /* the shadow the sheet casts on the sky */
+  --shade-dark: rgba(20, 25, 40, .7);      /* under the dark button */
+  --shade-gold: rgba(60, 40, 0, .18);      /* under the gold button */
+  --gold-edge: rgba(120, 85, 10, .25);     /* the gold button's thin inner edge */
+  --halo-gold: rgba(246, 195, 67, .6);     /* the gold button's soft pulse, at its start */
+  --halo-gold-clear: rgba(246, 195, 67, 0);
+  --halo-deep: rgba(53, 89, 140, .45);     /* the lit dot's pulse */
+  --halo-deep-clear: rgba(53, 89, 140, 0);
+  --hint: rgba(0, 0, 0, .08);              /* the faintest lift under a light button or chip */
+  --clear: transparent;                    /* nothing at all: the gaps in drawn marks and gradients */
+  --mask-ink: #000000;                     /* the ink of a fading edge mask (the ticker's soft ends); never seen as a colour */
+
+  /* ---- the colours of life: every moving effect (kit.css section 15) takes its colour from here ----
+     Only Sky's own colours, made see-through: sky blue, deep blue, navy and white. No gold, no new hue,
+     but for the Ribbon's five colours below. */
+  --fx-glow: rgba(158, 189, 230, .55);       /* sky blue at half: the halo, the ring's glow */
+  --fx-glow-clear: rgba(158, 189, 230, 0);
+  --fx-shimmer: rgba(255, 255, 255, .6);     /* the shine that sweeps along a filled bar */
+  --fx-deco: rgba(53, 89, 140, .1);          /* a giant faint glyph: quote marks, an oversized number */
+  --fx-radar: rgba(53, 89, 140, .22);        /* the radar's sweep */
+  --fx-pulse: rgba(53, 89, 140, .4);         /* the deep blue pulse round a slot or a soft button */
+  --fx-pulse-clear: rgba(53, 89, 140, 0);
+
+  /* ---- the iridescent colours: the Ribbon ONLY (kit.css section 15g), and nothing else ----
+     The five soft colours along the edge of a real iridescent cloud, the five-coloured auspicious
+     cloud J chose as his sign (18 Nov 2026). The one named exception to "never a new accent colour":
+     never on words, never a fill, never a button or an edge (see KIT.md). */
+  --iri-rose: #F9C6DC;
+  --iri-peach: #FCDDBD;
+  --iri-mint: #BFEFD9;
+  --iri-aqua: #B4E3F5;
+  --iri-lilac: #D5CCF7;
+  --iri-strength: .55;                       /* how strong the Ribbon is: the "Soft" J picked on the trial page */
+  --mask-half: rgba(0, 0, 0, .55);           /* the half-strength ink of the Ribbon's fading mask; never seen as a colour */
+
+  /* ---- fonts ---- */
+  --serif: "EB Garamond", Georgia, serif;                 /* headings and the big numbers, always upright */
+  --sans: "Instrument Sans", system-ui, sans-serif;       /* everything you read */
+  --mono: "IBM Plex Mono", ui-monospace, monospace;       /* small spaced capital labels */
+  --script: "Mrs Saint Delafield", cursive;               /* the faint watermark ONLY: never words anyone reads */
+
+  /* ---- sizes: they grow with the window between a phone and a wide screen ---- */
+  --t-hero: clamp(38px, 5.4vw, 64px);     /* the one headline in the opening */
+  --t-title: clamp(30px, 3.6vw, 42px);    /* section headings */
+  --t-figure-xl: clamp(56px, 6vw, 76px);  /* one huge number in a box */
+  --t-figure: clamp(44px, 4.6vw, 60px);   /* the big numbers */
+  --t-quote: clamp(22px, 2.6vw, 28px);    /* a quote standing on its own */
+  --t-card: 24px;                         /* a card's heading */
+  --t-sub: clamp(21px, 2vw, 25px);        /* a heading inside long text */
+  --t-lead: 19px;                         /* a small quote inside a card, an input's number */
+  --t-body: 17px;                         /* reading text */
+  --t-ui: 15.5px;                         /* buttons, a step's name, a question's label */
+  --t-note: 14.5px;                       /* chips, a number's note, step details */
+  --t-small: 14px;                        /* captions, footnotes */
+  --t-page: clamp(34px, 3.6vw, 48px);     /* the headline of a plain inner page (booking, privacy) */
+  --t-tiny: 13px;                         /* a small chip, the hint under a question, a step's number */
+  --t-tagline: 12.5px;                    /* the tagline under the opening picture, section numbers (mono capitals) */
+  --t-source: 11.5px;                     /* the source line under a quote or a number (mono capitals) */
+  --t-label: 11px;                        /* small capital labels (mono) */
+  --t-watermark: clamp(120px, 17vw, 250px); /* the faint script behind the opening */
+
+  /* icon sizes (Lucide, inline SVG) */
+  --i-sm: 15px;
+  --i-md: 18px;
+  --i-lg: 22px;
+
+  /* ---- layout: the sky, the sheet on it, the panels on the sheet ---- */
+  --sheet-max: 1080px;                       /* the sheet's widest */
+  --gut: clamp(14px, 5vw, 76px);             /* the strip of sky beside the sheet (wider on big screens, below) */
+  --pad-sky: clamp(46px, 7vw, 92px);         /* the strip of sky above and below the sheet */
+  --frame-in: clamp(18px, 3vw, 40px);        /* how far the sky words and the frame sit in from the window edge */
+  --panel-max: 960px;                        /* a panel's widest */
+  --panel-gap: clamp(26px, 4vw, 40px);       /* the space above every panel */
+  --panel-pad-y: clamp(28px, 4vw, 52px);
+  --panel-pad-x: clamp(20px, 4vw, 48px);
+  --read: 40rem;                             /* the longest line of reading text */
+
+  /* ---- corners ---- */
+  --r-pill: 999px;     /* buttons, chips */
+  --r-sheet: 34px;     /* the sheet */
+  --r-panel: 22px;     /* panels, cards, steps, the calculator */
+  --r-shot: 24px;      /* a video or a screenshot */
+  --r-box: 16px;       /* a small white box (the big-number box) */
+  --r-soft: 14px;      /* bubbles, inputs, note boxes */
+  --r-tag: 4px;        /* the slot's square-ish top */
+
+  /* ---- shadows ---- */
+  --sh-sheet: 0 -1px 0 var(--cloud-rim), 0 40px 60px -30px var(--shade-sheet);
+  --sh-card: 0 14px 28px -22px var(--shade-deep);
+  --sh-step: 0 18px 30px -26px var(--shade);
+  --sh-box: 0 8px 20px -16px var(--shade-deep);
+  --sh-chip: 0 6px 14px -12px rgba(30, 45, 80, .5);
+  --sh-window: 0 8px 18px -8px rgba(30, 45, 80, .5), 0 0 0 3px var(--paper);
+  --sh-window-lg: 0 10px 24px -10px rgba(30, 45, 80, .5), 0 0 0 4px var(--paper);
+  --sh-disc: 0 0 0 1px var(--frame-line), 0 10px 22px -14px rgba(30, 45, 80, .55);
+  --sh-shot: 0 0 0 1px rgba(0, 0, 0, .12), 0 34px 60px -34px rgba(0, 0, 0, .5);
+  --sh-soft: 0 1px 3px var(--hint), inset 0 0 0 1px var(--line);
+  --sh-gold: 0 1px 2px var(--shade-gold), inset 0 0 0 1px var(--gold-edge);
+  --sh-night: 0 10px 22px -10px var(--shade-dark);
+  --sh-play: 0 0 0 7px var(--play-ring), 0 10px 30px -8px var(--shade-deep);
+
+  /* ---- motion ---- */
+  --ease: cubic-bezier(.16, 1, .3, 1);       /* every arrival: fast start, long soft landing */
+  --ease-drop: cubic-bezier(.5, 0, .9, .4);  /* things that fall away */
+  --enter-time: .9s;                         /* how long an arrival takes */
+  --turn-gap: 110ms;                         /* the gap between things that arrive in turn */
+  --read-pause: .8s;                         /* how long something on screen stays as it was before it changes (spotlight, veil wipe, fall, number morph) */
+}
+
+/* on windows wider than 900px the sheet always leaves a real strip of sky on each side */
+@media (min-width: 901px) { :root { --gut: clamp(76px, 9vw, 130px); } }
