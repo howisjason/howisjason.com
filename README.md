@@ -21,16 +21,15 @@ Visits are counted by GoatCounter (howisjason.goatcounter.com); each friend's as
 
 ## How to change it
 
-The three pages are built, never edited here by hand. Their source is in `drafts/`, which git
-ignores (it holds working notes), so it lives only on Jason's Mac:
-draft 4 (`drafts/picks/index.html`) holds the words, `drafts/book/` and `drafts/privacy/` the
-two other pages, `drafts/look-full/s2f3/` the look. From this folder:
+Edit the page files here directly: `index.html`, `book.html`, `privacy.html`, `css/base.css` and
+`css/look.css`. Check the page in a browser, commit, push: live within a minute or two.
 
-    python3 -I drafts/look-full/build.py && python3 -I drafts/look-full/publish.py
-
-`build.py` builds the drafts; `publish.py` copies them here, strips every comment (the drafts'
-comments quote his working sessions), and fixes the picture paths. Check, commit, push: live
-within a minute or two.
+**Never run `drafts/look-full/build.py` or `publish.py`.** They rebuild the three pages from the
+drafts in `drafts/` (git ignores that folder, so it lives only on Jason's Mac), and the drafts
+stopped at 10 Nov 2026. Everything changed here since then exists only in these page files: the
+car shop in the five steps, the name The Free 30-Day Winback and the 42% figure (17 Nov 2026), and
+the Ribbon (18 Nov 2026). A rebuild writes the 10 Nov page over all of it. `publish.py` refuses
+to run for that reason.
 
 ## Left from the old page
 
