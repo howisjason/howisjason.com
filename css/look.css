@@ -382,3 +382,15 @@ footer .sign .flag { width: 16px; height: 16px; }
 .btn.go.book { animation: halo-btn 3.2s ease-out infinite; }
 @media (prefers-reduced-motion: reduce) { .btn.go.book { animation: none; } }
 @media (max-width: 640px) { footer .wrap { flex-direction: column-reverse; } }
+/* the Ribbon (Sky kit, 18 Nov 2026): one soft band of five iridescent colours, pinned to the lower part of the window behind the sheet's words; the page scrolls over it */
+:root { --iri-rose: #F9C6DC; --iri-peach: #FCDDBD; --iri-mint: #BFEFD9; --iri-aqua: #B4E3F5; --iri-lilac: #D5CCF7; --iri-strength: .55; }
+:where(*):has(> .ribbon) { isolation: isolate; }
+.ribbon { position: absolute; inset: 0; z-index: -1; overflow: clip; pointer-events: none; border-radius: inherit; }
+.ribbon > i { display: block; position: sticky; top: 0; height: 100vh; overflow: clip; opacity: var(--iri-strength); }
+.ribbon > i::before { content: ""; position: absolute; left: -15%; right: -15%; top: 48%; height: 56%; will-change: transform;
+  background: linear-gradient(90deg, var(--iri-rose), var(--iri-mint), var(--iri-aqua), var(--iri-lilac), var(--iri-peach), var(--iri-rose), var(--iri-mint), var(--iri-aqua), var(--iri-lilac), var(--iri-peach), var(--iri-rose));
+  -webkit-mask: radial-gradient(ellipse 50% 50% at center, #000 0, rgba(0, 0, 0, .55) 45%, transparent 72%);
+  mask: radial-gradient(ellipse 50% 50% at center, #000 0, rgba(0, 0, 0, .55) 45%, transparent 72%);
+  animation: sky-ribbon 16s ease-in-out infinite alternate; }
+@keyframes sky-ribbon { from { transform: translateX(-7%) scaleY(.75); } to { transform: translateX(7%) scaleY(1.2); } }
+@media (prefers-reduced-motion: reduce) { .ribbon > i::before { animation: none; } }
